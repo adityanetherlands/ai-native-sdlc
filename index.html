@@ -1763,32 +1763,81 @@ body {
   position: fixed;
   right: 24px;
   bottom: 24px;
-  width: 380px;
+  width: 360px;
   max-width: calc(100vw - 48px);
   z-index: 200;
-  background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow: var(--shadow-lg);
-  padding: 14px 14px 12px;
+  background: rgba(14, 16, 22, 0.88);
+  backdrop-filter: blur(32px) saturate(160%);
+  -webkit-backdrop-filter: blur(32px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    0 2px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  padding: 18px 20px 16px;
   animation: pp-slide-in 0.25s ease;
+  color: #fff;
 }
 .podcast-player[hidden] { display: none; }
 @keyframes pp-slide-in {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+.pp-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 12px;
+}
+.pp-time-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+.pp-waveform {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 44px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  outline: none;
+}
+.pp-waveform:focus-visible {
+  box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.5);
+  border-radius: 4px;
+}
+.pp-bar {
+  flex: 1;
+  height: var(--h, 40%);
+  min-width: 2px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 1.5px;
+  transition: background 0.08s linear;
+  pointer-events: none;
+}
+.pp-bar.played { background: var(--accent); }
 .pp-controls {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 12px;
 }
 .pp-play {
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background: var(--accent);
   border: none;
@@ -1797,90 +1846,51 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.15s ease, background 0.2s ease;
+  box-shadow: 0 6px 20px rgba(108, 92, 231, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
-.pp-play:hover { transform: scale(1.05); }
-.pp-play svg { margin-left: 1px; }
+.pp-play:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 24px rgba(108, 92, 231, 0.55);
+}
+.pp-play:active { transform: scale(0.97); }
+.pp-play svg { margin-left: 2px; }
 .pp-play .pp-icon-pause { margin-left: 0; }
 .pp-play svg[hidden] { display: none; }
-.pp-track { flex: 1; min-width: 0; }
-.pp-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 4px;
-}
-.pp-scrub {
-  width: 100%;
-  height: 4px;
-  -webkit-appearance: none;
-  appearance: none;
-  background: var(--border);
-  border-radius: 2px;
-  outline: none;
-  cursor: pointer;
-  margin: 2px 0;
-}
-.pp-scrub::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-  cursor: pointer;
-  border: 2px solid var(--bg-card);
-}
-.pp-scrub::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-  cursor: pointer;
-  border: 2px solid var(--bg-card);
-}
-.pp-time {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: var(--text-dim);
-  margin-top: 2px;
-}
 .pp-speed, .pp-close {
   flex-shrink: 0;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.78);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
-  padding: 6px 8px;
-  border-radius: 6px;
+  height: 40px;
+  border-radius: 50%;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-.pp-close {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
-  width: 26px;
-  height: 26px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
 }
+.pp-speed {
+  min-width: 52px;
+  padding: 0 14px;
+  border-radius: 20px;
+}
+.pp-close { width: 40px; }
 .pp-speed:hover, .pp-close:hover {
-  background: var(--bg-card-hover);
-  color: var(--text);
-  border-color: var(--border-active);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.18);
 }
+.pp-speed:active, .pp-close:active { transform: scale(0.96); }
 .pp-error {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10.5px;
-  color: var(--text-dim);
+  color: rgba(255, 255, 255, 0.6);
   text-align: center;
-  padding: 6px 0 0;
+  padding: 10px 0 0;
 }
 
 @media (max-width: 640px) {
@@ -1890,9 +1900,11 @@ body {
     bottom: 12px;
     width: auto;
     max-width: none;
-    padding: 12px;
+    padding: 14px 16px;
+    border-radius: 18px;
   }
-  .pp-title { font-size: 11px; }
+  .pp-waveform { height: 38px; }
+  .pp-play { width: 48px; height: 48px; }
 }
 </style>
 </head>
@@ -3450,17 +3462,18 @@ body {
   <audio id="podcast-audio" preload="metadata"
          src="https://keqyzinkkerwvztmrhyz.supabase.co/storage/v1/object/public/assets/ai-native-sdlc-podcast.m4a"
          type="audio/mp4"></audio>
+  <div class="pp-title">AI-Native SDLC — Podcast Overview</div>
+  <div class="pp-time-row">
+    <span id="pp-current">0:00</span>
+    <span id="pp-total">—:—</span>
+  </div>
+  <div class="pp-waveform" id="pp-waveform" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
   <div class="pp-controls">
-    <button class="pp-play" id="pp-play" aria-label="Play">
-      <svg class="pp-icon-play" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="pp-icon-pause" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-    </button>
-    <div class="pp-track">
-      <div class="pp-title">AI-Native SDLC — Podcast Overview</div>
-      <input type="range" class="pp-scrub" id="pp-scrub" min="0" max="1000" value="0" step="1" aria-label="Seek">
-      <div class="pp-time"><span id="pp-current">0:00</span> / <span id="pp-total">—:—</span></div>
-    </div>
     <button class="pp-speed" id="pp-speed" aria-label="Playback speed">1×</button>
+    <button class="pp-play" id="pp-play" aria-label="Play">
+      <svg class="pp-icon-play" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="pp-icon-pause" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </button>
     <button class="pp-close" id="pp-close" aria-label="Close player">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
     </button>
@@ -3579,7 +3592,7 @@ function initPodcastPlayer() {
   const playBtn = document.getElementById('pp-play');
   const playIcon = playBtn.querySelector('.pp-icon-play');
   const pauseIcon = playBtn.querySelector('.pp-icon-pause');
-  const scrub = document.getElementById('pp-scrub');
+  const waveform = document.getElementById('pp-waveform');
   const currentEl = document.getElementById('pp-current');
   const totalEl = document.getElementById('pp-total');
   const speedBtn = document.getElementById('pp-speed');
@@ -3589,17 +3602,53 @@ function initPodcastPlayer() {
 
   const speeds = [1, 1.25, 1.5, 2];
   let speedIdx = 0;
-  let scrubbing = false;
+  // Tracks what the user last asked for. `audio.play()` returns a Promise
+  // that resolves asynchronously — if pause()/close happens during that gap,
+  // some browsers let the in-flight play win. We reconcile in the play
+  // handlers against this flag: if the user no longer wants audio, we
+  // immediately pause whatever started.
+  let userIntendsToPlay = false;
 
-  const fmt = (s) => {
-    if (!isFinite(s) || s < 0) s = 0;
+  // --- Faux waveform ---
+  const NUM_BARS = 56;
+  // Stable pseudo-random heights (seeded) so the waveform is consistent
+  // across reloads. Shaped with a soft envelope so edges taper a bit.
+  const heights = [];
+  let seed = 1337;
+  const rand = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+  for (let i = 0; i < NUM_BARS; i++) {
+    const pos = i / (NUM_BARS - 1);
+    const envelope = 0.55 + 0.45 * Math.sin(pos * Math.PI);
+    const noise = 0.35 + rand() * 0.65;
+    heights.push(Math.max(0.18, Math.min(1, envelope * noise)));
+  }
+  waveform.innerHTML = heights
+    .map((h) => `<span class="pp-bar" style="--h:${Math.round(h * 100)}%"></span>`)
+    .join('');
+  const bars = waveform.querySelectorAll('.pp-bar');
+
+  const updateWaveform = (progress) => {
+    const playedCount = Math.round(progress * NUM_BARS);
+    for (let i = 0; i < bars.length; i++) {
+      const on = i < playedCount;
+      if (on !== bars[i].classList.contains('played')) {
+        bars[i].classList.toggle('played', on);
+      }
+    }
+    waveform.setAttribute('aria-valuenow', String(Math.round(progress * 100)));
+  };
+
+  const fmt = (s, signed) => {
+    if (!isFinite(s)) s = 0;
+    const neg = s < 0;
+    s = Math.abs(s);
     const m = Math.floor(s / 60);
     const sec = Math.floor(s % 60).toString().padStart(2, '0');
-    return `${m}:${sec}`;
+    return `${signed && neg ? '-' : ''}${m}:${sec}`;
   };
 
   const setPlayingUI = (playing) => {
-    // Note: SVG elements don't reflect the .hidden JS property to the HTML
+    // SVG elements don't reflect the .hidden JS property to the HTML
     // attribute (unlike HTMLElements), so toggle the attribute explicitly.
     if (playing) {
       playIcon.setAttribute('hidden', '');
@@ -3614,36 +3663,44 @@ function initPodcastPlayer() {
   audio.addEventListener('loadedmetadata', () => {
     const d = audio.duration;
     if (isFinite(d) && d > 0) {
-      totalEl.textContent = fmt(d);
+      totalEl.textContent = fmt(-d, true);
       const mins = Math.max(1, Math.round(d / 60));
       durationChip.textContent = `· ${mins} min`;
     }
   });
 
   audio.addEventListener('timeupdate', () => {
-    // Keep icon in sync with the true paused state — mobile Safari
-    // sometimes fires `play`/`pause` with unreliable timing.
+    // Reconcile UI with the true paused state — mobile Safari can fire
+    // play/pause with unreliable timing.
     setPlayingUI(!audio.paused);
-    if (scrubbing || !isFinite(audio.duration)) return;
+    if (!isFinite(audio.duration) || audio.duration === 0) return;
+    const progress = audio.currentTime / audio.duration;
     currentEl.textContent = fmt(audio.currentTime);
-    scrub.value = String(Math.round((audio.currentTime / audio.duration) * 1000));
+    totalEl.textContent = fmt(-(audio.duration - audio.currentTime), true);
+    updateWaveform(progress);
   });
 
-  audio.addEventListener('play', () => setPlayingUI(true));
-  audio.addEventListener('playing', () => setPlayingUI(true));
+  // If a play Promise resolves after the user already asked to stop, honor
+  // the latest intent — otherwise audio keeps playing in the background.
+  const enforceIntent = () => {
+    if (!userIntendsToPlay && !audio.paused) {
+      audio.pause();
+    }
+  };
+  audio.addEventListener('play', () => { enforceIntent(); setPlayingUI(!audio.paused); });
+  audio.addEventListener('playing', () => { enforceIntent(); setPlayingUI(!audio.paused); });
   audio.addEventListener('pause', () => setPlayingUI(false));
-  audio.addEventListener('ended', () => setPlayingUI(false));
+  audio.addEventListener('ended', () => { userIntendsToPlay = false; setPlayingUI(false); });
 
   audio.addEventListener('error', () => {
     errorEl.hidden = false;
     playBtn.disabled = true;
-    scrub.disabled = true;
     speedBtn.disabled = true;
   });
 
   // play() can reject due to mobile browser gesture policies even when the
   // audio file is fine — don't treat that as a media error. Only the `error`
-  // event (wired above) signals a real "file unreachable / unsupported" state.
+  // event signals a real "file unreachable / unsupported" state.
   const safePlay = () => {
     const p = audio.play();
     if (p && typeof p.catch === 'function') {
@@ -3653,26 +3710,35 @@ function initPodcastPlayer() {
 
   chip.addEventListener('click', () => {
     player.hidden = false;
+    userIntendsToPlay = true;
     safePlay();
   });
 
   playBtn.addEventListener('click', () => {
-    if (audio.paused) safePlay();
-    else audio.pause();
+    if (audio.paused) {
+      userIntendsToPlay = true;
+      safePlay();
+    } else {
+      userIntendsToPlay = false;
+      audio.pause();
+    }
   });
 
-  scrub.addEventListener('input', () => {
-    scrubbing = true;
-    if (isFinite(audio.duration)) {
-      const t = (Number(scrub.value) / 1000) * audio.duration;
-      currentEl.textContent = fmt(t);
-    }
-  });
-  scrub.addEventListener('change', () => {
-    if (isFinite(audio.duration)) {
-      audio.currentTime = (Number(scrub.value) / 1000) * audio.duration;
-    }
-    scrubbing = false;
+  // Click/tap on the waveform to seek.
+  const seekFromEvent = (clientX) => {
+    if (!isFinite(audio.duration) || audio.duration === 0) return;
+    const rect = waveform.getBoundingClientRect();
+    const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    audio.currentTime = ratio * audio.duration;
+    updateWaveform(ratio);
+    currentEl.textContent = fmt(audio.currentTime);
+    totalEl.textContent = fmt(-(audio.duration - audio.currentTime), true);
+  };
+  waveform.addEventListener('click', (e) => seekFromEvent(e.clientX));
+  waveform.addEventListener('keydown', (e) => {
+    if (!isFinite(audio.duration)) return;
+    if (e.key === 'ArrowLeft') { e.preventDefault(); audio.currentTime = Math.max(0, audio.currentTime - 10); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); audio.currentTime = Math.min(audio.duration, audio.currentTime + 10); }
   });
 
   speedBtn.addEventListener('click', () => {
@@ -3682,7 +3748,10 @@ function initPodcastPlayer() {
   });
 
   closeBtn.addEventListener('click', () => {
+    userIntendsToPlay = false;
     audio.pause();
+    // Defensive: if a play() Promise is still pending, the `playing` handler
+    // above will see userIntendsToPlay=false and pause again.
     player.hidden = true;
   });
 }
