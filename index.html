@@ -1704,6 +1704,196 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* === READING-TIME SIDEBAR CHIP === */
+.reading-time-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px 14px;
+  margin: 0 0 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  color: var(--text-dim);
+  letter-spacing: 0.3px;
+  border-bottom: 1px solid var(--border);
+  user-select: none;
+}
+.reading-time-chip svg {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+/* === HERO META ROW + LISTEN CHIP === */
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
+}
+.listen-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.listen-chip:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-active);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+.listen-chip:active { transform: translateY(0); }
+.listen-chip .listen-duration {
+  color: var(--text-dim);
+  font-weight: 400;
+}
+.listen-chip:hover .listen-duration { color: var(--accent); }
+
+/* === PODCAST MINI-PLAYER === */
+.podcast-player {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 380px;
+  max-width: calc(100vw - 48px);
+  z-index: 200;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  padding: 14px 14px 12px;
+  animation: pp-slide-in 0.25s ease;
+}
+.podcast-player[hidden] { display: none; }
+@keyframes pp-slide-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.pp-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pp-play {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.pp-play:hover { transform: scale(1.05); }
+.pp-play svg { margin-left: 1px; }
+.pp-play .pp-icon-pause { margin-left: 0; }
+.pp-play svg[hidden] { display: none; }
+.pp-track { flex: 1; min-width: 0; }
+.pp-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+.pp-scrub {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--border);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  margin: 2px 0;
+}
+.pp-scrub::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--bg-card);
+}
+.pp-scrub::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--bg-card);
+}
+.pp-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.pp-speed, .pp-close {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.pp-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  width: 26px;
+  height: 26px;
+}
+.pp-speed:hover, .pp-close:hover {
+  background: var(--bg-card-hover);
+  color: var(--text);
+  border-color: var(--border-active);
+}
+.pp-error {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  color: var(--text-dim);
+  text-align: center;
+  padding: 6px 0 0;
+}
+
+@media (max-width: 640px) {
+  .podcast-player {
+    right: 12px;
+    left: 12px;
+    bottom: 12px;
+    width: auto;
+    max-width: none;
+    padding: 12px;
+  }
+  .pp-title { font-size: 11px; }
+}
 </style>
 </head>
 <body>
@@ -1725,6 +1915,10 @@ body {
 
 <!-- SIDEBAR NAV -->
 <nav class="sidebar-nav" id="sidebar-nav">
+  <div class="reading-time-chip" id="reading-time-chip" aria-label="Estimated reading time">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
+    <span id="reading-time-value">— min read</span>
+  </div>
   <a href="#intro" class="nav-top" data-section="intro">Introduction</a>
   <a href="#industry-overview" class="nav-top" data-section="industry-overview">Industry Overview</a>
   <div class="nav-section-label">The Operating Model</div>
@@ -1757,9 +1951,17 @@ body {
 </nav>
 
 
+<main id="main-content">
 <section class="hero" id="intro">
   <h1>The <em>AI-Native</em> SDLC</h1>
   <p class="subtitle">A fundamentally different way to build software. A spec-driven, agent-powered operating model where AI agents own structured execution across every phase - humans govern the framework, harness, direction, quality, security and risk.</p>
+  <div class="hero-meta">
+    <button class="listen-chip" id="listen-chip" type="button" aria-label="Listen to podcast version">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 18 0"></path><path d="M3 12v5a2 2 0 0 0 2 2h1v-7H3zM21 12v5a2 2 0 0 1-2 2h-1v-7h3z"></path></svg>
+      <span>Listen</span>
+      <span class="listen-duration" id="listen-duration">· podcast</span>
+    </button>
+  </div>
   <p style="font-size: 12px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; margin-top: 16px; max-width: 700px; margin-left: auto; margin-right: auto;">A north star blueprint for product and R&D teams exploring how software delivery changes when specs, agents, and feedback systems become first-class constructs.</p>
 </section>
 
@@ -3237,10 +3439,34 @@ body {
     </div>
   </div>
 </section>
+</main>
 
 <footer class="footer">
   <p>A Spec-Driven, Agent-Powered Operating Model | Adi Kumar | Personal Blog</p>
 </footer>
+
+<!-- PODCAST MINI-PLAYER -->
+<div class="podcast-player" id="podcast-player" hidden aria-label="Podcast player">
+  <audio id="podcast-audio" preload="none"
+         src="https://keqyzinkkerwvztmrhyz.supabase.co/storage/v1/object/public/assets/ai-native-sdlc-podcast.m4a"
+         type="audio/mp4"></audio>
+  <div class="pp-controls">
+    <button class="pp-play" id="pp-play" aria-label="Play">
+      <svg class="pp-icon-play" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="pp-icon-pause" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </button>
+    <div class="pp-track">
+      <div class="pp-title">AI-Native SDLC — Podcast Overview</div>
+      <input type="range" class="pp-scrub" id="pp-scrub" min="0" max="1000" value="0" step="1" aria-label="Seek">
+      <div class="pp-time"><span id="pp-current">0:00</span> / <span id="pp-total">—:—</span></div>
+    </div>
+    <button class="pp-speed" id="pp-speed" aria-label="Playback speed">1×</button>
+    <button class="pp-close" id="pp-close" aria-label="Close player">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+  <div class="pp-error" id="pp-error" hidden>Podcast episode is being generated. Check back soon.</div>
+</div>
 
 <script>
 let sidebarLock = null;
@@ -3334,12 +3560,124 @@ function updateSidebar() {
   });
 }
 
+function computeReadingTime() {
+  const root = document.getElementById('main-content') || document.body;
+  const text = root.innerText || '';
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  if (!words) return;
+  const minutes = Math.max(1, Math.round(words / 240));
+  const el = document.getElementById('reading-time-value');
+  if (el) el.textContent = `${minutes} min read`;
+}
+
+function initPodcastPlayer() {
+  const chip = document.getElementById('listen-chip');
+  const player = document.getElementById('podcast-player');
+  const audio = document.getElementById('podcast-audio');
+  if (!chip || !player || !audio) return;
+
+  const playBtn = document.getElementById('pp-play');
+  const playIcon = playBtn.querySelector('.pp-icon-play');
+  const pauseIcon = playBtn.querySelector('.pp-icon-pause');
+  const scrub = document.getElementById('pp-scrub');
+  const currentEl = document.getElementById('pp-current');
+  const totalEl = document.getElementById('pp-total');
+  const speedBtn = document.getElementById('pp-speed');
+  const closeBtn = document.getElementById('pp-close');
+  const errorEl = document.getElementById('pp-error');
+  const durationChip = document.getElementById('listen-duration');
+
+  const speeds = [1, 1.25, 1.5, 2];
+  let speedIdx = 0;
+  let scrubbing = false;
+
+  const fmt = (s) => {
+    if (!isFinite(s) || s < 0) s = 0;
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60).toString().padStart(2, '0');
+    return `${m}:${sec}`;
+  };
+
+  const setPlayingUI = (playing) => {
+    playIcon.hidden = playing;
+    pauseIcon.hidden = !playing;
+    playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+  };
+
+  audio.addEventListener('loadedmetadata', () => {
+    const d = audio.duration;
+    if (isFinite(d) && d > 0) {
+      totalEl.textContent = fmt(d);
+      const mins = Math.max(1, Math.round(d / 60));
+      durationChip.textContent = `· ${mins} min`;
+    }
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    if (scrubbing || !isFinite(audio.duration)) return;
+    currentEl.textContent = fmt(audio.currentTime);
+    scrub.value = String(Math.round((audio.currentTime / audio.duration) * 1000));
+  });
+
+  audio.addEventListener('play', () => setPlayingUI(true));
+  audio.addEventListener('pause', () => setPlayingUI(false));
+  audio.addEventListener('ended', () => setPlayingUI(false));
+
+  audio.addEventListener('error', () => {
+    errorEl.hidden = false;
+    playBtn.disabled = true;
+    scrub.disabled = true;
+    speedBtn.disabled = true;
+  });
+
+  chip.addEventListener('click', () => {
+    player.hidden = false;
+    // Trigger metadata load + play
+    audio.play().catch(() => {
+      errorEl.hidden = false;
+    });
+  });
+
+  playBtn.addEventListener('click', () => {
+    if (audio.paused) audio.play().catch(() => { errorEl.hidden = false; });
+    else audio.pause();
+  });
+
+  scrub.addEventListener('input', () => {
+    scrubbing = true;
+    if (isFinite(audio.duration)) {
+      const t = (Number(scrub.value) / 1000) * audio.duration;
+      currentEl.textContent = fmt(t);
+    }
+  });
+  scrub.addEventListener('change', () => {
+    if (isFinite(audio.duration)) {
+      audio.currentTime = (Number(scrub.value) / 1000) * audio.duration;
+    }
+    scrubbing = false;
+  });
+
+  speedBtn.addEventListener('click', () => {
+    speedIdx = (speedIdx + 1) % speeds.length;
+    audio.playbackRate = speeds[speedIdx];
+    speedBtn.textContent = `${speeds[speedIdx]}×`;
+  });
+
+  closeBtn.addEventListener('click', () => {
+    audio.pause();
+    player.hidden = true;
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.phase').classList.add('active');
   const saved = localStorage.getItem('sdlc-theme');
   if (saved && saved !== document.documentElement.getAttribute('data-theme')) {
     document.documentElement.setAttribute('data-theme', saved);
   }
+
+  computeReadingTime();
+  initPodcastPlayer();
 
   // Sidebar click: scroll to target, lock highlight, close drawer on mobile
   document.querySelectorAll('.sidebar-nav a[href^="#"]').forEach(link => {
