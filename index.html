@@ -3621,12 +3621,16 @@ function initPodcastPlayer() {
   });
 
   audio.addEventListener('timeupdate', () => {
+    // Keep icon in sync with the true paused state — mobile Safari
+    // sometimes fires `play`/`pause` with unreliable timing.
+    setPlayingUI(!audio.paused);
     if (scrubbing || !isFinite(audio.duration)) return;
     currentEl.textContent = fmt(audio.currentTime);
     scrub.value = String(Math.round((audio.currentTime / audio.duration) * 1000));
   });
 
   audio.addEventListener('play', () => setPlayingUI(true));
+  audio.addEventListener('playing', () => setPlayingUI(true));
   audio.addEventListener('pause', () => setPlayingUI(false));
   audio.addEventListener('ended', () => setPlayingUI(false));
 
