@@ -1705,29 +1705,13 @@ body {
   }
 }
 
-/* === READING-TIME SIDEBAR CHIP === */
-.reading-time-chip {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px 14px;
-  margin: 0 0 6px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10.5px;
-  color: var(--text-dim);
-  letter-spacing: 0.3px;
-  border-bottom: 1px solid var(--border);
-  user-select: none;
-}
-.reading-time-chip svg {
-  flex-shrink: 0;
-  opacity: 0.8;
-}
-
-/* === HERO META ROW + LISTEN CHIP === */
+/* === HERO META ROW + CHIPS === */
 .hero-meta {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
   margin-top: 20px;
   position: relative;
 }
@@ -1757,6 +1741,8 @@ body {
   font-weight: 400;
 }
 .listen-chip:hover .listen-duration { color: var(--accent); }
+/* Read chip reuses listen-chip layout; clicking jumps past the hero */
+.read-chip { color: var(--text-dim); }
 
 /* === PODCAST MINI-PLAYER === */
 .podcast-player {
@@ -2044,10 +2030,6 @@ body {
 
 <!-- SIDEBAR NAV -->
 <nav class="sidebar-nav" id="sidebar-nav">
-  <div class="reading-time-chip" id="reading-time-chip" aria-label="Estimated reading time">
-    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
-    <span id="reading-time-value">— min read</span>
-  </div>
   <a href="#intro" class="nav-top" data-section="intro">Introduction</a>
   <a href="#industry-overview" class="nav-top" data-section="industry-overview">Industry Overview</a>
   <div class="nav-section-label">The Operating Model</div>
@@ -2085,6 +2067,11 @@ body {
   <h1>The <em>AI-Native</em> SDLC</h1>
   <p class="subtitle">A fundamentally different way to build software. A spec-driven, agent-powered operating model where AI agents own structured execution across every phase - humans govern the framework, harness, direction, quality, security and risk.</p>
   <div class="hero-meta">
+    <button class="listen-chip read-chip" id="read-chip" type="button" aria-label="Start reading — scroll past the intro">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
+      <span>Read</span>
+      <span class="listen-duration" id="reading-time-value">· — min</span>
+    </button>
     <button class="listen-chip" id="listen-chip" type="button" aria-label="Listen to podcast version">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 18 0"></path><path d="M3 12v5a2 2 0 0 0 2 2h1v-7H3zM21 12v5a2 2 0 0 1-2 2h-1v-7h3z"></path></svg>
       <span>Listen</span>
@@ -3709,9 +3696,14 @@ function computeReadingTime() {
   const text = root.innerText || '';
   const words = text.trim().split(/\s+/).filter(Boolean).length;
   if (!words) return;
-  const minutes = Math.max(1, Math.round(words / 240));
+  // Benchmarks for adult online non-fiction reading (widely cited research,
+  // e.g. Brysbaert 2019 meta-analysis, Nielsen Norman): average ≈ 238 wpm.
+  // We bracket around the average (~250 fast / ~210 slow) so the range stays
+  // tight — typically a 3–5 min window — while still spanning real reader variance.
+  const low = Math.max(1, Math.round(words / 250));
+  const high = Math.max(low + 1, Math.round(words / 210));
   const el = document.getElementById('reading-time-value');
-  if (el) el.textContent = `${minutes} min read`;
+  if (el) el.textContent = `· ${low}–${high} min`;
 }
 
 function initPodcastPlayer() {
@@ -3982,6 +3974,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   computeReadingTime();
   initPodcastPlayer();
+
+  // Read chip: scroll just past the hero so the reader lands at the content
+  const readChip = document.getElementById('read-chip');
+  if (readChip) {
+    readChip.addEventListener('click', () => {
+      const hero = document.querySelector('.hero');
+      if (!hero) return;
+      const y = hero.getBoundingClientRect().bottom + window.scrollY;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  }
 
   // Sidebar click: scroll to target, lock highlight, close drawer on mobile
   document.querySelectorAll('.sidebar-nav a[href^="#"]').forEach(link => {
