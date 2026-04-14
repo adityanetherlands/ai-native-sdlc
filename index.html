@@ -3447,7 +3447,7 @@ body {
 
 <!-- PODCAST MINI-PLAYER -->
 <div class="podcast-player" id="podcast-player" hidden aria-label="Podcast player">
-  <audio id="podcast-audio" preload="none"
+  <audio id="podcast-audio" preload="metadata"
          src="https://keqyzinkkerwvztmrhyz.supabase.co/storage/v1/object/public/assets/ai-native-sdlc-podcast.m4a"
          type="audio/mp4"></audio>
   <div class="pp-controls">
@@ -3637,16 +3637,23 @@ function initPodcastPlayer() {
     speedBtn.disabled = true;
   });
 
+  // play() can reject due to mobile browser gesture policies even when the
+  // audio file is fine — don't treat that as a media error. Only the `error`
+  // event (wired above) signals a real "file unreachable / unsupported" state.
+  const safePlay = () => {
+    const p = audio.play();
+    if (p && typeof p.catch === 'function') {
+      p.catch((err) => console.warn('Podcast play() rejected:', err && err.name));
+    }
+  };
+
   chip.addEventListener('click', () => {
     player.hidden = false;
-    // Trigger metadata load + play
-    audio.play().catch(() => {
-      errorEl.hidden = false;
-    });
+    safePlay();
   });
 
   playBtn.addEventListener('click', () => {
-    if (audio.paused) audio.play().catch(() => { errorEl.hidden = false; });
+    if (audio.paused) safePlay();
     else audio.pause();
   });
 
