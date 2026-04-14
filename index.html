@@ -15,6 +15,7 @@
 <meta name="twitter:description" content="Spec centered. Continuously Evolving. Agent Orchestrated. Human Governed.">
 <meta name="twitter:image" content="https://keqyzinkkerwvztmrhyz.supabase.co/storage/v1/object/public/assets/og_image.png">
 <link rel="icon" type="image/png" href="https://keqyzinkkerwvztmrhyz.supabase.co/storage/v1/object/public/assets/favicon.png">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -704,6 +705,217 @@ body {
   color: var(--text-muted);
   font-weight: 300;
   line-height: 1.7;
+}
+
+/* SUGGESTIONS SECTION */
+.suggestions-section {
+  padding: 96px 40px 64px;
+  border-top: 1px solid var(--border);
+  margin-top: 80px;
+  background:
+    radial-gradient(ellipse 800px 400px at 50% 0%, var(--accent-glow), transparent 70%),
+    var(--bg);
+}
+.suggestions-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.suggestions-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.suggestions-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.suggestions-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 44px;
+  font-weight: 400;
+  color: var(--text);
+  margin: 0 0 16px;
+  letter-spacing: -0.5px;
+}
+.suggestions-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.suggestion-form {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+.sf-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 640px) {
+  .sf-row { grid-template-columns: 1fr; }
+  .suggestions-section { padding: 64px 20px 48px; }
+  .suggestion-form { padding: 24px 20px; }
+  .suggestions-title { font-size: 34px; }
+}
+.sf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sf-field label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.sf-req { color: var(--accent3); margin-left: 2px; }
+.sf-opt {
+  color: var(--text-dim);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+}
+.suggestion-form input[type="text"],
+.suggestion-form input[type="email"],
+.suggestion-form input[type="url"],
+.suggestion-form select,
+.suggestion-form textarea {
+  background: var(--bg-phase);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.suggestion-form textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.5;
+}
+.suggestion-form input:focus,
+.suggestion-form select:focus,
+.suggestion-form textarea:focus {
+  outline: none;
+  border-color: var(--border-active);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.suggestion-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238888a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+.sf-counter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  text-align: right;
+  letter-spacing: 0.5px;
+}
+.sf-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.sf-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 8px;
+}
+.sf-submit {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  letter-spacing: 0.2px;
+}
+.sf-submit:hover:not(:disabled) {
+  background: #7c6cf7;
+}
+.sf-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.sf-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.sf-error {
+  color: var(--accent3);
+  font-size: 13px;
+  margin: 0;
+  min-height: 0;
+}
+.sf-error:empty { display: none; }
+.sf-success {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 48px 32px;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+.sf-success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-glow);
+  color: var(--accent);
+  font-size: 28px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  border: 1px solid var(--border-active);
+}
+.sf-success h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.sf-success p {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 300;
+  margin: 0;
+  line-height: 1.6;
 }
 
 /* FOOTER */
@@ -1406,6 +1618,8 @@ body {
   <a href="#living-product" class="nav-top" data-section="living-product">The Living Product</a>
   <a href="#blueprint" class="nav-top" data-section="blueprint">Is &amp; Is Not</a>
   <a href="#foundations" class="nav-top" data-section="foundations">Foundations</a>
+  <div class="nav-section-label">Contribute</div>
+  <a href="#suggestions" class="nav-top" data-section="suggestions">Submit a Suggestion</a>
   <div class="drawer-theme-toggle">
     <button onclick="toggleTheme()" aria-label="Toggle theme">
       <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
@@ -2768,6 +2982,110 @@ body {
   </div>
 </section>
 
+<section id="suggestions" class="suggestions-section">
+  <div class="suggestions-inner">
+    <div class="suggestions-header">
+      <div class="suggestions-eyebrow">Contribute</div>
+      <h2 class="suggestions-title">Submit a Suggestion</h2>
+      <p class="suggestions-desc">Spotted a gap, have a sharper framing, or want to collaborate? Share it below — every submission is read.</p>
+    </div>
+
+    <form id="suggestion-form" class="suggestion-form" autocomplete="off" novalidate>
+      <div class="sf-row">
+        <div class="sf-field">
+          <label for="sf-name">Name <span class="sf-req">*</span></label>
+          <input type="text" id="sf-name" name="name" required maxlength="120" />
+        </div>
+        <div class="sf-field">
+          <label for="sf-email">Email <span class="sf-opt">(optional)</span></label>
+          <input type="email" id="sf-email" name="email" maxlength="254" />
+        </div>
+      </div>
+
+      <div class="sf-row">
+        <div class="sf-field">
+          <label for="sf-role">Your role <span class="sf-req">*</span></label>
+          <select id="sf-role" name="role" required>
+            <option value="" disabled selected>Select a role…</option>
+            <option value="engineer">Engineer</option>
+            <option value="pm">Product Manager</option>
+            <option value="designer">Designer</option>
+            <option value="researcher">Researcher / Scientist</option>
+            <option value="founder_exec">Founder / Executive</option>
+            <option value="student">Student</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="sf-field">
+          <label for="sf-type">Suggestion type <span class="sf-req">*</span></label>
+          <select id="sf-type" name="suggestion_type" required>
+            <option value="" disabled selected>Select a type…</option>
+            <option value="new_idea">New idea</option>
+            <option value="correction">Correction</option>
+            <option value="question">Question</option>
+            <option value="collaboration">Collaboration request</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sf-field">
+        <label for="sf-phase">Related SDLC phase <span class="sf-req">*</span></label>
+        <select id="sf-phase" name="phase" required>
+          <option value="" disabled selected>Select a phase…</option>
+          <option value="general">General / Not phase-specific</option>
+          <option value="ideation">01 · Ideation</option>
+          <option value="prd">02 · PRD</option>
+          <option value="spec">03 · Spec</option>
+          <option value="architecture">04 · Architecture</option>
+          <option value="delivery_planning">4a · Delivery Planning</option>
+          <option value="implementation">05 · Implementation</option>
+          <option value="review">06 · Review</option>
+          <option value="testing">07 · Testing</option>
+          <option value="security">08 · Security</option>
+          <option value="staging">09 · Staging</option>
+          <option value="docs">10 · Docs</option>
+          <option value="release">11 · Release</option>
+          <option value="monitoring">12 · Monitoring</option>
+        </select>
+      </div>
+
+      <div class="sf-field">
+        <label for="sf-topic">Topic <span class="sf-req">*</span></label>
+        <input type="text" id="sf-topic" name="topic" required maxlength="200" placeholder="A short headline for your suggestion" />
+      </div>
+
+      <div class="sf-field">
+        <label for="sf-desc">Description <span class="sf-req">*</span></label>
+        <textarea id="sf-desc" name="description" required maxlength="5000" rows="6" placeholder="Share the detail — context, reasoning, examples."></textarea>
+        <div class="sf-counter"><span id="sf-desc-count">0</span> / 5000</div>
+      </div>
+
+      <div class="sf-field">
+        <label for="sf-link">Reference link <span class="sf-opt">(optional)</span></label>
+        <input type="url" id="sf-link" name="link" placeholder="https://…" />
+      </div>
+
+      <!-- Honeypot: hidden from humans, filled by bots -->
+      <div class="sf-honeypot" aria-hidden="true">
+        <label for="sf-website">Website</label>
+        <input type="text" id="sf-website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div class="sf-actions">
+        <button type="submit" class="sf-submit" id="sf-submit">Send suggestion</button>
+        <p class="sf-error" id="sf-error" role="alert"></p>
+      </div>
+    </form>
+
+    <div class="sf-success" id="sf-success" hidden>
+      <div class="sf-success-icon">✓</div>
+      <h3>Thanks — your suggestion was received.</h3>
+      <p>I read every submission personally. If you left an email, I may follow up.</p>
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
   <p>A Spec-Driven, Agent-Powered Operating Model | Adi Kumar</p>
 </footer>
@@ -2902,6 +3220,74 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', updateSidebar, { passive: true });
   updateSidebar();
 });
+
+// === Suggestion form submission ===
+(function () {
+  const SUPABASE_URL = 'https://keqyzinkkerwvztmrhyz.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_EPyGwrxqotBb2QeqzkCapQ_tWSd35Uv';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const form = document.getElementById('suggestion-form');
+  if (!form) return;
+
+  const descEl = document.getElementById('sf-desc');
+  const countEl = document.getElementById('sf-desc-count');
+  const errEl = document.getElementById('sf-error');
+  const submitBtn = document.getElementById('sf-submit');
+  const successEl = document.getElementById('sf-success');
+
+  descEl.addEventListener('input', () => {
+    countEl.textContent = descEl.value.length;
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errEl.textContent = '';
+
+    // Honeypot: if filled, silently show success without writing to DB
+    const honey = form.querySelector('[name="website"]').value.trim();
+    if (honey) {
+      form.hidden = true;
+      successEl.hidden = false;
+      return;
+    }
+
+    // Native validation
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    const payload = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim() || null,
+      role: form.role.value,
+      suggestion_type: form.suggestion_type.value,
+      phase: form.phase.value,
+      topic: form.topic.value.trim(),
+      description: form.description.value.trim(),
+      link: form.link.value.trim() || null,
+      user_agent: navigator.userAgent
+    };
+
+    const { error } = await sb.from('suggestions').insert(payload);
+
+    if (error) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send suggestion';
+      errEl.textContent = 'Something went wrong sending your suggestion. Please try again.';
+      console.error('Suggestion insert failed:', error);
+      return;
+    }
+
+    form.hidden = true;
+    successEl.hidden = false;
+    successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+})();
 </script>
 </body>
 </html>
