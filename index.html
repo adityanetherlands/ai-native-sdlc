@@ -1778,7 +1778,22 @@ body {
   padding: 18px 20px 16px;
   animation: pp-slide-in 0.25s ease;
   color: #fff;
+  transition:
+    width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
+/* Bubble mode: shrink root to a 56px circle */
+.podcast-player[data-mode="bubble"] {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.podcast-player[data-mode="expanded"] .pp-bubble { display: none; }
+.podcast-player[data-mode="bubble"] .pp-expanded { display: none; }
 .podcast-player[hidden] { display: none; }
 @keyframes pp-slide-in {
   from { opacity: 0; transform: translateY(16px); }
@@ -1893,18 +1908,120 @@ body {
   padding: 10px 0 0;
 }
 
+/* Minimize chevron (top-right of expanded card) */
+.pp-expanded { position: relative; }
+.pp-minimize {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  padding: 0;
+}
+.pp-minimize:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Bubble (compact form) */
+.pp-bubble {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0;
+  border-radius: 50%;
+  transition: transform 0.15s ease;
+}
+.pp-bubble:hover { transform: scale(1.04); }
+.pp-bubble:active { transform: scale(0.97); }
+.pp-bubble-headphones { color: var(--accent); }
+.pp-bubble-play {
+  color: var(--accent);
+  margin-left: 3px;
+  width: 24px;
+  height: 24px;
+}
+
+/* Equalizer bars — positioned just below the headphone icon */
+.pp-bubble-eq {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 6px;
+  pointer-events: none;
+}
+.pp-bubble-eq span {
+  width: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+  height: 2px;
+}
+.podcast-player[data-playing="true"] .pp-bubble-eq span {
+  animation: eq-bounce 0.9s ease-in-out infinite;
+}
+.podcast-player[data-playing="true"] .pp-bubble-eq span:nth-child(1) { animation-delay: 0s; }
+.podcast-player[data-playing="true"] .pp-bubble-eq span:nth-child(2) { animation-delay: 0.15s; }
+.podcast-player[data-playing="true"] .pp-bubble-eq span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes eq-bounce {
+  0%, 100% { height: 2px; }
+  50%      { height: 6px; }
+}
+
+/* Paused state: hide EQ + headphones, show play triangle */
+.podcast-player[data-paused="true"] .pp-bubble-headphones { display: none; }
+.podcast-player[data-paused="true"] .pp-bubble-eq { display: none; }
+.podcast-player[data-paused="true"] .pp-bubble-play { display: inline-block; }
+.podcast-player[data-paused="false"] .pp-bubble-play { display: none; }
+
 @media (max-width: 640px) {
-  .podcast-player {
+  .podcast-player[data-mode="expanded"] {
     right: 12px;
     left: 12px;
-    bottom: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom, 12px));
     width: auto;
     max-width: none;
     padding: 14px 16px;
     border-radius: 18px;
   }
+  .podcast-player[data-mode="bubble"] {
+    left: auto;
+    right: 16px;
+    bottom: max(16px, calc(env(safe-area-inset-bottom, 12px) + 8px));
+  }
   .pp-waveform { height: 38px; }
   .pp-play { width: 48px; height: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .podcast-player {
+    transition: none;
+    animation: none;
+  }
+  .podcast-player[data-playing="true"] .pp-bubble-eq span {
+    animation: none;
+  }
 }
 </style>
 </head>
@@ -3458,27 +3575,41 @@ body {
 </footer>
 
 <!-- PODCAST MINI-PLAYER -->
-<div class="podcast-player" id="podcast-player" hidden aria-label="Podcast player">
+<div class="podcast-player" id="podcast-player" hidden data-mode="expanded" data-playing="false" data-paused="true" aria-label="Podcast player">
   <audio id="podcast-audio" preload="metadata"
          src="https://keqyzinkkerwvztmrhyz.supabase.co/storage/v1/object/public/assets/ai-native-sdlc-podcast.m4a"
          type="audio/mp4"></audio>
-  <div class="pp-title">AI-Native SDLC — Podcast Overview</div>
-  <div class="pp-time-row">
-    <span id="pp-current">0:00</span>
-    <span id="pp-total">—:—</span>
-  </div>
-  <div class="pp-waveform" id="pp-waveform" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
-  <div class="pp-controls">
-    <button class="pp-speed" id="pp-speed" aria-label="Playback speed">1×</button>
-    <button class="pp-play" id="pp-play" aria-label="Play">
-      <svg class="pp-icon-play" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="pp-icon-pause" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+
+  <!-- EXPANDED FORM -->
+  <div class="pp-expanded">
+    <button class="pp-minimize" id="pp-minimize" type="button" aria-label="Minimize player">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
     </button>
-    <button class="pp-close" id="pp-close" aria-label="Close player">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
+    <div class="pp-title">AI-Native SDLC — Podcast Overview</div>
+    <div class="pp-time-row">
+      <span id="pp-current">0:00</span>
+      <span id="pp-total">—:—</span>
+    </div>
+    <div class="pp-waveform" id="pp-waveform" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+    <div class="pp-controls">
+      <button class="pp-speed" id="pp-speed" aria-label="Playback speed">1×</button>
+      <button class="pp-play" id="pp-play" aria-label="Play">
+        <svg class="pp-icon-play" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="pp-icon-pause" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <button class="pp-close" id="pp-close" aria-label="Close player">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="pp-error" id="pp-error" hidden>Podcast episode is being generated. Check back soon.</div>
   </div>
-  <div class="pp-error" id="pp-error" hidden>Podcast episode is being generated. Check back soon.</div>
+
+  <!-- BUBBLE FORM -->
+  <button class="pp-bubble" id="pp-bubble" type="button" aria-label="Podcast playing — expand player">
+    <span class="pp-bubble-eq" aria-hidden="true"><span></span><span></span><span></span></span>
+    <svg class="pp-bubble-headphones" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-2a9 9 0 0 1 18 0v2"></path><path d="M21 14v4a2 2 0 0 1-2 2h-1v-6h3zM3 14v4a2 2 0 0 0 2 2h1v-6H3z"></path></svg>
+    <svg class="pp-bubble-play" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" hidden><path d="M8 5v14l11-7z"/></svg>
+  </button>
 </div>
 
 <script>
@@ -3754,6 +3885,92 @@ function initPodcastPlayer() {
     // above will see userIntendsToPlay=false and pause again.
     player.hidden = true;
   });
+
+  // --- Scroll-responsive mode switching (bubble ↔ expanded) ---
+  const bubble = document.getElementById('pp-bubble');
+  const minimizeBtn = document.getElementById('pp-minimize');
+  const hero = document.querySelector('.hero');
+  let heroVisible = true;
+  let pinned = false;      // set by click on bubble; cleared by next down-scroll
+  let peeking = false;     // set by hover/focus; transient
+  let dismissed = false;   // set by minimize chevron; cleared when hero leaves again
+  let lastScrollY = window.scrollY;
+
+  const computeMode = () => {
+    // Stack order: pinned > peeking > !dismissed && heroVisible
+    const expanded = pinned || peeking || (!dismissed && heroVisible);
+    player.setAttribute('data-mode', expanded ? 'expanded' : 'bubble');
+    player.setAttribute('aria-expanded', String(expanded));
+  };
+
+  const syncPlayingAttrs = () => {
+    const playing = !audio.paused && !audio.ended;
+    player.setAttribute('data-playing', String(playing));
+    player.setAttribute('data-paused', String(!playing));
+    bubble.setAttribute(
+      'aria-label',
+      playing ? 'Podcast playing — expand player' : 'Podcast paused — resume'
+    );
+  };
+
+  if (hero) {
+    new IntersectionObserver((entries) => {
+      heroVisible = entries[0].isIntersecting;
+      // Any hero-visibility transition clears the temporary dismissed override:
+      // scrolling back to the hero re-expands, and re-leaving shows the bubble.
+      dismissed = false;
+      computeMode();
+    }, { threshold: 0 }).observe(hero);
+  }
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (pinned && y > lastScrollY + 2) {
+      pinned = false;
+      computeMode();
+    }
+    lastScrollY = y;
+  }, { passive: true });
+
+  const canHover = window.matchMedia('(hover: hover)').matches;
+  if (canHover) {
+    player.addEventListener('mouseenter', () => { peeking = true; computeMode(); });
+    player.addEventListener('mouseleave', () => { peeking = false; computeMode(); });
+    player.addEventListener('focusin', () => { peeking = true; computeMode(); });
+    player.addEventListener('focusout', (e) => {
+      if (!player.contains(e.relatedTarget)) { peeking = false; computeMode(); }
+    });
+  }
+
+  bubble.addEventListener('click', () => {
+    pinned = true;
+    dismissed = false;
+    computeMode();
+  });
+
+  minimizeBtn.addEventListener('click', () => {
+    pinned = false;
+    peeking = false;
+    dismissed = true;
+    computeMode();
+  });
+
+  // Escape inside expanded → minimize (only when not at hero)
+  player.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && player.getAttribute('data-mode') === 'expanded' && !heroVisible) {
+      pinned = false;
+      peeking = false;
+      dismissed = true;
+      computeMode();
+    }
+  });
+
+  ['play', 'playing', 'pause', 'ended'].forEach((ev) =>
+    audio.addEventListener(ev, syncPlayingAttrs)
+  );
+
+  syncPlayingAttrs();
+  computeMode();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
