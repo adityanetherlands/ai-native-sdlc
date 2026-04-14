@@ -3599,8 +3599,15 @@ function initPodcastPlayer() {
   };
 
   const setPlayingUI = (playing) => {
-    playIcon.hidden = playing;
-    pauseIcon.hidden = !playing;
+    // Note: SVG elements don't reflect the .hidden JS property to the HTML
+    // attribute (unlike HTMLElements), so toggle the attribute explicitly.
+    if (playing) {
+      playIcon.setAttribute('hidden', '');
+      pauseIcon.removeAttribute('hidden');
+    } else {
+      playIcon.removeAttribute('hidden');
+      pauseIcon.setAttribute('hidden', '');
+    }
     playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
   };
 
