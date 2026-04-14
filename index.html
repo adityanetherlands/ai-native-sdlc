@@ -881,14 +881,6 @@ body {
   min-height: 0;
 }
 .sf-error:empty { display: none; }
-.sf-success {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 48px 32px;
-  text-align: center;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-}
 .sf-success-icon {
   width: 56px;
   height: 56px;
@@ -903,19 +895,93 @@ body {
   margin: 0 auto 20px;
   border: 1px solid var(--border-active);
 }
-.sf-success h3 {
+
+/* GLASSMORPHISM SUCCESS MODAL */
+.sf-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1000;
+  background: rgba(10, 10, 15, 0.55);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  animation: sf-backdrop-in 0.22s ease-out;
+}
+[data-theme="light"] .sf-modal-backdrop {
+  background: rgba(20, 20, 30, 0.35);
+}
+.sf-modal-backdrop[hidden] { display: none; }
+
+.sf-modal {
+  position: relative;
+  max-width: 440px;
+  width: 100%;
+  padding: 48px 36px 32px;
+  text-align: center;
+  border-radius: 20px;
+  background: rgba(26, 26, 40, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  animation: sf-modal-pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+[data-theme="light"] .sf-modal {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 20px 60px rgba(20, 20, 40, 0.18),
+    0 0 0 1px rgba(0, 0, 0, 0.02) inset;
+}
+.sf-modal h3 {
   font-family: 'Instrument Serif', serif;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 400;
   color: var(--text);
-  margin: 0 0 8px;
+  margin: 0 0 12px;
+  letter-spacing: -0.3px;
 }
-.sf-success p {
+.sf-modal p {
   font-size: 14px;
   color: var(--text-muted);
   font-weight: 300;
-  margin: 0;
   line-height: 1.6;
+  margin: 0 0 28px;
+}
+.sf-modal-ok {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  letter-spacing: 0.2px;
+  min-width: 120px;
+}
+.sf-modal-ok:hover { background: #7c6cf7; }
+.sf-modal-ok:active { transform: translateY(1px); }
+.sf-modal-ok:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+@keyframes sf-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes sf-modal-pop {
+  from { opacity: 0; transform: scale(0.94) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 /* FOOTER */
@@ -3078,10 +3144,13 @@ body {
       </div>
     </form>
 
-    <div class="sf-success" id="sf-success" hidden>
-      <div class="sf-success-icon">✓</div>
-      <h3>Thanks. Your suggestion was received.</h3>
-      <p>I read every submission personally. If you left an email, I may follow up.</p>
+    <div class="sf-modal-backdrop" id="sf-modal-backdrop" hidden>
+      <div class="sf-modal" role="dialog" aria-modal="true" aria-labelledby="sf-modal-title">
+        <div class="sf-success-icon">✓</div>
+        <h3 id="sf-modal-title">Thanks. Your suggestion was received.</h3>
+        <p>I read every submission personally. If you left an email, I may follow up.</p>
+        <button type="button" class="sf-modal-ok" id="sf-modal-ok">OK</button>
+      </div>
     </div>
   </div>
 </section>
@@ -3234,10 +3303,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const countEl = document.getElementById('sf-desc-count');
   const errEl = document.getElementById('sf-error');
   const submitBtn = document.getElementById('sf-submit');
-  const successEl = document.getElementById('sf-success');
+  const modalBackdrop = document.getElementById('sf-modal-backdrop');
+  const modalOk = document.getElementById('sf-modal-ok');
 
   descEl.addEventListener('input', () => {
     countEl.textContent = descEl.value.length;
+  });
+
+  function showSuccessModal() {
+    modalBackdrop.hidden = false;
+    // Give the browser a tick, then focus OK so Enter/Space dismisses
+    requestAnimationFrame(() => modalOk.focus());
+  }
+
+  function closeModalAndReset() {
+    modalBackdrop.hidden = true;
+    form.reset();
+    countEl.textContent = '0';
+    errEl.textContent = '';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send suggestion';
+  }
+
+  modalOk.addEventListener('click', closeModalAndReset);
+  modalBackdrop.addEventListener('click', (e) => {
+    // Only close when clicking the backdrop itself, not modal contents
+    if (e.target === modalBackdrop) closeModalAndReset();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modalBackdrop.hidden) closeModalAndReset();
   });
 
   form.addEventListener('submit', async (e) => {
@@ -3247,8 +3341,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Honeypot: if filled, silently show success without writing to DB
     const honey = form.querySelector('[name="website"]').value.trim();
     if (honey) {
-      form.hidden = true;
-      successEl.hidden = false;
+      showSuccessModal();
       return;
     }
 
@@ -3283,9 +3376,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    form.hidden = true;
-    successEl.hidden = false;
-    successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    showSuccessModal();
   });
 })();
 </script>
