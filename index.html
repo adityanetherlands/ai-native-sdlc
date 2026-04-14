@@ -1799,6 +1799,35 @@ body {
           <h4>Why This Phase Matters</h4>
           <p>Without continuous signal ingestion, product teams react to the loudest voice instead of the most urgent need. This phase ensures every feature request is validated against real market data, customer pain, and competitive landscape. It replaces gut-feel backlog management with data-driven prioritisation.</p>
         </div>
+        <div class="io-strip">
+          <div class="io-box inputs">
+            <h5>Inputs</h5>
+            <ul>
+              <li>Customer feedback streams</li>
+              <li>Support ticket clusters</li>
+              <li>Usage analytics data</li>
+              <li>Competitor intelligence</li>
+              <li>Sales call transcripts</li>
+            </ul>
+          </div>
+          <div class="io-box outputs">
+            <h5>Outputs</h5>
+            <ul>
+              <li>Prioritised problem briefs</li>
+              <li>Opportunity scoring matrix</li>
+              <li>Competitive landscape map</li>
+              <li>Solution hypotheses (ranked)</li>
+            </ul>
+          </div>
+          <div class="io-box gate">
+            <h5>Human Gate</h5>
+            <ul>
+              <li>Human product lead approval</li>
+              <li>Strategic alignment check</li>
+              <li>Problem validated with ≥3 data sources</li>
+            </ul>
+          </div>
+        </div>
         <div class="agents-section">
           <h4>Example Agents & Skills</h4>
           <div class="agents-grid">
@@ -1832,35 +1861,6 @@ body {
           </div>
                   </div>
 </div>
-        <div class="io-strip">
-          <div class="io-box inputs">
-            <h5>Inputs</h5>
-            <ul>
-              <li>Customer feedback streams</li>
-              <li>Support ticket clusters</li>
-              <li>Usage analytics data</li>
-              <li>Competitor intelligence</li>
-              <li>Sales call transcripts</li>
-            </ul>
-          </div>
-          <div class="io-box outputs">
-            <h5>Outputs</h5>
-            <ul>
-              <li>Prioritised problem briefs</li>
-              <li>Opportunity scoring matrix</li>
-              <li>Competitive landscape map</li>
-              <li>Solution hypotheses (ranked)</li>
-            </ul>
-          </div>
-          <div class="io-box gate">
-            <h5>Human Gate</h5>
-            <ul>
-              <li>Human product lead approval</li>
-              <li>Strategic alignment check</li>
-              <li>Problem validated with ≥3 data sources</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -1888,6 +1888,34 @@ body {
           <p>For a <strong>living product</strong>, the PRD Agent understands the existing product context. It reads the current codebase, existing specs, and feature graph to ensure new requirements are additive and compatible. It flags conflicts with existing features and suggests migration paths.</p>
         </div>
                 <div class="phase-why">A vague PRD creates a game of telephone between product and engineering. The PRD closes <em>what</em> and <em>why</em> ambiguity - who the user is, what they need, why it matters. The Spec closes <em>how</em> ambiguity - data models, API contracts, error taxonomy. Clean separation keeps each phase focused and prevents requirements from leaking into implementation.</div>
+        <div class="io-strip">
+          <div class="io-box inputs">
+            <h5>Inputs</h5>
+            <ul>
+              <li>Approved problem brief</li>
+              <li>Existing product spec graph</li>
+              <li>Codebase architecture map</li>
+              <li>UX research findings</li>
+            </ul>
+          </div>
+          <div class="io-box outputs">
+            <h5>Outputs</h5>
+            <ul>
+              <li>Full PRD document</li>
+              <li>User journey maps</li>
+              <li>Dependency impact assessment</li>
+              <li>Wireframe suggestions</li>
+            </ul>
+          </div>
+          <div class="io-box gate">
+            <h5>Human Gate</h5>
+            <ul>
+              <li>Product + Engineering sign-off</li>
+              <li>No unresolved dependency conflicts</li>
+              <li>Success metrics defined & measurable</li>
+            </ul>
+          </div>
+        </div>
 <div class="agents-section">
           <h4>Example Agents & Skills</h4>
           <div class="agents-grid">
@@ -1921,34 +1949,6 @@ body {
           </div>
                   </div>
 </div>
-        <div class="io-strip">
-          <div class="io-box inputs">
-            <h5>Inputs</h5>
-            <ul>
-              <li>Approved problem brief</li>
-              <li>Existing product spec graph</li>
-              <li>Codebase architecture map</li>
-              <li>UX research findings</li>
-            </ul>
-          </div>
-          <div class="io-box outputs">
-            <h5>Outputs</h5>
-            <ul>
-              <li>Full PRD document</li>
-              <li>User journey maps</li>
-              <li>Dependency impact assessment</li>
-              <li>Wireframe suggestions</li>
-            </ul>
-          </div>
-          <div class="io-box gate">
-            <h5>Human Gate</h5>
-            <ul>
-              <li>Product + Engineering sign-off</li>
-              <li>No unresolved dependency conflicts</li>
-              <li>Success metrics defined & measurable</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -1981,6 +1981,39 @@ body {
           <p><strong>Spec-driven development means:</strong> no code gets written until the spec passes validation. No test gets generated without referencing the spec. No demo gets built that does not trace back to spec assertions. Drift between code and spec triggers automated alerts.</p>
         </div>
                 <div class="phase-why">This is the keystone of the entire model. Every downstream agent - coder, tester, reviewer, documenter - traces back to the spec. If the spec is precise, the entire pipeline accelerates. If it's vague, every phase pays the tax.</div>
+        <div class="io-strip">
+          <div class="io-box inputs">
+            <h5>Inputs</h5>
+            <ul>
+              <li>Approved PRD</li>
+              <li>Existing spec versions</li>
+              <li>Current codebase schema</li>
+              <li>API catalogue</li>
+              <li>Existing domain model map</li>
+            </ul>
+          </div>
+          <div class="io-box outputs">
+            <h5>Outputs</h5>
+            <ul>
+              <li>Technical specification (versioned)</li>
+              <li>OpenAPI / GraphQL schemas</li>
+              <li>DB migration scripts</li>
+              <li>Acceptance criteria (machine-readable)</li>
+              <li>Executable examples + guardrails</li>
+              <li>Domain model map (living)</li>
+              <li>Spec delta (for iterations)</li>
+            </ul>
+          </div>
+          <div class="io-box gate">
+            <h5>Human Gate</h5>
+            <ul>
+              <li>100% PRD → Spec traceability</li>
+              <li>All schemas validate</li>
+              <li>Breaking changes flagged + migration planned</li>
+              <li>Tech lead approval</li>
+            </ul>
+          </div>
+        </div>
 <div class="agents-section">
           <h4>Example Agents & Skills</h4>
           <div class="agents-grid">
@@ -2033,39 +2066,6 @@ body {
           </div>
                   </div>
 </div>
-        <div class="io-strip">
-          <div class="io-box inputs">
-            <h5>Inputs</h5>
-            <ul>
-              <li>Approved PRD</li>
-              <li>Existing spec versions</li>
-              <li>Current codebase schema</li>
-              <li>API catalogue</li>
-              <li>Existing domain model map</li>
-            </ul>
-          </div>
-          <div class="io-box outputs">
-            <h5>Outputs</h5>
-            <ul>
-              <li>Technical specification (versioned)</li>
-              <li>OpenAPI / GraphQL schemas</li>
-              <li>DB migration scripts</li>
-              <li>Acceptance criteria (machine-readable)</li>
-              <li>Executable examples + guardrails</li>
-              <li>Domain model map (living)</li>
-              <li>Spec delta (for iterations)</li>
-            </ul>
-          </div>
-          <div class="io-box gate">
-            <h5>Human Gate</h5>
-            <ul>
-              <li>100% PRD → Spec traceability</li>
-              <li>All schemas validate</li>
-              <li>Breaking changes flagged + migration planned</li>
-              <li>Tech lead approval</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -2093,30 +2093,6 @@ body {
           <p>The output is an Architecture Decision Record (ADR) with rationale, alternatives considered, and trade-offs - all generated by AI, reviewed by a human architect.</p>
         </div>
                 <div class="phase-why">Architecture mistakes are the most expensive bugs. An AI agent that reads existing infrastructure, evaluates trade-offs against real benchmarks, and generates ADRs with rationale creates architecture decisions that are defensible, not just instinctive.</div>
-<div class="agents-section">
-          <h4>Example Agents & Skills</h4>
-          <div class="agents-grid">
-          <div class="agent-card">
-            <div class="agent-name">Architecture Planner <code>arch-blueprint</code></div>
-            <div class="agent-desc">Designs system architecture from spec. Produces service topology, data flow diagrams, infrastructure requirements, and ADRs. Considers existing system constraints and proposes integration strategy.</div>
-            <div class="agent-tools">
-              <span class="tool-tag">Claude Opus</span>
-              <span class="tool-tag">Mermaid Charts</span>
-              <span class="tool-tag">Terraform Templates</span>
-              <span class="tool-tag">AWS/GCP APIs</span>
-            </div>
-          </div>
-          <div class="agent-card">
-            <div class="agent-name">Infrastructure Scout <code>infra-scout</code></div>
-            <div class="agent-desc">Evaluates hosting, database, caching, and messaging options. Benchmarks cost, latency, and scalability. Produces infrastructure cost projections and scaling playbooks.</div>
-            <div class="agent-tools">
-              <span class="tool-tag">Cloud Pricing APIs</span>
-              <span class="tool-tag">Benchmark Suite</span>
-              <span class="tool-tag">Supabase MCP</span>
-            </div>
-          </div>
-                  </div>
-</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -2145,6 +2121,30 @@ body {
             </ul>
           </div>
         </div>
+<div class="agents-section">
+          <h4>Example Agents & Skills</h4>
+          <div class="agents-grid">
+          <div class="agent-card">
+            <div class="agent-name">Architecture Planner <code>arch-blueprint</code></div>
+            <div class="agent-desc">Designs system architecture from spec. Produces service topology, data flow diagrams, infrastructure requirements, and ADRs. Considers existing system constraints and proposes integration strategy.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">Claude Opus</span>
+              <span class="tool-tag">Mermaid Charts</span>
+              <span class="tool-tag">Terraform Templates</span>
+              <span class="tool-tag">AWS/GCP APIs</span>
+            </div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-name">Infrastructure Scout <code>infra-scout</code></div>
+            <div class="agent-desc">Evaluates hosting, database, caching, and messaging options. Benchmarks cost, latency, and scalability. Produces infrastructure cost projections and scaling playbooks.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">Cloud Pricing APIs</span>
+              <span class="tool-tag">Benchmark Suite</span>
+              <span class="tool-tag">Supabase MCP</span>
+            </div>
+          </div>
+                  </div>
+</div>
       </div>
     </div>
   </div>
@@ -2176,6 +2176,36 @@ body {
         <div class="phase-why">
           <h4>Why This Sub-Phase Matters</h4>
           <p>The biggest failure mode in AI-assisted development isn't bad code generation -it's unbounded work scope. When an agent receives a full spec and attempts to implement everything in a single pass, the result is brittle, untestable, and impossible to roll back. Decomposing work into bounded, dependency-ordered units is what makes agent-driven implementation reliable at production scale.</p>
+        </div>
+        <div class="io-strip">
+          <div class="io-box inputs">
+            <h5>Inputs</h5>
+            <ul>
+              <li>Validated technical spec</li>
+              <li>Architecture decision records</li>
+              <li>Existing codebase + test suites</li>
+              <li>Configuration dependency map</li>
+            </ul>
+          </div>
+          <div class="io-box outputs">
+            <h5>Outputs</h5>
+            <ul>
+              <li>Task graph (dependency-ordered)</li>
+              <li>PR slicing plan</li>
+              <li>Impact matrix</li>
+              <li>Rollback strategy per work unit</li>
+              <li>Environment provisioning checklist</li>
+            </ul>
+          </div>
+          <div class="io-box gate">
+            <h5>Human Gate</h5>
+            <ul>
+              <li>All tasks traceable to spec elements</li>
+              <li>No circular dependencies in graph</li>
+              <li>Rollback point defined per PR</li>
+              <li>Tech lead approval on sequencing</li>
+            </ul>
+          </div>
         </div>
         <div class="agents-section">
           <h4>Example Agents & Skills</h4>
@@ -2212,36 +2242,6 @@ body {
             </div>
           </div>
         </div>
-        <div class="io-strip">
-          <div class="io-box inputs">
-            <h5>Inputs</h5>
-            <ul>
-              <li>Validated technical spec</li>
-              <li>Architecture decision records</li>
-              <li>Existing codebase + test suites</li>
-              <li>Configuration dependency map</li>
-            </ul>
-          </div>
-          <div class="io-box outputs">
-            <h5>Outputs</h5>
-            <ul>
-              <li>Task graph (dependency-ordered)</li>
-              <li>PR slicing plan</li>
-              <li>Impact matrix</li>
-              <li>Rollback strategy per work unit</li>
-              <li>Environment provisioning checklist</li>
-            </ul>
-          </div>
-          <div class="io-box gate">
-            <h5>Human Gate</h5>
-            <ul>
-              <li>All tasks traceable to spec elements</li>
-              <li>No circular dependencies in graph</li>
-              <li>Rollback point defined per PR</li>
-              <li>Tech lead approval on sequencing</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -2270,6 +2270,35 @@ body {
           <p>For <strong>living products</strong>, agents understand the existing code graph. They don't generate isolated code - they integrate into the existing module structure, respect import conventions, extend existing test patterns, and follow established naming conventions.</p>
         </div>
                 <div class="phase-why">Code generation isn't the hard part - generating code that respects existing patterns, passes existing tests, and integrates with existing services is. This phase treats implementation as spec-execution, not creative writing.</div>
+        <div class="io-strip">
+          <div class="io-box inputs">
+            <h5>Inputs</h5>
+            <ul>
+              <li>Validated technical spec</li>
+              <li>Architecture decision records</li>
+              <li>Existing codebase context</li>
+              <li>Design system tokens</li>
+            </ul>
+          </div>
+          <div class="io-box outputs">
+            <h5>Outputs</h5>
+            <ul>
+              <li>Production code (PR-ready)</li>
+              <li>Database migrations</li>
+              <li>API implementations</li>
+              <li>UI components</li>
+              <li>Inline documentation</li>
+            </ul>
+          </div>
+          <div class="io-box gate">
+            <h5>Human Gate</h5>
+            <ul>
+              <li>All code compiles & lints clean</li>
+              <li>Spec conformance check passes</li>
+              <li>No existing tests broken</li>
+            </ul>
+          </div>
+        </div>
 <div class="agents-section">
           <h4>Example Agents & Skills</h4>
           <div class="agents-grid">
@@ -2313,35 +2342,6 @@ body {
           </div>
                   </div>
 </div>
-        <div class="io-strip">
-          <div class="io-box inputs">
-            <h5>Inputs</h5>
-            <ul>
-              <li>Validated technical spec</li>
-              <li>Architecture decision records</li>
-              <li>Existing codebase context</li>
-              <li>Design system tokens</li>
-            </ul>
-          </div>
-          <div class="io-box outputs">
-            <h5>Outputs</h5>
-            <ul>
-              <li>Production code (PR-ready)</li>
-              <li>Database migrations</li>
-              <li>API implementations</li>
-              <li>UI components</li>
-              <li>Inline documentation</li>
-            </ul>
-          </div>
-          <div class="io-box gate">
-            <h5>Human Gate</h5>
-            <ul>
-              <li>All code compiles & lints clean</li>
-              <li>Spec conformance check passes</li>
-              <li>No existing tests broken</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -2369,30 +2369,6 @@ body {
           <p>Human engineers review the AI's review, resolve edge cases, and approve. The loop tightens over time as the agents learn codebase conventions and reduce false positives.</p>
         </div>
                 <div class="phase-why">Human code review is a bottleneck that doesn't scale. AI review agents can catch 90% of issues instantly - pattern violations, security antipatterns, performance regressions - leaving humans to focus on design judgment calls.</div>
-<div class="agents-section">
-          <h4>Example Agents & Skills</h4>
-          <div class="agents-grid">
-          <div class="agent-card">
-            <div class="agent-name">Review Sentinel <code>review-sentinel</code></div>
-            <div class="agent-desc">Performs deep code review: architecture patterns, naming conventions, error handling completeness, performance anti-patterns, and accessibility violations. Generates line-by-line review comments with severity ratings.</div>
-            <div class="agent-tools">
-              <span class="tool-tag">Claude Opus</span>
-              <span class="tool-tag">GitHub MCP</span>
-              <span class="tool-tag">SonarQube</span>
-              <span class="tool-tag">ESLint</span>
-            </div>
-          </div>
-          <div class="agent-card">
-            <div class="agent-name">Spec Drift Detector <code>spec-drift</code></div>
-            <div class="agent-desc">Compares every code change against the technical spec. Detects deviations in API contracts, data models, state transitions, and error handling. Generates traceability reports linking code to spec clauses.</div>
-            <div class="agent-tools">
-              <span class="tool-tag">Spec Parser</span>
-              <span class="tool-tag">AST Diff</span>
-              <span class="tool-tag">Contract Testing</span>
-            </div>
-          </div>
-                  </div>
-</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -2421,6 +2397,30 @@ body {
             </ul>
           </div>
         </div>
+<div class="agents-section">
+          <h4>Example Agents & Skills</h4>
+          <div class="agents-grid">
+          <div class="agent-card">
+            <div class="agent-name">Review Sentinel <code>review-sentinel</code></div>
+            <div class="agent-desc">Performs deep code review: architecture patterns, naming conventions, error handling completeness, performance anti-patterns, and accessibility violations. Generates line-by-line review comments with severity ratings.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">Claude Opus</span>
+              <span class="tool-tag">GitHub MCP</span>
+              <span class="tool-tag">SonarQube</span>
+              <span class="tool-tag">ESLint</span>
+            </div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-name">Spec Drift Detector <code>spec-drift</code></div>
+            <div class="agent-desc">Compares every code change against the technical spec. Detects deviations in API contracts, data models, state transitions, and error handling. Generates traceability reports linking code to spec clauses.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">Spec Parser</span>
+              <span class="tool-tag">AST Diff</span>
+              <span class="tool-tag">Contract Testing</span>
+            </div>
+          </div>
+                  </div>
+</div>
       </div>
     </div>
   </div>
@@ -2451,6 +2451,38 @@ body {
           <p>Critically, this phase now tests <strong>both the software artefact and the agent workflow that produced it</strong>. The Evaluation and Replay Harness turns past bugs, support tickets, and production incidents into reusable evaluation datasets. It replays agent workflows against known-good outcomes to detect regressions in agent behaviour, not just code behaviour. This is one of the most important maturity signals in an AI-native operating model.</p>
         </div>
                 <div class="phase-why">Testing is the phase where spec-driven development pays its biggest dividend. When tests are generated directly from machine-readable acceptance criteria, coverage isn't a metric to chase - it's a natural byproduct.</div>
+        <div class="io-strip">
+          <div class="io-box inputs">
+            <h5>Inputs</h5>
+            <ul>
+              <li>Technical spec (acceptance criteria)</li>
+              <li>Implementation code</li>
+              <li>Performance budgets</li>
+              <li>Existing regression suite</li>
+              <li>Historical bug/incident corpus</li>
+            </ul>
+          </div>
+          <div class="io-box outputs">
+            <h5>Outputs</h5>
+            <ul>
+              <li>Test suites (unit/integration/E2E)</li>
+              <li>Test coverage report</li>
+              <li>Adversarial test results</li>
+              <li>Performance benchmark report</li>
+              <li>Agent workflow eval results</li>
+              <li>Replay regression suite</li>
+            </ul>
+          </div>
+          <div class="io-box gate">
+            <h5>Human Gate</h5>
+            <ul>
+              <li>≥90% spec coverage</li>
+              <li>Zero critical failures</li>
+              <li>Performance within budget</li>
+              <li>All chaos tests documented</li>
+            </ul>
+          </div>
+        </div>
 <div class="agents-section">
           <h4>Example Agents & Skills</h4>
           <div class="agents-grid">
@@ -2494,38 +2526,6 @@ body {
           </div>
                   </div>
 </div>
-        <div class="io-strip">
-          <div class="io-box inputs">
-            <h5>Inputs</h5>
-            <ul>
-              <li>Technical spec (acceptance criteria)</li>
-              <li>Implementation code</li>
-              <li>Performance budgets</li>
-              <li>Existing regression suite</li>
-              <li>Historical bug/incident corpus</li>
-            </ul>
-          </div>
-          <div class="io-box outputs">
-            <h5>Outputs</h5>
-            <ul>
-              <li>Test suites (unit/integration/E2E)</li>
-              <li>Test coverage report</li>
-              <li>Adversarial test results</li>
-              <li>Performance benchmark report</li>
-              <li>Agent workflow eval results</li>
-              <li>Replay regression suite</li>
-            </ul>
-          </div>
-          <div class="io-box gate">
-            <h5>Human Gate</h5>
-            <ul>
-              <li>≥90% spec coverage</li>
-              <li>Zero critical failures</li>
-              <li>Performance within budget</li>
-              <li>All chaos tests documented</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -2555,6 +2555,37 @@ body {
           <p>Beyond the phase-level gate, security governance now operates at the <strong>tool and action level</strong>. Shell commands, environment changes, and destructive actions are subject to explicit approval policies. Guardrails validate in real-time, and <strong>human review pauses the run before risky actions proceed</strong>. This is a fundamentally stronger control model than a single late-stage sign-off: every agent in every phase that touches sensitive resources operates within declared permission boundaries.</p>
         </div>
                 <div class="phase-why">Security can't be a phase-gate bolt-on. When a security agent scans every commit, validates every dependency, and checks every API against OWASP in real-time, security shifts from audit to continuous assurance.</div>
+        <div class="io-strip">
+          <div class="io-box inputs">
+            <h5>Inputs</h5>
+            <ul>
+              <li>Codebase + dependencies</li>
+              <li>Architecture diagrams</li>
+              <li>Compliance requirements</li>
+              <li>Threat model history</li>
+              <li>Agent action policies</li>
+            </ul>
+          </div>
+          <div class="io-box outputs">
+            <h5>Outputs</h5>
+            <ul>
+              <li>Threat model (STRIDE)</li>
+              <li>Vulnerability report (prioritised)</li>
+              <li>Compliance evidence pack</li>
+              <li>Remediation playbook</li>
+              <li>Action approval audit log</li>
+            </ul>
+          </div>
+          <div class="io-box gate">
+            <h5>Human Gate</h5>
+            <ul>
+              <li>Zero critical/high vulnerabilities</li>
+              <li>All compliance controls met</li>
+              <li>Action policies enforced across agents</li>
+              <li>Security lead sign-off</li>
+            </ul>
+          </div>
+        </div>
 <div class="agents-section">
           <h4>Example Agents & Skills</h4>
           <div class="agents-grid">
@@ -2589,37 +2620,6 @@ body {
           </div>
                   </div>
 </div>
-        <div class="io-strip">
-          <div class="io-box inputs">
-            <h5>Inputs</h5>
-            <ul>
-              <li>Codebase + dependencies</li>
-              <li>Architecture diagrams</li>
-              <li>Compliance requirements</li>
-              <li>Threat model history</li>
-              <li>Agent action policies</li>
-            </ul>
-          </div>
-          <div class="io-box outputs">
-            <h5>Outputs</h5>
-            <ul>
-              <li>Threat model (STRIDE)</li>
-              <li>Vulnerability report (prioritised)</li>
-              <li>Compliance evidence pack</li>
-              <li>Remediation playbook</li>
-              <li>Action approval audit log</li>
-            </ul>
-          </div>
-          <div class="io-box gate">
-            <h5>Human Gate</h5>
-            <ul>
-              <li>Zero critical/high vulnerabilities</li>
-              <li>All compliance controls met</li>
-              <li>Action policies enforced across agents</li>
-              <li>Security lead sign-off</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -2647,31 +2647,6 @@ body {
           <p>For living products, demos include <strong>migration previews</strong> - showing existing users what will change, what's new, and what's been improved. This feeds directly into changelog and release communications.</p>
         </div>
                 <div class="phase-why">The gap between 'it works on my machine' and 'stakeholders can see it' is where momentum dies. Automated staging with synthetic data and shareable preview links turns every merge into a demoable milestone.</div>
-<div class="agents-section">
-          <h4>Example Agents & Skills</h4>
-          <div class="agents-grid">
-          <div class="agent-card">
-            <div class="agent-name">Demo Builder <code>demo-craft</code></div>
-            <div class="agent-desc">Generates interactive demos: sample data seeding, guided feature walkthroughs, screenshot/video capture, before/after comparisons. Produces stakeholder-ready demo packages.</div>
-            <div class="agent-tools">
-              <span class="tool-tag">Playwright</span>
-              <span class="tool-tag">Seed Data Gen</span>
-              <span class="tool-tag">Screen Recorder</span>
-              <span class="tool-tag">Vercel MCP</span>
-            </div>
-          </div>
-          <div class="agent-card">
-            <div class="agent-name">Staging Deployer <code>staging-spin</code></div>
-            <div class="agent-desc">Provisions ephemeral staging environments per feature branch. Configures synthetic data, sets up monitoring, generates shareable URLs with access controls for UAT.</div>
-            <div class="agent-tools">
-              <span class="tool-tag">Vercel MCP</span>
-              <span class="tool-tag">Docker</span>
-              <span class="tool-tag">Supabase MCP</span>
-              <span class="tool-tag">GitHub Actions</span>
-            </div>
-          </div>
-                  </div>
-</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -2699,6 +2674,31 @@ body {
             </ul>
           </div>
         </div>
+<div class="agents-section">
+          <h4>Example Agents & Skills</h4>
+          <div class="agents-grid">
+          <div class="agent-card">
+            <div class="agent-name">Demo Builder <code>demo-craft</code></div>
+            <div class="agent-desc">Generates interactive demos: sample data seeding, guided feature walkthroughs, screenshot/video capture, before/after comparisons. Produces stakeholder-ready demo packages.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">Playwright</span>
+              <span class="tool-tag">Seed Data Gen</span>
+              <span class="tool-tag">Screen Recorder</span>
+              <span class="tool-tag">Vercel MCP</span>
+            </div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-name">Staging Deployer <code>staging-spin</code></div>
+            <div class="agent-desc">Provisions ephemeral staging environments per feature branch. Configures synthetic data, sets up monitoring, generates shareable URLs with access controls for UAT.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">Vercel MCP</span>
+              <span class="tool-tag">Docker</span>
+              <span class="tool-tag">Supabase MCP</span>
+              <span class="tool-tag">GitHub Actions</span>
+            </div>
+          </div>
+                  </div>
+</div>
       </div>
     </div>
   </div>
@@ -2726,30 +2726,6 @@ body {
           <p>The system produces multiple doc types: end-user help (in-product and external), developer API docs, internal architecture docs, and onboarding guides for new team members.</p>
         </div>
                 <div class="phase-why">Documentation written after the fact is always wrong. When a documentation agent generates docs from the spec and code simultaneously, docs become a living artefact - not a post-launch chore that nobody wants to do.</div>
-<div class="agents-section">
-          <h4>Example Agents & Skills</h4>
-          <div class="agents-grid">
-          <div class="agent-card">
-            <div class="agent-name">Doc Weaver <code>doc-weaver</code></div>
-            <div class="agent-desc">Generates comprehensive documentation from code, specs, and tests. User guides, developer docs, architecture overviews, onboarding materials. Auto-updates on code changes. Writes for the right audience.</div>
-            <div class="agent-tools">
-              <span class="tool-tag">Claude Sonnet</span>
-              <span class="tool-tag">GitHub MCP</span>
-              <span class="tool-tag">Notion MCP</span>
-              <span class="tool-tag">MDX Generator</span>
-            </div>
-          </div>
-          <div class="agent-card">
-            <div class="agent-name">API Documentation <code>api-doc-gen</code></div>
-            <div class="agent-desc">Generates interactive API documentation from OpenAPI specs and actual implementation. Includes code examples in multiple languages, error handling guides, and rate limit documentation.</div>
-            <div class="agent-tools">
-              <span class="tool-tag">OpenAPI Parser</span>
-              <span class="tool-tag">Postman MCP</span>
-              <span class="tool-tag">Code Example Gen</span>
-            </div>
-          </div>
-                  </div>
-</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -2779,6 +2755,30 @@ body {
             </ul>
           </div>
         </div>
+<div class="agents-section">
+          <h4>Example Agents & Skills</h4>
+          <div class="agents-grid">
+          <div class="agent-card">
+            <div class="agent-name">Doc Weaver <code>doc-weaver</code></div>
+            <div class="agent-desc">Generates comprehensive documentation from code, specs, and tests. User guides, developer docs, architecture overviews, onboarding materials. Auto-updates on code changes. Writes for the right audience.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">Claude Sonnet</span>
+              <span class="tool-tag">GitHub MCP</span>
+              <span class="tool-tag">Notion MCP</span>
+              <span class="tool-tag">MDX Generator</span>
+            </div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-name">API Documentation <code>api-doc-gen</code></div>
+            <div class="agent-desc">Generates interactive API documentation from OpenAPI specs and actual implementation. Includes code examples in multiple languages, error handling guides, and rate limit documentation.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">OpenAPI Parser</span>
+              <span class="tool-tag">Postman MCP</span>
+              <span class="tool-tag">Code Example Gen</span>
+            </div>
+          </div>
+                  </div>
+</div>
       </div>
     </div>
   </div>
@@ -2806,31 +2806,6 @@ body {
           <p>For living products, the Release Captain manages <strong>feature flags, progressive rollouts, and canary deployments</strong>. It monitors health metrics post-deploy and can trigger automatic rollback if anomalies are detected.</p>
         </div>
                 <div class="phase-why">Release engineering is toil. When an AI agent handles changelog generation, version bumping, deployment orchestration, and rollback triggers, releases become a non-event - which is exactly what they should be.</div>
-<div class="agents-section">
-          <h4>Example Agents & Skills</h4>
-          <div class="agents-grid">
-          <div class="agent-card">
-            <div class="agent-name">Release Captain <code>release-captain</code></div>
-            <div class="agent-desc">Orchestrates release: semantic versioning, feature flag configuration, progressive rollout strategy, canary deployment, health monitoring, and auto-rollback triggers. Full deployment automation.</div>
-            <div class="agent-tools">
-              <span class="tool-tag">GitHub Actions</span>
-              <span class="tool-tag">Vercel MCP</span>
-              <span class="tool-tag">LaunchDarkly</span>
-              <span class="tool-tag">Datadog</span>
-            </div>
-          </div>
-          <div class="agent-card">
-            <div class="agent-name">Changelog Generator <code>changelog-pro</code></div>
-            <div class="agent-desc">Generates multi-audience release notes from spec deltas, commit history, and demo assets. Technical changelog, user-facing "What's New", executive summary, and customer comms draft. Full traceability.</div>
-            <div class="agent-tools">
-              <span class="tool-tag">Claude Sonnet</span>
-              <span class="tool-tag">Git Log Parser</span>
-              <span class="tool-tag">Notion MCP</span>
-              <span class="tool-tag">Slack MCP</span>
-            </div>
-          </div>
-                  </div>
-</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -2860,6 +2835,31 @@ body {
             </ul>
           </div>
         </div>
+<div class="agents-section">
+          <h4>Example Agents & Skills</h4>
+          <div class="agents-grid">
+          <div class="agent-card">
+            <div class="agent-name">Release Captain <code>release-captain</code></div>
+            <div class="agent-desc">Orchestrates release: semantic versioning, feature flag configuration, progressive rollout strategy, canary deployment, health monitoring, and auto-rollback triggers. Full deployment automation.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">GitHub Actions</span>
+              <span class="tool-tag">Vercel MCP</span>
+              <span class="tool-tag">LaunchDarkly</span>
+              <span class="tool-tag">Datadog</span>
+            </div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-name">Changelog Generator <code>changelog-pro</code></div>
+            <div class="agent-desc">Generates multi-audience release notes from spec deltas, commit history, and demo assets. Technical changelog, user-facing "What's New", executive summary, and customer comms draft. Full traceability.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">Claude Sonnet</span>
+              <span class="tool-tag">Git Log Parser</span>
+              <span class="tool-tag">Notion MCP</span>
+              <span class="tool-tag">Slack MCP</span>
+            </div>
+          </div>
+                  </div>
+</div>
       </div>
     </div>
   </div>
@@ -2887,31 +2887,6 @@ body {
           <p>The <strong>Feedback Loop Agent</strong> synthesises qualitative and quantitative signals into improvement proposals - closing the circle by generating new problem briefs that feed Phase 01. The product never stops evolving.</p>
         </div>
                 <div class="phase-why">The SDLC isn't a line - it's a loop. This phase closes the circle: production signals feed back into Phase 1, anomalies trigger spec reviews, and the system continuously improves based on real-world behaviour.</div>
-<div class="agents-section">
-          <h4>Example Agents & Skills</h4>
-          <div class="agents-grid">
-          <div class="agent-card">
-            <div class="agent-name">Production Watcher <code>prod-watcher</code></div>
-            <div class="agent-desc">Monitors production health and the agent operating model itself: error rates, latency, resource usage, user behaviour anomalies, plus agent PR merge rate, median time to merge, review churn, rollback rate, spec-drift rate, and evaluation pass rate. Classifies issues and routes to appropriate lifecycle phase. Triggers auto-remediation for known patterns.</div>
-            <div class="agent-tools">
-              <span class="tool-tag">Datadog/Grafana</span>
-              <span class="tool-tag">PagerDuty</span>
-              <span class="tool-tag">Sentry</span>
-              <span class="tool-tag">Claude Sonnet</span>
-            </div>
-          </div>
-          <div class="agent-card">
-            <div class="agent-name">Feedback Loop Agent <code>feedback-loop</code></div>
-            <div class="agent-desc">Synthesises production metrics, user feedback, and usage analytics into improvement proposals. Generates new problem briefs that feed Phase 01, closing the lifecycle loop. Measures feature impact against original success metrics.</div>
-            <div class="agent-tools">
-              <span class="tool-tag">Analytics Pipeline</span>
-              <span class="tool-tag">NPS/CSAT Tools</span>
-              <span class="tool-tag">Linear MCP</span>
-              <span class="tool-tag">Notion MCP</span>
-            </div>
-          </div>
-                  </div>
-</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -2941,6 +2916,31 @@ body {
             </ul>
           </div>
         </div>
+<div class="agents-section">
+          <h4>Example Agents & Skills</h4>
+          <div class="agents-grid">
+          <div class="agent-card">
+            <div class="agent-name">Production Watcher <code>prod-watcher</code></div>
+            <div class="agent-desc">Monitors production health and the agent operating model itself: error rates, latency, resource usage, user behaviour anomalies, plus agent PR merge rate, median time to merge, review churn, rollback rate, spec-drift rate, and evaluation pass rate. Classifies issues and routes to appropriate lifecycle phase. Triggers auto-remediation for known patterns.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">Datadog/Grafana</span>
+              <span class="tool-tag">PagerDuty</span>
+              <span class="tool-tag">Sentry</span>
+              <span class="tool-tag">Claude Sonnet</span>
+            </div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-name">Feedback Loop Agent <code>feedback-loop</code></div>
+            <div class="agent-desc">Synthesises production metrics, user feedback, and usage analytics into improvement proposals. Generates new problem briefs that feed Phase 01, closing the lifecycle loop. Measures feature impact against original success metrics.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">Analytics Pipeline</span>
+              <span class="tool-tag">NPS/CSAT Tools</span>
+              <span class="tool-tag">Linear MCP</span>
+              <span class="tool-tag">Notion MCP</span>
+            </div>
+          </div>
+                  </div>
+</div>
       </div>
     </div>
   </div>
