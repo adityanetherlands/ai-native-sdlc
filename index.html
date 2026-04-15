@@ -3840,7 +3840,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
 
       <div class="sf-field">
         <label for="sf-phase">Related SDLC phase <span class="sf-req">*</span></label>
-        <select id="sf-phase" name="phase" required>
+        <select id="sf-phase" name="section_key" required>
           <option value="" disabled selected>Select a phase…</option>
           <option value="general">General / Not phase-specific</option>
           <option value="ideation">01 · Ideation</option>
@@ -4436,7 +4436,8 @@ document.addEventListener('DOMContentLoaded', () => {
       email: form.email.value.trim() || null,
       role: form.role.value,
       suggestion_type: form.suggestion_type.value,
-      phase: form.phase.value,
+      section_key: form.section_key.value,
+      source: 'sdlc',
       topic: form.topic.value.trim(),
       description: form.description.value.trim(),
       link: form.link.value.trim() || null,

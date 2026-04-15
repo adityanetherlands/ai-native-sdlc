@@ -2789,6 +2789,8 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
   <a href="#five-moves" class="nav-top" data-section="five-moves">Five Moves</a>
   <div class="nav-section-label">Closing</div>
   <a href="#closing" class="nav-top" data-section="closing">In Closing</a>
+  <div class="nav-section-label">Contribute</div>
+  <a href="#suggestions" class="nav-top" data-section="suggestions">Submit a Suggestion</a>
   <div class="drawer-theme-toggle">
     <button onclick="toggleTheme()" aria-label="Toggle theme">
       <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
@@ -3255,6 +3257,91 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
   </div>
 </section>
 
+<section id="suggestions" class="suggestions-section">
+  <div class="suggestions-inner">
+    <div class="suggestions-header">
+      <div class="suggestions-eyebrow">Contribute</div>
+      <h2 class="suggestions-title">Submit a Suggestion</h2>
+      <p class="suggestions-desc">Push back, sharpen, or add something I missed — every submission is read.</p>
+    </div>
+
+    <form id="suggestion-form" class="suggestion-form" autocomplete="off" novalidate>
+      <div class="sf-row">
+        <div class="sf-field">
+          <label for="sf-name">Name <span class="sf-req">*</span></label>
+          <input type="text" id="sf-name" name="name" required maxlength="120" />
+        </div>
+        <div class="sf-field">
+          <label for="sf-email">Email <span class="sf-opt">(optional)</span></label>
+          <input type="email" id="sf-email" name="email" maxlength="254" />
+        </div>
+      </div>
+
+      <div class="sf-row">
+        <div class="sf-field">
+          <label for="sf-role">Your role <span class="sf-req">*</span></label>
+          <select id="sf-role" name="role" required>
+            <option value="" disabled selected>Select a role…</option>
+            <option value="engineer">Engineer</option>
+            <option value="pm">Product Manager</option>
+            <option value="designer">Designer</option>
+            <option value="researcher">Researcher / Scientist</option>
+            <option value="founder_exec">Founder / Executive</option>
+            <option value="student">Student</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="sf-field">
+          <label for="sf-type">Suggestion type <span class="sf-req">*</span></label>
+          <select id="sf-type" name="suggestion_type" required>
+            <option value="" disabled selected>Select a type…</option>
+            <option value="new_idea">New idea</option>
+            <option value="correction">Correction</option>
+            <option value="question">Question</option>
+            <option value="collaboration">Collaboration request</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sf-field">
+        <label for="sf-topic">Topic <span class="sf-req">*</span></label>
+        <input type="text" id="sf-topic" name="topic" required maxlength="200" placeholder="A short headline for your suggestion" />
+      </div>
+
+      <div class="sf-field">
+        <label for="sf-desc">Description <span class="sf-req">*</span></label>
+        <textarea id="sf-desc" name="description" required maxlength="5000" rows="6" placeholder="Share the detail: context, reasoning, examples."></textarea>
+        <div class="sf-counter"><span id="sf-desc-count">0</span> / 5000</div>
+      </div>
+
+      <div class="sf-field">
+        <label for="sf-link">Reference link <span class="sf-opt">(optional)</span></label>
+        <input type="url" id="sf-link" name="link" placeholder="https://…" />
+      </div>
+
+      <!-- Honeypot: hidden from humans, filled by bots -->
+      <div class="sf-honeypot" aria-hidden="true">
+        <label for="sf-website">Website</label>
+        <input type="text" id="sf-website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div class="sf-actions">
+        <button type="submit" class="sf-submit" id="sf-submit">Send suggestion</button>
+        <p class="sf-error" id="sf-error" role="alert"></p>
+      </div>
+    </form>
+
+    <div class="sf-modal-backdrop" id="sf-modal-backdrop" hidden>
+      <div class="sf-modal" role="dialog" aria-modal="true" aria-labelledby="sf-modal-title">
+        <div class="sf-success-icon">✓</div>
+        <h3 id="sf-modal-title">Thanks. Your suggestion was received.</h3>
+        <p>I read every submission personally. If you left an email, I may follow up.</p>
+        <button type="button" class="sf-modal-ok" id="sf-modal-ok">OK</button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer class="footer">
   <p>An Executive Perspective on AI, Organisation &amp; The New Operating Model | Adi Kumar | Personal Blog</p>
@@ -3787,7 +3874,7 @@ document.addEventListener('DOMContentLoaded', () => {
       email: form.email.value.trim() || null,
       role: form.role.value,
       suggestion_type: form.suggestion_type.value,
-      phase: form.phase.value,
+      source: 'ai-org',
       topic: form.topic.value.trim(),
       description: form.description.value.trim(),
       link: form.link.value.trim() || null,
