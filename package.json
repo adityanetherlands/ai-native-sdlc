@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:corpus": "node scripts/build-corpus.mjs"
+    "build:corpus": "node scripts/build-corpus.mjs",
+    "build:corpus:org": "node scripts/build-corpus.mjs --page ai-org",
+    "build:corpus:all": "npm run build:corpus && npm run build:corpus:org"
   },
   "devDependencies": {
     "jsdom": "^25.0.1"

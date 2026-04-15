@@ -1,5 +1,9 @@
-// Extracts visible text from index.html, grouped by <section id="...">,
-// and writes supabase/functions/ask/corpus.json.
+// Extracts visible text from a page's index.html, grouped by <section id="...">,
+// and writes the matching Edge Function's corpus.json + corpus.ts.
+//
+// Usage:
+//   node scripts/build-corpus.mjs               → reads ./index.html,        writes supabase/functions/ask/
+//   node scripts/build-corpus.mjs --page ai-org → reads ./ai-org/index.html, writes supabase/functions/ask-org/
 //
 // The output is a JSON array of { section_id, title, text } chunks that
 // the Edge Function inlines into its grounding system prompt.
@@ -9,11 +13,28 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { JSDOM } from 'jsdom';
 
+// --- Arg parsing: --page <name> ---
+// Known pages map to { htmlPath relative to repoRoot, function dir under supabase/functions/ }.
+const PAGES = {
+  sdlc:   { html: 'index.html',        fn: 'ask' },
+  'ai-org': { html: 'ai-org/index.html', fn: 'ask-org' },
+};
+const args = process.argv.slice(2);
+let pageArg = 'sdlc';
+for (let i = 0; i < args.length; i++) {
+  if (args[i] === '--page' && args[i + 1]) { pageArg = args[i + 1]; i++; }
+}
+if (!PAGES[pageArg]) {
+  console.error(`Unknown --page "${pageArg}". Known: ${Object.keys(PAGES).join(', ')}`);
+  process.exit(1);
+}
+
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(here, '..');
-const inputPath = resolve(repoRoot, 'index.html');
-const outputPath = resolve(repoRoot, 'supabase/functions/ask/corpus.json');
-const tsOutputPath = resolve(repoRoot, 'supabase/functions/ask/corpus.ts');
+const page = PAGES[pageArg];
+const inputPath = resolve(repoRoot, page.html);
+const outputPath = resolve(repoRoot, `supabase/functions/${page.fn}/corpus.json`);
+const tsOutputPath = resolve(repoRoot, `supabase/functions/${page.fn}/corpus.ts`);
 
 const html = readFileSync(inputPath, 'utf8');
 const dom = new JSDOM(html);
@@ -44,8 +65,12 @@ function firstHeadingText(section) {
 }
 
 const main = doc.querySelector('main') || doc.body;
-// Only top-level sections under <main> — nested sections get folded into their parent's text.
-const sections = [...main.children].filter((el) => el.tagName === 'SECTION');
+// Sections directly under <main>, plus sections one level deep (e.g. inside
+// an <div class="article-wrap"> layout wrapper). We skip deeper nesting so
+// inner sections get folded into their parent's text rather than double-counted.
+const sections = [
+  ...main.querySelectorAll(':scope > section, :scope > div > section'),
+];
 
 function slugify(s) {
   return s
