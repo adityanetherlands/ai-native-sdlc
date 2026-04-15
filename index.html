@@ -2045,7 +2045,9 @@ body {
   outline: 0;
   color: var(--text);
   font-family: 'Outfit', sans-serif;
-  font-size: 15px;
+  /* 16px is the iOS Safari threshold — anything smaller triggers auto-zoom
+     on focus (and leaves the page zoomed, clipping the right edge). */
+  font-size: 16px;
   padding: 10px 4px;
 }
 .ask-input:focus,
