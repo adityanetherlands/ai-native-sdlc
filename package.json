@@ -1,0 +1,12 @@
+{
+  "name": "ai-native-sdlc",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:corpus": "node scripts/build-corpus.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.1"
+  }
+}

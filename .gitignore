@@ -3,3 +3,8 @@ ai-native-sdlc-*.html
 deploy-v10.3/
 Claude-Code-rebuild/
 .claude/
+node_modules/
+.env
+.env.local
+supabase/.temp/
+feedback/
