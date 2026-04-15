@@ -3768,7 +3768,6 @@ function initPodcastPlayer() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('.phase').classList.add('active');
   const saved = localStorage.getItem('sdlc-theme');
   if (saved && saved !== document.documentElement.getAttribute('data-theme')) {
     document.documentElement.setAttribute('data-theme', saved);
