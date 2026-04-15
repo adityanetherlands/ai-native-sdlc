@@ -2154,8 +2154,9 @@ body {
 /* Floating launcher */
 .ask-launcher {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  /* Matches podcast bubble size + offset so they align in a vertical stack. */
+  bottom: 24px;
+  right: 24px;
   z-index: 50;
   display: inline-flex;
   align-items: center;
@@ -2164,11 +2165,16 @@ body {
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 50%;
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   padding: 0;
   cursor: pointer;
   box-shadow: var(--shadow);
+  /* Note: no `bottom` in transition — it's calc(var(--pp-lift)), and
+     browsers snapshot the calc at transition start, so later updates to
+     --pp-lift during the podcast expand animation don't re-trigger. We
+     snap instead; the player's own transition is gentle enough that the
+     visual still reads as smooth. */
   transition: transform .15s ease, border-color .15s ease, opacity .2s ease;
 }
 .ask-launcher:hover {
@@ -2177,9 +2183,11 @@ body {
 }
 .ask-launcher[hidden] { display: none; }
 .ask-launcher svg { color: var(--accent); display: block; }
-/* Shift up so we don't collide with the podcast player. */
-body.pp-visible-expanded .ask-launcher { bottom: calc(20px + var(--pp-lift, 160px)); }
-body.pp-visible-bubble .ask-launcher { bottom: 96px; }
+/* Shift up so we don't collide with the podcast player.
+   Bubble (56px tall at bottom:24) → launcher at 24 + 56 + 12 = 92px.
+   Expanded → --pp-lift is measured player height + 12px gap. */
+body.pp-visible-expanded .ask-launcher { bottom: calc(24px + var(--pp-lift, 160px)); }
+body.pp-visible-bubble .ask-launcher { bottom: 92px; }
 
 /* Modal */
 .ask-modal-backdrop {
@@ -2229,7 +2237,9 @@ body.pp-visible-bubble .ask-launcher { bottom: 96px; }
 
 @media (max-width: 640px) {
   .ask-hero { margin-top: 20px; }
-  .ask-modal-backdrop { padding: 5vh 10px 10px; }
+  /* Clear the fixed hamburger (top:16, 40px tall) and theme toggle — 72px
+     = 16 + 40 + 16 of breathing room. */
+  .ask-modal-backdrop { padding: 72px 10px 10px; }
 }
 </style>
 </head>
@@ -4514,8 +4524,10 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.toggle('pp-visible-bubble', visible && mode === 'bubble');
       if (visible && mode === 'expanded') {
         // Measure actual player height so the lift scales with content.
+        // ResizeObserver below keeps this up-to-date during the expand
+        // transition (width/height animate over ~280ms).
         const h = pp.getBoundingClientRect().height;
-        document.body.style.setProperty('--pp-lift', `${Math.round(h + 24)}px`);
+        document.body.style.setProperty('--pp-lift', `${Math.round(h + 12)}px`);
       } else {
         document.body.style.removeProperty('--pp-lift');
       }
@@ -4525,7 +4537,12 @@ document.addEventListener('DOMContentLoaded', function () {
       attributes: true,
       attributeFilter: ['hidden', 'data-mode'],
     });
-    // Also re-measure on resize while expanded (content height can change).
+    // Track the player's real size throughout its hover transition so the
+    // launcher lifts in sync — a single post-mutation read would miss the
+    // intermediate sizes as width/height animate over ~280ms.
+    if (typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(syncPpClass).observe(pp);
+    }
     window.addEventListener('resize', syncPpClass, { passive: true });
   }
 

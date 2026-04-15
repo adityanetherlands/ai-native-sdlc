@@ -17,6 +17,8 @@ import { corpus } from './corpus.ts';
 type ChunkRow = { section_id: string; title: string; text: string };
 
 const DEFAULT_ORIGINS = [
+  'https://vibetribe.design',
+  'https://www.vibetribe.design',
   'https://ai-native-sdlc-ten.vercel.app',
   'http://localhost:8000',
   'http://127.0.0.1:8000',
@@ -87,6 +89,8 @@ function isAllowedOrigin(origin: string, allowed: string[]): boolean {
   if (allowed.includes(origin)) return true;
   // Allow any http://localhost:<port> or http://127.0.0.1:<port> for local dev.
   if (/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) return true;
+  // Allow any Vercel preview URL for this project (e.g. pr-123-*.vercel.app).
+  if (/^https:\/\/[a-z0-9-]+\.vercel\.app$/.test(origin)) return true;
   return false;
 }
 
