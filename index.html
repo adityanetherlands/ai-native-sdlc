@@ -2094,12 +2094,17 @@ body {
   padding-right: 4px;
 }
 .ask-msg {
-  font-size: 14.5px;
-  line-height: 1.55;
+  /* Inherit Outfit from body so the response feels like body copy,
+     not a monospace blob. */
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.6;
   color: var(--text);
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.ask-msg strong { font-weight: 600; color: var(--text); }
+.ask-msg em { font-style: italic; }
 .ask-msg.user {
   color: var(--text-muted);
   font-family: 'JetBrains Mono', monospace;
@@ -4375,6 +4380,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY));
 
   const MAX_HISTORY = 10; // user+assistant pairs kept client-side
+  const MAX_USER_QUESTIONS = 5; // after this many, stop calling the API
   let history = []; // { role: 'user' | 'assistant', content: string }
   let inFlight = false;
   let lastError = null;
@@ -4384,27 +4390,101 @@ document.addEventListener('DOMContentLoaded', function () {
   const backdrop = document.getElementById('ask-modal-backdrop');
   const modalClose = document.getElementById('ask-modal-close');
 
-  function makeSectionLink(id, label) {
+  function userQuestionCount() {
+    return history.reduce((n, m) => n + (m.role === 'user' ? 1 : 0), 0);
+  }
+
+  // Use the section's actual heading as the link label so the response reads
+  // naturally instead of "§section-id". Strips leading emoji/whitespace.
+  function sectionLabel(id) {
+    const sec = document.getElementById(id);
+    if (!sec) return null;
+    const h = sec.querySelector('h1, h2, h3, h4');
+    const raw = h ? h.textContent : id;
+    return raw.replace(/^[\s\p{Emoji_Presentation}\p{Extended_Pictographic}]+/u, '').trim() || id;
+  }
+
+  function makeSectionLink(id) {
     const a = document.createElement('a');
     a.href = '#' + id;
-    a.textContent = label || ('§' + id);
+    a.textContent = sectionLabel(id) || id;
     a.addEventListener('click', closeModal);
     return a;
   }
 
-  function renderAssistantText(container, text) {
-    // Plain-text render, then linkify trailing "— see §id[, §id2]" patterns.
-    container.textContent = '';
-    // Split on §id tokens so we can linkify them safely without innerHTML.
+  // Inline text → DOM, handling **bold** and §section-id citations.
+  // LLM output sometimes cites a section that doesn't exist (hallucinated
+  // slug); in that case we drop the token entirely rather than leaving a
+  // stray "§fake-id" in the rendered answer.
+  function appendInline(container, text) {
+    // Strip trailing "— see …" clause if it references no real sections.
+    // We can't rely on the §id being the last token — the LLM sometimes
+    // adds parentheticals like "— see §foo (Phase 07 block)." So match
+    // loosely: any "— see" through end of string, check every §id inside.
+    const trailing = /\s*—\s*see\b[^§]*((?:§[a-z0-9-]+[^§]*)*)$/i;
+    const tm = trailing.exec(text);
+    if (tm) {
+      const ids = [...tm[0].matchAll(/§([a-z0-9-]+)/gi)].map(m => m[1]);
+      const anyValid = ids.some(id => document.getElementById(id));
+      if (!anyValid) text = text.slice(0, tm.index);
+    }
+
+    // Tokenize into bold spans and non-bold runs.
+    const boldParts = text.split(/(\*\*[^*\n]+\*\*)/);
+    for (const part of boldParts) {
+      const bm = /^\*\*([^*\n]+)\*\*$/.exec(part);
+      if (bm) {
+        const strong = document.createElement('strong');
+        appendWithSections(strong, bm[1]);
+        container.appendChild(strong);
+      } else {
+        appendWithSections(container, part);
+      }
+    }
+  }
+
+  function appendWithSections(container, text) {
     const parts = text.split(/(§[a-z0-9-]+)/gi);
     for (const part of parts) {
       const m = /^§([a-z0-9-]+)$/i.exec(part);
-      if (m && document.getElementById(m[1])) {
-        container.appendChild(makeSectionLink(m[1], part));
+      if (m) {
+        if (document.getElementById(m[1])) {
+          container.appendChild(makeSectionLink(m[1]));
+        }
+        // else: drop the stray §id silently
       } else {
         container.appendChild(document.createTextNode(part));
       }
     }
+  }
+
+  function renderAssistantText(container, text) {
+    container.textContent = '';
+    appendInline(container, text);
+  }
+
+  // Canned "stop burning tokens" response once the user hits the cap.
+  // The two inline actions fire the same Read / Podcast chip clicks as
+  // the hero chips, so behavior stays consistent.
+  function renderCapMessage(container) {
+    container.textContent = '';
+    const makeChipAction = (chipId, label) => {
+      const a = document.createElement('a');
+      a.href = '#';
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const chip = document.getElementById(chipId);
+        if (chip) chip.click();
+        closeModal();
+      });
+      a.textContent = label;
+      return a;
+    };
+    container.appendChild(document.createTextNode('Stop burning my LLM tokens and '));
+    container.appendChild(makeChipAction('read-chip', 'read the article'));
+    container.appendChild(document.createTextNode(' or '));
+    container.appendChild(makeChipAction('listen-chip', 'listen to the podcast'));
+    container.appendChild(document.createTextNode(' 😉'));
   }
 
   function renderThread(root) {
@@ -4419,6 +4499,15 @@ document.addEventListener('DOMContentLoaded', function () {
         div.textContent = msg.content;
       }
       thread.appendChild(div);
+    }
+    // Virtual cap message: appears when the user's latest turn pushed them
+    // past the limit and we short-circuited the API call. Not persisted in
+    // `history` so it never gets sent back to the model as context.
+    if (userQuestionCount() > MAX_USER_QUESTIONS && !inFlight) {
+      const cap = document.createElement('div');
+      cap.className = 'ask-msg assistant';
+      renderCapMessage(cap);
+      thread.appendChild(cap);
     }
     if (inFlight) {
       const loading = document.createElement('div');
@@ -4456,6 +4545,18 @@ document.addEventListener('DOMContentLoaded', function () {
     if (history.length > MAX_HISTORY * 2) {
       history = history.slice(-MAX_HISTORY * 2);
     }
+
+    // Hard cap: once the user has asked more than MAX_USER_QUESTIONS, show
+    // the canned "go read/listen" reply instead of hitting the API. The cap
+    // message is rendered by renderThread based on userQuestionCount() so we
+    // don't pollute the history we'd otherwise send back to the model.
+    if (userQuestionCount() > MAX_USER_QUESTIONS) {
+      lastError = null;
+      inFlight = false;
+      refreshAll();
+      return;
+    }
+
     inFlight = true;
     lastError = null;
     refreshAll();
