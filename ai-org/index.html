@@ -2488,6 +2488,12 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
 .risk-tier.t1 .risk-pill { background: rgba(85,239,196,0.1); color: var(--accent5); }
 .risk-tier.t2 .risk-pill { background: rgba(255,234,167,0.1); color: var(--accent4); }
 .risk-tier.t3 .risk-pill { background: rgba(253,121,168,0.1); color: var(--accent3); }
+/* Light-mode contrast: the dark-mode accent colors (pastel green, pastel
+   yellow, pastel pink) wash out on a white page. Swap to deeper variants
+   so the pill text/border stays legible against the near-white card. */
+[data-theme="light"] .risk-tier.t1 .risk-pill { background: rgba(10, 153, 119, 0.1); color: #0a9977; }
+[data-theme="light"] .risk-tier.t2 .risk-pill { background: rgba(154, 125, 0, 0.1); color: #8a6f00; }
+[data-theme="light"] .risk-tier.t3 .risk-pill { background: rgba(211, 76, 126, 0.1); color: #c43a6d; }
 .risk-body h4 {
   font-size: 17px;
   font-weight: 600;
@@ -2513,10 +2519,28 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
   border: 1px solid rgba(253,121,168,0.3);
   border-radius: 5px;
 }
+[data-theme="light"] .risk-annex {
+  color: #c43a6d;
+  border-color: rgba(196, 58, 109, 0.35);
+}
 @media (max-width: 720px) {
   .risk-tier { grid-template-columns: 1fr; gap: 12px; }
   .risk-pill { justify-self: start; }
 }
+
+/* Light-mode contrast: the Control Plane SVG (Figure 02) hardcodes
+   dark-theme fills like #e8e8f0 (body text) and pastel accents that
+   vanish on a white card. CSS `fill` overrides the SVG presentation
+   attribute, so we re-map each hardcoded colour to a darker variant
+   only when data-theme="light" is on. */
+[data-theme="light"] #control-plane svg g[fill="#e8e8f0"] text,
+[data-theme="light"] #control-plane svg text[fill="#e8e8f0"] { fill: #1a1a2e; }
+[data-theme="light"] #control-plane svg text[fill="#a29bfe"] { fill: #5648c4; }
+[data-theme="light"] #control-plane svg text[fill="#00cec9"] { fill: #008683; }
+[data-theme="light"] #control-plane svg text[fill="#55efc4"] { fill: #0a9977; }
+[data-theme="light"] #control-plane svg text[fill="#fd79a8"] { fill: #c43a6d; }
+[data-theme="light"] #control-plane svg text[fill="#8888a0"] { fill: #555570; }
+[data-theme="light"] #control-plane svg rect[stroke="#3a3a58"] { stroke: #c0c0d8; }
 
 /* Scarcity stack grid */
 .scarcity-grid {
