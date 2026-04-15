@@ -112,6 +112,19 @@ body {
   pointer-events: none;
 }
 
+/* Hero motif — shared with /ai-org so both pages share the same visual */
+.hero .org-graph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+[data-theme="light"] .hero .org-graph { opacity: 0.4; }
+.hero > *:not(.org-graph) { position: relative; z-index: 1; }
+
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -1304,8 +1317,8 @@ body {
 
 /* COMPARISON / MAPPING / BLUEPRINT SECTIONS */
 .content-section {
-  max-width: 1200px;
-  margin: 60px 0;
+  max-width: 1400px;
+  margin: 60px auto;
   padding: 0 40px;
 }
 .content-section h2 {
@@ -1532,8 +1545,8 @@ body {
 
 /* FOUNDATIONAL CONSIDERATIONS */
 .foundations {
-  max-width: 1200px;
-  margin: 60px 0;
+  max-width: 1400px;
+  margin: 60px auto;
   padding: 0 40px;
 }
 
@@ -2138,6 +2151,21 @@ body {
 .ask-input::placeholder {
   color: var(--text-dim);
 }
+
+/* Lift the ask bar off the hero's low-contrast background so it
+   doesn't blend into the radial gradient + org-graph motif. */
+.hero .ask-form {
+  background: var(--bg-card-hover);
+  border-color: var(--border-active);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+}
+.hero .ask-input::placeholder {
+  color: var(--text-muted);
+}
+[data-theme="light"] .hero .ask-form {
+  background: #ffffff;
+  box-shadow: 0 6px 24px rgba(30, 30, 60, 0.08);
+}
 .ask-submit {
   background: transparent;
   color: var(--text-dim);
@@ -2388,6 +2416,65 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
 
 <main id="main-content">
 <section class="hero" id="intro">
+  <!-- Hero motif: soft nodes + edges, palette-sourced, purely decorative -->
+  <svg class="org-graph" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="orgNodeA" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#6c5ce7" stop-opacity="0.55"/>
+        <stop offset="100%" stop-color="#6c5ce7" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="orgNodeB" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#00cec9" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#00cec9" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="orgNodeC" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#fd79a8" stop-opacity="0.45"/>
+        <stop offset="100%" stop-color="#fd79a8" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="orgNodeD" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#74b9ff" stop-opacity="0.45"/>
+        <stop offset="100%" stop-color="#74b9ff" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="orgNodeE" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#55efc4" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#55efc4" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="orgEdge" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#6c5ce7" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#00cec9" stop-opacity="0.25"/>
+      </linearGradient>
+    </defs>
+    <!-- Edges first so nodes overlay them -->
+    <g stroke="url(#orgEdge)" stroke-width="1" fill="none" opacity="0.55">
+      <path d="M220 160 C 360 140, 480 220, 600 210"/>
+      <path d="M600 210 C 720 200, 840 140, 980 170"/>
+      <path d="M220 160 C 300 260, 400 360, 520 420"/>
+      <path d="M600 210 C 560 320, 540 400, 520 420"/>
+      <path d="M520 420 C 640 440, 760 460, 900 440"/>
+      <path d="M980 170 C 1020 260, 1000 360, 900 440"/>
+      <path d="M220 160 C 180 260, 200 360, 320 460"/>
+      <path d="M320 460 C 420 440, 460 420, 520 420"/>
+      <path d="M900 440 C 820 500, 700 520, 600 520"/>
+      <path d="M320 460 C 420 500, 500 520, 600 520"/>
+    </g>
+    <!-- Nodes -->
+    <circle cx="220"  cy="160" r="70"  fill="url(#orgNodeA)"/>
+    <circle cx="600"  cy="210" r="80"  fill="url(#orgNodeB)"/>
+    <circle cx="980"  cy="170" r="60"  fill="url(#orgNodeC)"/>
+    <circle cx="320"  cy="460" r="55"  fill="url(#orgNodeD)"/>
+    <circle cx="520"  cy="420" r="65"  fill="url(#orgNodeA)"/>
+    <circle cx="900"  cy="440" r="70"  fill="url(#orgNodeE)"/>
+    <circle cx="600"  cy="520" r="50"  fill="url(#orgNodeC)"/>
+    <!-- Small accent dots -->
+    <g fill="#6c5ce7" opacity="0.35">
+      <circle cx="120"  cy="320" r="2"/>
+      <circle cx="780"  cy="100" r="2"/>
+      <circle cx="1080" cy="320" r="2"/>
+      <circle cx="440"  cy="100" r="2"/>
+      <circle cx="160"  cy="520" r="2"/>
+    </g>
+  </svg>
+
   <h1>The <em>AI-Native</em> SDLC</h1>
   <p class="subtitle">A fundamentally different way to build software. A spec-driven, agent-powered operating model where AI agents own structured execution across every phase - humans govern the framework, harness, direction, quality, security and risk.</p>
   <div class="hero-meta">
