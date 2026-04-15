@@ -2723,12 +2723,14 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
 }
 .sidebar-nav .nav-blog:hover { color: var(--text); }
 .sidebar-nav .nav-blog.is-active { color: var(--text); font-weight: 500; }
-.sidebar-nav .nav-blog .nav-blog-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--border-active);
+.sidebar-nav .nav-blog .nav-blog-icon {
+  width: 16px; height: 16px;
   flex-shrink: 0;
+  color: var(--border-active);
+  transition: color .15s;
 }
-.sidebar-nav .nav-blog.is-active .nav-blog-dot { background: var(--accent); }
+.sidebar-nav .nav-blog:hover .nav-blog-icon { color: var(--text-muted); }
+.sidebar-nav .nav-blog.is-active .nav-blog-icon { color: var(--accent); }
 
 /* Continue reading card at end of article */
 .continue-reading {
@@ -2812,8 +2814,8 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
 <nav class="sidebar-nav" id="sidebar-nav">
   <div class="nav-blog-switcher">
     <div class="nav-section-label">Vibetribe · Series</div>
-    <a href="/" class="nav-blog"><span class="nav-blog-dot"></span>AI-Native SDLC</a>
-    <a href="/ai-org" class="nav-blog is-active" aria-current="page"><span class="nav-blog-dot"></span>AI-Native Operating Model</a>
+    <a href="/" class="nav-blog"><svg class="nav-blog-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM5 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5zm5.8-10l2.4-2.4.8.8c1.3 1.3 3 2.1 5.1 2.1V9c-1.5 0-2.7-.6-3.6-1.5l-1.9-1.9c-.5-.4-1-.6-1.6-.6s-1.1.2-1.4.6L7.8 8.4c-.4.4-.6.9-.6 1.4 0 .6.2 1.1.6 1.4L11 14v5h2v-6.2l-2.2-2.3zM19 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5z"/></svg>AI-Native SDLC</a>
+    <a href="/ai-org" class="nav-blog is-active" aria-current="page"><svg class="nav-blog-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 L15.46 5 L15.46 9 L12 11 L8.54 9 L8.54 5 Z M6 12 L9.46 14 L9.46 18 L6 20 L2.54 18 L2.54 14 Z M18 12 L21.46 14 L21.46 18 L18 20 L14.54 18 L14.54 14 Z"/></svg>AI-Native Operating Model</a>
   </div>
   <a href="#intro" class="nav-top" data-section="intro">Introduction</a>
   <div class="nav-section-label">The Argument</div>
