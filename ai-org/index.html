@@ -2001,8 +2001,6 @@ body {
   }
   .podcast-player[data-mode="bubble"] {
     left: auto;
-    right: 16px;
-    bottom: max(16px, calc(env(safe-area-inset-bottom, 12px) + 8px));
   }
   .pp-waveform { height: 38px; }
   .pp-play { width: 48px; height: 48px; }
@@ -2210,13 +2208,6 @@ body {
    Expanded → --pp-lift is measured player height + 12px gap. */
 body.pp-visible-expanded .ask-launcher { bottom: calc(24px + var(--pp-lift, 160px)); }
 body.pp-visible-bubble .ask-launcher { bottom: 92px; }
-
-/* Mobile: match the podcast bubble's right:16px and recompute stack offset
-   (16px bubble bottom + 56px bubble + 12px gap = 84px). */
-@media (max-width: 640px) {
-  .ask-launcher { right: 16px; }
-  body.pp-visible-bubble .ask-launcher { bottom: 84px; }
-}
 
 /* Modal */
 .ask-modal-backdrop {
