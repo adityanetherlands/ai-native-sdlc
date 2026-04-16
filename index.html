@@ -4134,13 +4134,37 @@ function updateSidebar() {
 
 function computeReadingTime() {
   const root = document.getElementById('main-content') || document.body;
-  const text = root.innerText || '';
+  if (!root) return;
+
+  // Clone so we can strip non-prose subtrees without touching the live DOM.
+  // We use textContent (not innerText) so the count is viewport-independent —
+  // otherwise responsive CSS hiding/showing blocks would shift the estimate
+  // between mobile and desktop, and iOS Safari vs Chromium whitespace rules
+  // would add noise.
+  const clone = root.cloneNode(true);
+  const STRIP_SELECTORS = [
+    'script', 'style', 'noscript', 'template',
+    'svg',                         // figure labels, chart text, decorative glyphs
+    'form',                        // suggestion form fields + option text
+    '.podcast-player',
+    '.suggestions-section',
+    '.continue-reading',
+    '.reading-time-chip',
+    '.ask-hero', '.ask-launcher', '.ask-panel', '.ask-modal',
+    '[aria-hidden="true"]',
+    '[hidden]',
+  ];
+  for (const sel of STRIP_SELECTORS) {
+    for (const el of clone.querySelectorAll(sel)) el.remove();
+  }
+
+  const text = clone.textContent || '';
   const words = text.trim().split(/\s+/).filter(Boolean).length;
   if (!words) return;
-  // Benchmarks for adult online non-fiction reading (widely cited research,
-  // e.g. Brysbaert 2019 meta-analysis, Nielsen Norman): average ≈ 238 wpm.
-  // We bracket around the average (~250 fast / ~210 slow) so the range stays
-  // tight — typically a 3–5 min window — while still spanning real reader variance.
+
+  // Brysbaert 2019 meta-analysis puts adult non-fiction reading at ~238 wpm.
+  // We bracket 250 (fast) to 210 (slow) so the range stays tight — typically
+  // a 3–5 min window — while still spanning real reader variance.
   const low = Math.max(1, Math.round(words / 250));
   const high = Math.max(low + 1, Math.round(words / 210));
   const el = document.getElementById('reading-time-value');
