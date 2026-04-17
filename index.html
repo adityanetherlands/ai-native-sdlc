@@ -2476,12 +2476,12 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
   </svg>
 
   <h1>The <em>AI-Native</em> SDLC</h1>
-  <p class="subtitle">A fundamentally different way to build software. A spec-driven, agent-powered operating model where AI agents own structured execution across every phase - humans govern the framework, harness, direction, quality, security and risk.</p>
+  <p class="subtitle">A fundamentally different way to build software. A spec-driven, agent-powered operating model where AI agents own structured execution across every phase, while humans govern the framework, harness, direction, quality, security and risk.</p>
   <div class="hero-meta">
     <button class="listen-chip read-chip" id="read-chip" type="button" aria-label="Start reading — scroll past the intro">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
       <span>Read</span>
-      <span class="listen-duration" id="reading-time-value">· — min</span>
+      <span class="listen-duration" id="reading-time-value">· min</span>
     </button>
     <button class="listen-chip" id="listen-chip" type="button" aria-label="Listen to podcast version">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 18 0"></path><path d="M3 12v5a2 2 0 0 0 2 2h1v-7H3zM21 12v5a2 2 0 0 1-2 2h-1v-7h3z"></path></svg>
@@ -2600,7 +2600,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       <div class="phase-inner">
         <div class="phase-description">
           <p>The lifecycle begins not with a feature request but with <strong>signal ingestion</strong>. AI agents continuously scan customer feedback, support tickets, competitor launches, market reports, and internal usage analytics to surface problems worth solving.</p>
-          <p>The <strong>Discovery Agent</strong> synthesises these signals into structured problem hypotheses - each with severity score, addressable market size, and alignment to product vision. It generates "problem briefs" that a human product lead reviews and greenlights.</p>
+          <p>The <strong>Discovery Agent</strong> synthesises these signals into structured problem hypotheses, each with severity score, addressable market size, and alignment to product vision. It generates "problem briefs" that a human product lead reviews and greenlights.</p>
           <p>In a living product, this phase never stops. It runs as a <strong>background daemon</strong>, constantly feeding the backlog with prioritised, evidence-backed problem statements. New feature ideas, customer pain points, and market shifts all flow through this funnel.</p>
         </div>
         <div class="phase-why">
@@ -2691,11 +2691,11 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
     <div class="phase-content">
       <div class="phase-inner">
         <div class="phase-description">
-          <p>The approved problem brief feeds into the <strong>PRD Architect</strong>, which generates a comprehensive product requirements document - not a vague wish list, but an engineering-ready blueprint.</p>
+          <p>The approved problem brief feeds into the <strong>PRD Architect</strong>, which generates a comprehensive product requirements document: not a vague wish list, but an engineering-ready blueprint.</p>
           <p>The PRD covers: user personas, jobs-to-be-done, functional requirements, non-functional requirements (performance, security, accessibility), success metrics, and rollout strategy.</p>
           <p>For a <strong>living product</strong>, the PRD Agent understands the existing product context. It reads the current codebase, existing specs, and feature graph to ensure new requirements are additive and compatible. It flags conflicts with existing features and suggests migration paths.</p>
         </div>
-                <div class="phase-why">A vague PRD creates a game of telephone between product and engineering. The PRD closes <em>what</em> and <em>why</em> ambiguity - who the user is, what they need, why it matters. The Spec closes <em>how</em> ambiguity - data models, API contracts, error taxonomy. Clean separation keeps each phase focused and prevents requirements from leaking into implementation.</div>
+                <div class="phase-why">A vague PRD creates a game of telephone between product and engineering. The PRD closes <em>what</em> and <em>why</em> ambiguity: who the user is, what they need, why it matters. The Spec closes <em>how</em> ambiguity: data models, API contracts, error taxonomy. Clean separation keeps each phase focused and prevents requirements from leaking into implementation.</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -2781,14 +2781,14 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
     <div class="phase-content">
       <div class="phase-inner">
         <div class="phase-description">
-          <p>This is the <strong>keystone phase</strong> of AI-native development. The technical spec is not documentation - it's the <strong>executable contract</strong> that all downstream agents code against, test against, and validate against.</p>
+          <p>This is the <strong>keystone phase</strong> of AI-native development. The technical spec is not documentation. It's the <strong>executable contract</strong> that all downstream agents code against, test against, and validate against.</p>
           <p>The spec includes: precise API schemas (OpenAPI), database migration scripts, component interface definitions, state machine diagrams, error taxonomy, performance budgets, and acceptance criteria written as machine-parseable assertions.</p>
           <p>Critically, specs now include <strong>executable examples alongside schemas</strong>: canonical business scenarios, exception paths, migration cases, and explicit "never-do-this" boundaries that act as guardrails for downstream coding agents. Constraints like "never mutate this table directly" or "never call this API without a feature flag" are first-class spec content, not tribal knowledge. This makes the spec an operational contract, not a document artefact.</p>
           <p>For <strong>brownfield products</strong>, spec writing depends on deep understanding of the existing system. The Domain Cartographer builds a living map of modules, business entities, configuration variants, and legacy touchpoints before any new spec is written. This is the bridge between "AI understands requirements" and "AI understands the shape of the existing product."</p>
           <p>In a <strong>living product</strong>, specs are versioned and diff-aware. When a feature evolves, the Spec Agent generates a spec delta showing exactly what changed, what is backwards-compatible, and what requires migration. The spec becomes the <strong>living contract</strong> between product intent and code reality.</p>
           <p><strong>Spec-driven development means:</strong> no code gets written until the spec passes validation. No test gets generated without referencing the spec. No demo gets built that does not trace back to spec assertions. Drift between code and spec triggers automated alerts.</p>
         </div>
-                <div class="phase-why">This is the keystone of the entire model. Every downstream agent - coder, tester, reviewer, documenter - traces back to the spec. If the spec is precise, the entire pipeline accelerates. If it's vague, every phase pays the tax.</div>
+                <div class="phase-why">This is the keystone of the entire model. Every downstream agent (coder, tester, reviewer, documenter) traces back to the spec. If the spec is precise, the entire pipeline accelerates. If it's vague, every phase pays the tax.</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -2898,7 +2898,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
         <div class="phase-description">
           <p>With a locked spec, the <strong>Architecture Agent</strong> designs the system topology. It selects patterns (microservices vs monolith, event-driven vs request-response), defines infrastructure requirements, and produces deployment architecture diagrams.</p>
           <p>Critically, it <strong>reads the existing architecture</strong> and designs for integration, not greenfield. For a living product adding a new feature module, it identifies where the new service fits, which existing services need interface changes, and what infrastructure needs provisioning.</p>
-          <p>The output is an Architecture Decision Record (ADR) with rationale, alternatives considered, and trade-offs - all generated by AI, reviewed by a human architect.</p>
+          <p>The output is an Architecture Decision Record (ADR) with rationale, alternatives considered, and trade-offs, all generated by AI, reviewed by a human architect.</p>
         </div>
                 <div class="phase-why">Architecture mistakes are the most expensive bugs. An AI agent that reads existing infrastructure, evaluates trade-offs against real benchmarks, and generates ADRs with rationale creates architecture decisions that are defensible, not just instinctive.</div>
         <div class="io-strip">
@@ -3073,11 +3073,11 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
     <div class="phase-content">
       <div class="phase-inner">
         <div class="phase-description">
-          <p>This is where spec-driven development pays off. Coding agents receive the spec as their <strong>instruction set</strong> - not vague requirements, but precise schemas, interfaces, and acceptance criteria. The agents generate production code that conforms to the spec, follows existing codebase conventions, and includes inline documentation.</p>
+          <p>This is where spec-driven development pays off. Coding agents receive the spec as their <strong>instruction set</strong>: not vague requirements, but precise schemas, interfaces, and acceptance criteria. The agents generate production code that conforms to the spec, follows existing codebase conventions, and includes inline documentation.</p>
           <p><strong>Specialised agents</strong> handle different domains: the Frontend Agent builds UI components with design system compliance, the API Agent implements endpoints matching OpenAPI schemas exactly, and the Data Agent writes migrations and query layers. Each agent operates within its bounded context.</p>
-          <p>For <strong>living products</strong>, agents understand the existing code graph. They don't generate isolated code - they integrate into the existing module structure, respect import conventions, extend existing test patterns, and follow established naming conventions.</p>
+          <p>For <strong>living products</strong>, agents understand the existing code graph. They don't generate isolated code; they integrate into the existing module structure, respect import conventions, extend existing test patterns, and follow established naming conventions.</p>
         </div>
-                <div class="phase-why">Code generation isn't the hard part - generating code that respects existing patterns, passes existing tests, and integrates with existing services is. This phase treats implementation as spec-execution, not creative writing.</div>
+                <div class="phase-why">Code generation isn't the hard part. Generating code that respects existing patterns, passes existing tests, and integrates with existing services is. This phase treats implementation as spec-execution, not creative writing.</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -3172,11 +3172,11 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
     <div class="phase-content">
       <div class="phase-inner">
         <div class="phase-description">
-          <p>Every PR triggers a <strong>multi-agent review pipeline</strong>. The Review Sentinel checks code quality, patterns, and conventions. The Spec Drift Detector compares implementation against the technical spec - any deviation triggers a review flag with the specific spec clause being violated.</p>
+          <p>Every PR triggers a <strong>multi-agent review pipeline</strong>. The Review Sentinel checks code quality, patterns, and conventions. The Spec Drift Detector compares implementation against the technical spec, and any deviation triggers a review flag with the specific spec clause being violated.</p>
           <p>This isn't just linting. Agents evaluate <strong>semantic correctness</strong>: does this API handler actually implement the spec's error taxonomy? Does this component respect the state machine defined in the spec? Are the performance budgets being met?</p>
           <p>Human engineers review the AI's review, resolve edge cases, and approve. The loop tightens over time as the agents learn codebase conventions and reduce false positives.</p>
         </div>
-                <div class="phase-why">Human code review is a bottleneck that doesn't scale. AI review agents can catch 90% of issues instantly - pattern violations, security antipatterns, performance regressions - leaving humans to focus on design judgment calls.</div>
+                <div class="phase-why">Human code review is a bottleneck that doesn't scale. AI review agents can catch 90% of issues instantly (pattern violations, security antipatterns, performance regressions), leaving humans to focus on design judgment calls.</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -3253,12 +3253,12 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
     <div class="phase-content">
       <div class="phase-inner">
         <div class="phase-description">
-          <p>Tests are not written after implementation - they're <strong>generated from the spec before code exists</strong>. The acceptance criteria in the spec are machine-parseable assertions that the Test Forge converts into unit tests, integration tests, and end-to-end scenarios.</p>
+          <p>Tests are not written after implementation. They're <strong>generated from the spec before code exists</strong>. The acceptance criteria in the spec are machine-parseable assertions that the Test Forge converts into unit tests, integration tests, and end-to-end scenarios.</p>
           <p>The <strong>Chaos Agent</strong> goes further: it generates adversarial test cases designed to break the system. Invalid inputs, race conditions, malformed payloads, extreme load patterns. It thinks like an attacker, not a user.</p>
           <p>For living products, regression suites grow automatically. Every new feature adds tests; every bug fix adds a regression test. The test suite becomes a living safety net that AI agents maintain alongside the code.</p>
           <p>Critically, this phase now tests <strong>both the software artefact and the agent workflow that produced it</strong>. The Evaluation and Replay Harness turns past bugs, support tickets, and production incidents into reusable evaluation datasets. It replays agent workflows against known-good outcomes to detect regressions in agent behaviour, not just code behaviour. This is one of the most important maturity signals in an AI-native operating model.</p>
         </div>
-                <div class="phase-why">Testing is the phase where spec-driven development pays its biggest dividend. When tests are generated directly from machine-readable acceptance criteria, coverage isn't a metric to chase - it's a natural byproduct.</div>
+                <div class="phase-why">Testing is the phase where spec-driven development pays its biggest dividend. When tests are generated directly from machine-readable acceptance criteria, coverage isn't a metric to chase; it's a natural byproduct.</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -3357,7 +3357,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
     <div class="phase-content">
       <div class="phase-inner">
         <div class="phase-description">
-          <p>Security is not a phase you bolt on at the end - it runs <strong>continuously from spec onwards</strong>. But this dedicated phase is the final deep scan before code enters staging.</p>
+          <p>Security is not a phase you bolt on at the end; it runs <strong>continuously from spec onwards</strong>. But this dedicated phase is the final deep scan before code enters staging.</p>
           <p>The <strong>Security Guardian</strong> performs STRIDE threat modelling against the architecture, SAST/DAST scanning against the codebase, dependency vulnerability analysis, and secrets detection. For AI-powered features, it also checks for prompt injection vulnerabilities and model output safety.</p>
           <p>The <strong>Compliance Agent</strong> validates against relevant frameworks (SOC2, GDPR, HIPAA, ISO 27001) based on the product's compliance profile. It generates audit-ready evidence and control documentation.</p>
           <p>Beyond the phase-level gate, security governance now operates at the <strong>tool and action level</strong>. Shell commands, environment changes, and destructive actions are subject to explicit approval policies. Guardrails validate in real-time, and <strong>human review pauses the run before risky actions proceed</strong>. This is a fundamentally stronger control model than a single late-stage sign-off: every agent in every phase that touches sensitive resources operates within declared permission boundaries.</p>
@@ -3452,7 +3452,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
         <div class="phase-description">
           <p>Before release, AI agents generate <strong>demo environments and stakeholder walkthroughs</strong>. The Demo Builder creates interactive previews with realistic sample data, guided tours highlighting new functionality, and before/after comparisons for iterative improvements.</p>
           <p>The <strong>Staging Deployer</strong> provisions ephemeral environments per feature branch. Each PR gets its own staging URL with synthetic data, accessible to stakeholders for UAT without touching production.</p>
-          <p>For living products, demos include <strong>migration previews</strong> - showing existing users what will change, what's new, and what's been improved. This feeds directly into changelog and release communications.</p>
+          <p>For living products, demos include <strong>migration previews</strong>, showing existing users what will change, what's new, and what's been improved. This feeds directly into changelog and release communications.</p>
         </div>
                 <div class="phase-why">The gap between 'it works on my machine' and 'stakeholders can see it' is where momentum dies. Automated staging with synthetic data and shareable preview links turns every merge into a demoable milestone.</div>
         <div class="io-strip">
@@ -3529,11 +3529,11 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
     <div class="phase-content">
       <div class="phase-inner">
         <div class="phase-description">
-          <p>Documentation is not written separately - it's <strong>derived from the spec, code, and tests</strong>. The Doc Weaver generates user-facing docs, developer guides, API references, and architecture overviews by reading the actual implementation.</p>
-          <p>For living products, docs are <strong>automatically updated</strong> when code changes. Every merged PR triggers a doc refresh - new endpoints appear in API docs, changed behaviour updates user guides, and deprecated features get sunset notices.</p>
+          <p>Documentation is not written separately. It's <strong>derived from the spec, code, and tests</strong>. The Doc Weaver generates user-facing docs, developer guides, API references, and architecture overviews by reading the actual implementation.</p>
+          <p>For living products, docs are <strong>automatically updated</strong> when code changes. Every merged PR triggers a doc refresh: new endpoints appear in API docs, changed behaviour updates user guides, and deprecated features get sunset notices.</p>
           <p>The system produces multiple doc types: end-user help (in-product and external), developer API docs, internal architecture docs, and onboarding guides for new team members.</p>
         </div>
-                <div class="phase-why">Documentation written after the fact is always wrong. When a documentation agent generates docs from the spec and code simultaneously, docs become a living artefact - not a post-launch chore that nobody wants to do.</div>
+                <div class="phase-why">Documentation written after the fact is always wrong. When a documentation agent generates docs from the spec and code simultaneously, docs become a living artefact, not a post-launch chore that nobody wants to do.</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -3610,10 +3610,10 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       <div class="phase-inner">
         <div class="phase-description">
           <p>The <strong>Release Captain</strong> orchestrates the entire release process: generating semantic version numbers, compiling changelogs, creating release notes for different audiences (technical, end-user, executive), and executing the deployment pipeline.</p>
-          <p>Release notes are not vague - they're generated from the <strong>spec delta + commit history + demo assets</strong>. Each change links back to the original problem brief, creating full traceability from customer need to shipped feature.</p>
+          <p>Release notes are not vague. They're generated from the <strong>spec delta + commit history + demo assets</strong>. Each change links back to the original problem brief, creating full traceability from customer need to shipped feature.</p>
           <p>For living products, the Release Captain manages <strong>feature flags, progressive rollouts, and canary deployments</strong>. It monitors health metrics post-deploy and can trigger automatic rollback if anomalies are detected.</p>
         </div>
-                <div class="phase-why">Release engineering is toil. When an AI agent handles changelog generation, version bumping, deployment orchestration, and rollback triggers, releases become a non-event - which is exactly what they should be.</div>
+                <div class="phase-why">Release engineering is toil. When an AI agent handles changelog generation, version bumping, deployment orchestration, and rollback triggers, releases become a non-event, which is exactly what they should be.</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -3680,7 +3680,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       <div class="phase-number"><div class="phase-expand-icon">▾</div><div class="phase-number-inner"><span>12</span>PHASE</div></div>
       <div class="phase-title-group">
         <h2><span class="phase-icon">📡</span>Monitoring, Feedback & Evolution</h2>
-        <div class="phase-tagline">Closes the loop - production signals feed Phase 01</div>
+        <div class="phase-tagline">Closes the loop: production signals feed Phase 01</div>
       </div>
       <div class="phase-agents-preview">
         <span class="agent-chip">prod-watcher</span>
@@ -3692,9 +3692,9 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
         <div class="phase-description">
           <p>The lifecycle is a <strong>loop, not a line</strong>. Post-release, the Production Watcher monitors error rates, performance metrics, usage patterns, and user feedback. It detects anomalies, classifies issues, and routes them back to the appropriate phase.</p>
           <p>A performance regression routes to Phase 7 (Testing). A spec deviation in production routes to Phase 3 (Spec). A new customer need routes to Phase 1 (Ideation). The system is <strong>self-healing and self-evolving</strong>.</p>
-          <p>The <strong>Feedback Loop Agent</strong> synthesises qualitative and quantitative signals into improvement proposals - closing the circle by generating new problem briefs that feed Phase 01. The product never stops evolving.</p>
+          <p>The <strong>Feedback Loop Agent</strong> synthesises qualitative and quantitative signals into improvement proposals, closing the circle by generating new problem briefs that feed Phase 01. The product never stops evolving.</p>
         </div>
-                <div class="phase-why">The SDLC isn't a line - it's a loop. This phase closes the circle: production signals feed back into Phase 1, anomalies trigger spec reviews, and the system continuously improves based on real-world behaviour.</div>
+                <div class="phase-why">The SDLC isn't a line; it's a loop. This phase closes the circle: production signals feed back into Phase 1, anomalies trigger spec reviews, and the system continuously improves based on real-world behaviour.</div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -3764,7 +3764,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
     <div class="living-card">
       <div class="card-num">// 01</div>
       <h3>Spec Versioning</h3>
-      <p>Every feature iteration generates a new spec version. The Spec Delta Engine produces semantic diffs - additive changes, breaking changes, and migration-required changes - so agents always know what's new and what's affected.</p>
+      <p>Every feature iteration generates a new spec version. The Spec Delta Engine produces semantic diffs (additive changes, breaking changes, and migration-required changes) so agents always know what's new and what's affected.</p>
     </div>
     <div class="living-card">
       <div class="card-num">// 02</div>
@@ -3779,12 +3779,12 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
     <div class="living-card">
       <div class="card-num">// 04</div>
       <h3>Continuous Spec-Code Reconciliation</h3>
-      <p>A background agent continuously compares the living spec against the actual codebase. Drift - where code diverges from spec over time - triggers automated reconciliation reports and remediation PRs.</p>
+      <p>A background agent continuously compares the living spec against the actual codebase. Drift, where code diverges from spec over time, triggers automated reconciliation reports and remediation PRs.</p>
     </div>
     <div class="living-card">
       <div class="card-num">// 05</div>
       <h3>Feature Impact Tracking</h3>
-      <p>Post-release, every feature is measured against its original success metrics. The Feedback Loop Agent generates impact reports - did this feature actually solve the problem it was built for? Under-performing features trigger improvement cycles.</p>
+      <p>Post-release, every feature is measured against its original success metrics. The Feedback Loop Agent generates impact reports: did this feature actually solve the problem it was built for? Under-performing features trigger improvement cycles.</p>
     </div>
     <div class="living-card">
       <div class="card-num">// 06</div>
@@ -3801,11 +3801,11 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
   <div class="blueprint-grid">
     <div class="blueprint-card is-card">
       <h4>What It Is</h4>
-      <p>A north star model for AI-native software delivery. A conceptual blueprint for product and engineering alignment. A way to think about specs, agents, humans, and feedback as one coordinated system. Provocative by design - intended to challenge assumptions about how software gets built.</p>
+      <p>A north star model for AI-native software delivery. A conceptual blueprint for product and engineering alignment. A way to think about specs, agents, humans, and feedback as one coordinated system. Provocative by design, intended to challenge assumptions about how software gets built.</p>
     </div>
     <div class="blueprint-card isnot-card">
       <h4>What It Is Not</h4>
-      <p>Not a locked implementation architecture - adapt it to your stack and maturity. Not a mandate for zero-human development - humans govern, agents execute. Not a return to heavy up-front specification - specs are living, sliceable, and ship in thin vertical slices. Not a claim that every phase must be fully automated from day one. Not a replacement for product judgment or engineering leadership.</p>
+      <p>Not a locked implementation architecture; adapt it to your stack and maturity. Not a mandate for zero-human development; humans govern, agents execute. Not a return to heavy up-front specification; specs are living, sliceable, and ship in thin vertical slices. Not a claim that every phase must be fully automated from day one. Not a replacement for product judgment or engineering leadership.</p>
     </div>
   </div>
 </section>
@@ -3813,7 +3813,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
 <!-- FOUNDATIONAL CONSIDERATIONS -->
 <section class="foundations" id="foundations">
   <h2 style="font-family:'Instrument Serif',serif; font-size:32px; margin-bottom:8px;">Foundational <em style="font-style:italic; background:var(--gradient-1); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Considerations</em></h2>
-  <p class="section-sub" style="font-size:14px; color:var(--text-muted); margin-bottom:28px; line-height:1.6;">Cross-cutting layers that span the entire operating model. These are not phases - they are the connective fabric that makes every phase reliable, repeatable, and governable.</p>
+  <p class="section-sub" style="font-size:14px; color:var(--text-muted); margin-bottom:28px; line-height:1.6;">Cross-cutting layers that span the entire operating model. These are not phases; they are the connective fabric that makes every phase reliable, repeatable, and governable.</p>
   <div class="foundations-grid">
     <div class="foundation-card">
       <div class="card-stripe"></div>
@@ -3821,7 +3821,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
         <div class="card-label">Cross-cutting layer</div>
         <h3>Knowledge & Context Fabric</h3>
         <p>The operating model frequently describes agents that "read the codebase" or "understand context," but a principal architect will ask: <strong>what curated system makes that reliable and repeatable?</strong> The answer is an explicit Knowledge and Context Fabric that spans every phase.</p>
-        <p style="margin-top:12px;">This fabric holds the <strong>structured context</strong> that every agent consumes: repository instructions, approved data sources, architecture decision records, domain glossaries, reference implementations, curated shared instructions, and reusable skills. Without it, each agent reinvents understanding from scratch. With it, context becomes an engineering discipline - versioned, maintained, and tested like code.</p>
+        <p style="margin-top:12px;">This fabric holds the <strong>structured context</strong> that every agent consumes: repository instructions, approved data sources, architecture decision records, domain glossaries, reference implementations, curated shared instructions, and reusable skills. Without it, each agent reinvents understanding from scratch. With it, context becomes an engineering discipline: versioned, maintained, and tested like code.</p>
         <div class="includes-list">
           <span class="includes-item">Repository instructions</span>
           <span class="includes-item">Domain glossaries</span>
@@ -3839,7 +3839,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       <div class="card-body">
         <div class="card-label">Cross-cutting layer</div>
         <h3>Agent Governance & Model Ops</h3>
-        <p>Governance cannot live beside the engineering system - it must live <strong>inside it</strong>. Every agent operating across the 12 phases does so within a declared governance envelope that covers approved models, prompt and instruction versioning, trace storage, evaluation baselines, approval policies, data-handling rules, cost and latency budgets, and audit trails.</p>
+        <p>Governance cannot live beside the engineering system; it must live <strong>inside it</strong>. Every agent operating across the 12 phases does so within a declared governance envelope that covers approved models, prompt and instruction versioning, trace storage, evaluation baselines, approval policies, data-handling rules, cost and latency budgets, and audit trails.</p>
         <p style="margin-top:12px;">This is not a policy document. It is a <strong>runtime layer</strong>: every agent invocation is logged, every sensitive action is gated, every model choice is versioned, and every evaluation baseline is tracked. The governance layer ensures that scaling agent-driven delivery does not mean scaling unaudited risk. Industry guidance from model providers, responsible AI frameworks, and delivery research all converge on this point: a clear organisational AI stance, enforced at the system level, is a prerequisite for production-grade agent operations.</p>
         <div class="includes-list">
           <span class="includes-item">Approved models</span>
@@ -3858,7 +3858,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       <div class="card-body">
         <div class="card-label">Cross-cutting layer</div>
         <h3>Source-of-Truth Hierarchy</h3>
-        <p>A common failure mode of AI-native delivery is <strong>blurred boundaries between artifacts</strong>. When the PRD drifts into APIs and Architecture drifts into business rules, both humans and agents lose the thread on which document to trust. This layer assigns each artifact a single, owned concern - and names <strong>code as the ground truth</strong> against which every other layer's drift is measured.</p>
+        <p>A common failure mode of AI-native delivery is <strong>blurred boundaries between artifacts</strong>. When the PRD drifts into APIs and Architecture drifts into business rules, both humans and agents lose the thread on which document to trust. This layer assigns each artifact a single, owned concern, and names <strong>code as the ground truth</strong> against which every other layer's drift is measured.</p>
         <p style="margin-top:12px;">The hierarchy is a navigation aid as much as a contract. When intent changes, it changes in the PRD and the Spec follows. When technical constraints change, they change in Architecture. When code deviates from spec, reconciliation agents catch the drift. Clean ownership is what keeps the pipeline composable.</p>
         <table class="authority-table">
           <thead>
@@ -3991,7 +3991,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
 <a class="continue-reading" href="/ai-org">
   <div class="cr-eyebrow">Continue the series</div>
   <div class="cr-title">The New Operating Model Is The Moat<span class="cr-arrow">→</span></div>
-  <p class="cr-desc">If SDLC is how software gets built, the operating model is how the organisation is shaped around it. A companion essay on AI-native org design — roles, risk, scarcity, and the five moves that matter.</p>
+  <p class="cr-desc">If SDLC is how software gets built, the operating model is how the organisation is shaped around it. A companion essay on AI-native org design: roles, risk, scarcity, and the five moves that matter.</p>
 </a>
 </main>
 
@@ -4011,10 +4011,10 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
     <button class="pp-minimize" id="pp-minimize" type="button" aria-label="Minimize player">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
     </button>
-    <div class="pp-title">AI-Native SDLC — Podcast Overview</div>
+    <div class="pp-title">AI-Native SDLC: Podcast Overview</div>
     <div class="pp-time-row">
       <span id="pp-current">0:00</span>
-      <span id="pp-total">—:—</span>
+      <span id="pp-total">0:00</span>
     </div>
     <div class="pp-waveform" id="pp-waveform" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
     <div class="pp-controls">
