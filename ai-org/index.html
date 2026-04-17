@@ -2526,20 +2526,6 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
   .risk-pill { justify-self: start; }
 }
 
-/* Light-mode contrast: the Control Plane SVG (Figure 02) hardcodes
-   dark-theme fills like #e8e8f0 (body text) and pastel accents that
-   vanish on a white card. CSS `fill` overrides the SVG presentation
-   attribute, so we re-map each hardcoded colour to a darker variant
-   only when data-theme="light" is on. */
-[data-theme="light"] #control-plane svg g[fill="#e8e8f0"] text,
-[data-theme="light"] #control-plane svg text[fill="#e8e8f0"] { fill: #1a1a2e; }
-[data-theme="light"] #control-plane svg text[fill="#a29bfe"] { fill: #5648c4; }
-[data-theme="light"] #control-plane svg text[fill="#00cec9"] { fill: #008683; }
-[data-theme="light"] #control-plane svg text[fill="#55efc4"] { fill: #0a9977; }
-[data-theme="light"] #control-plane svg text[fill="#fd79a8"] { fill: #c43a6d; }
-[data-theme="light"] #control-plane svg text[fill="#8888a0"] { fill: #555570; }
-[data-theme="light"] #control-plane svg rect[stroke="#3a3a58"] { stroke: #c0c0d8; }
-
 /* Scarcity stack grid */
 .scarcity-grid {
   display: grid;
@@ -2824,7 +2810,6 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
   <a href="#risk-taxonomy" class="nav-top" data-section="risk-taxonomy">Risk Taxonomy</a>
   <a href="#workforce" class="nav-top" data-section="workforce">Workforce Recomposition</a>
   <a href="#operating-stack" class="nav-top" data-section="operating-stack">Operating stack</a>
-  <a href="#control-plane" class="nav-top" data-section="control-plane">Control Plane</a>
   <a href="#five-moves" class="nav-top" data-section="five-moves">Five Moves</a>
   <div class="nav-section-label">Closing</div>
   <a href="#closing" class="nav-top" data-section="closing">In Closing</a>
@@ -3163,80 +3148,6 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       </div>
     </div>
 
-  </section>
-
-  <hr class="divider"/>
-
-  <section id="control-plane">
-    <div class="section-label">The Control Plane</div>
-    <h2>You need a <em>control plane</em>, not a policy document</h2>
-
-    <p>Most AI governance inside large companies today is a document. A policy, a set of principles, a framework circulated by legal and acknowledged by the business. Documents are necessary and entirely insufficient. What the operating model actually needs is a control plane. A living layer sitting between the agents and the business, doing four things at once.</p>
-
-    <p>NIST's AI Risk Management Framework names these four functions cleanly. Govern. Map. Measure. Manage. They are not stages. They run continuously. And every serious AI organisation ends up building some version of this, whether they call it that or not.</p>
-
-    <div class="visual">
-      <div class="visual-title">Figure 02 · The control plane · four functions, nine operational items</div>
-      <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="qGovern" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#6c5ce7" stop-opacity="0.22"/>
-            <stop offset="100%" stop-color="#6c5ce7" stop-opacity="0.06"/>
-          </linearGradient>
-          <linearGradient id="qMap" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#00cec9" stop-opacity="0.22"/>
-            <stop offset="100%" stop-color="#00cec9" stop-opacity="0.06"/>
-          </linearGradient>
-          <linearGradient id="qMeasure" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#55efc4" stop-opacity="0.22"/>
-            <stop offset="100%" stop-color="#55efc4" stop-opacity="0.06"/>
-          </linearGradient>
-          <linearGradient id="qManage" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#fd79a8" stop-opacity="0.22"/>
-            <stop offset="100%" stop-color="#fd79a8" stop-opacity="0.06"/>
-          </linearGradient>
-        </defs>
-
-        <rect x="30" y="24"  width="325" height="170" rx="14" fill="url(#qGovern)" stroke="#3a3a58"/>
-        <text x="50" y="52"  font-family="JetBrains Mono" font-size="10" fill="#a29bfe" letter-spacing="2" font-weight="700">GOVERN</text>
-        <text x="50" y="74"  font-family="Instrument Serif" font-size="22" fill="#e8e8f0" font-style="italic">Who owns the outcome</text>
-        <g font-family="Outfit" font-size="13" fill="#e8e8f0">
-          <text x="50" y="114">·  Accountability register per agent</text>
-          <text x="50" y="144">·  Policy framework aligned to EU AI Act</text>
-          <text x="50" y="174">·  Executive sponsorship by tier</text>
-        </g>
-
-        <rect x="365" y="24"  width="325" height="170" rx="14" fill="url(#qMap)" stroke="#3a3a58"/>
-        <text x="385" y="52"  font-family="JetBrains Mono" font-size="10" fill="#00cec9" letter-spacing="2" font-weight="700">MAP</text>
-        <text x="385" y="74"  font-family="Instrument Serif" font-size="22" fill="#e8e8f0" font-style="italic">What agents touch, and where</text>
-        <g font-family="Outfit" font-size="13" fill="#e8e8f0">
-          <text x="385" y="114">·  Agent inventory with risk tier</text>
-          <text x="385" y="144">·  Data and tool permissions map</text>
-        </g>
-
-        <rect x="30" y="206" width="325" height="170" rx="14" fill="url(#qMeasure)" stroke="#3a3a58"/>
-        <text x="50" y="234" font-family="JetBrains Mono" font-size="10" fill="#55efc4" letter-spacing="2" font-weight="700">MEASURE</text>
-        <text x="50" y="256" font-family="Instrument Serif" font-size="22" fill="#e8e8f0" font-style="italic">Is it actually working</text>
-        <g font-family="Outfit" font-size="13" fill="#e8e8f0">
-          <text x="50" y="296">·  Living evaluation harness</text>
-          <text x="50" y="326">·  Behaviour monitoring in production</text>
-        </g>
-
-        <rect x="365" y="206" width="325" height="170" rx="14" fill="url(#qManage)" stroke="#3a3a58"/>
-        <text x="385" y="234" font-family="JetBrains Mono" font-size="10" fill="#fd79a8" letter-spacing="2" font-weight="700">MANAGE</text>
-        <text x="385" y="256" font-family="Instrument Serif" font-size="22" fill="#e8e8f0" font-style="italic">What to do when it breaks</text>
-        <g font-family="Outfit" font-size="13" fill="#e8e8f0">
-          <text x="385" y="296">·  Rollback and kill switch playbooks</text>
-          <text x="385" y="326">·  Incident response and postmortems</text>
-        </g>
-
-        <text x="360" y="406" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#8888a0" letter-spacing="2">NIST AI RMF · FOUR FUNCTIONS · RUN CONTINUOUSLY</text>
-      </svg>
-    </div>
-
-    <p>The nine operational items in the quadrants above are not exotic. They are the unglamorous plumbing of a company that can deploy agents at scale without surprise. Most organisations have a few of them. Very few have them integrated. The gap between having the parts and running the plane is where the large, visible AI failures of the next three years will happen.</p>
-
-    <p>One practical note. The control plane is a COO owned artefact, not a Chief AI Officer owned artefact. The CAIO can design it. The COO has to run it. If that reporting line is unclear in your company, you do not yet have a control plane. You have a committee.</p>
   </section>
 
   <hr class="divider"/>
