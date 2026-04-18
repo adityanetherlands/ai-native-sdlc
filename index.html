@@ -3215,7 +3215,8 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       </div>
       <div class="phase-agents-preview">
         <span class="agent-chip">review-sentinel</span>
-        <span class="agent-chip">spec-drift-detector</span>
+        <span class="agent-chip">spec-drift</span>
+        <span class="agent-chip">risk-assess</span>
       </div>
     </div>
     <div class="phase-content">
@@ -3225,7 +3226,10 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
           <p>This isn't just linting. Agents evaluate <strong>semantic correctness</strong>: does this API handler actually implement the spec's error taxonomy? Does this component respect the state machine defined in the spec? Are the performance budgets being met?</p>
           <p>Human engineers review the AI's review, resolve edge cases, and approve. The loop tightens over time as the agents learn codebase conventions and reduce false positives.</p>
         </div>
-                <div class="phase-why">Human code review is a bottleneck that doesn't scale. AI review agents can catch 90% of issues instantly (pattern violations, security antipatterns, performance regressions), leaving humans to focus on design judgment calls.</div>
+        <div class="phase-why">
+          <h4>Why This Phase Matters</h4>
+          <p>Human code review is a bottleneck that doesn't scale. AI review agents can catch 90% of issues instantly (pattern violations, security antipatterns, performance regressions), leaving humans to focus on design judgement calls.</p>
+        </div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -3242,6 +3246,8 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <li>Review comments (with severity)</li>
               <li>Spec conformance report</li>
               <li>Performance impact assessment</li>
+              <li>Blast radius report</li>
+              <li>Required reviewer list (CODEOWNERS-aware)</li>
               <li>Suggested fixes (auto-PR)</li>
             </ul>
           </div>
@@ -3249,6 +3255,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <h5>Human Gate</h5>
             <ul>
               <li>Zero critical/high spec drift</li>
+              <li>Domain owner approval for affected code areas</li>
               <li>Human engineer approval</li>
               <li>All auto-fix suggestions resolved</li>
             </ul>
@@ -3274,6 +3281,15 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <span class="tool-tag">Spec Parser</span>
               <span class="tool-tag">AST Diff</span>
               <span class="tool-tag">Contract Testing</span>
+            </div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-name">Regression Risk Assessor <code>risk-assess</code></div>
+            <div class="agent-desc">Scores the blast radius of every change. Identifies which downstream services, features, and user segments depend on the affected code. Enforces CODEOWNERS-based required reviewers, flags changes touching sensitive paths (auth, payments, data exports), and prioritises human review effort based on risk tier.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">AST Analysis</span>
+              <span class="tool-tag">GitHub MCP</span>
+              <span class="tool-tag">Dependency Graph</span>
             </div>
           </div>
                   </div>
