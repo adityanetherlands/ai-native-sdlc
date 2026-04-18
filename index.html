@@ -2592,8 +2592,9 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
         <div class="phase-tagline">From raw signal to validated problem space</div>
       </div>
       <div class="phase-agents-preview">
-        <span class="agent-chip">discovery-agent</span>
+        <span class="agent-chip">discovery-scout</span>
         <span class="agent-chip">market-radar</span>
+        <span class="agent-chip">ideation-spark</span>
       </div>
     </div>
     <div class="phase-content">
@@ -2622,6 +2623,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <h5>Outputs</h5>
             <ul>
               <li>Prioritised problem briefs</li>
+              <li>Investment proposals</li>
               <li>Opportunity scoring matrix</li>
               <li>Competitive landscape map</li>
               <li>Solution hypotheses (ranked)</li>
@@ -2641,7 +2643,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
           <div class="agents-grid">
           <div class="agent-card">
             <div class="agent-name">Discovery Agent <code>discovery-scout</code></div>
-            <div class="agent-desc">Ingests signals from Intercom, Zendesk, G2, Reddit, HackerNews, sales call transcripts. Clusters themes, scores urgency, maps to existing roadmap items or creates new problem briefs.</div>
+            <div class="agent-desc">Ingests signals from ServiceNow, Zendesk, G2, Reddit, community blogs, and sales call transcripts. Clusters themes, scores urgency, maps to existing roadmap items or creates new problem briefs.</div>
             <div class="agent-tools">
               <span class="tool-tag">Claude API</span>
               <span class="tool-tag">Web Search</span>
@@ -2662,7 +2664,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <div class="agent-name">Brainstorm Facilitator <code>ideation-spark</code></div>
             <div class="agent-desc">Runs structured ideation sessions: "How Might We" prompts, SCAMPER frameworks, analogy mapping from adjacent industries. Produces ranked solution hypotheses with feasibility estimates.</div>
             <div class="agent-tools">
-              <span class="tool-tag">Claude Sonnet</span>
+              <span class="tool-tag">Claude API</span>
               <span class="tool-tag">Mermaid Charts</span>
               <span class="tool-tag">FigJam API</span>
             </div>
@@ -2731,7 +2733,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <div class="agent-name">PRD Architect <code>prd-architect-pro</code></div>
             <div class="agent-desc">Generates full PRDs from problem briefs. Covers user stories, acceptance criteria, success metrics, scope boundaries, and phased rollout plan. References existing product specs for consistency.</div>
             <div class="agent-tools">
-              <span class="tool-tag">Claude Opus</span>
+              <span class="tool-tag">Claude API</span>
               <span class="tool-tag">GitHub MCP</span>
               <span class="tool-tag">Notion MCP</span>
               <span class="tool-tag">Linear MCP</span>
@@ -2829,7 +2831,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <div class="agent-name">Spec Writer <code>spec-forge</code></div>
             <div class="agent-desc">Transforms PRDs into precise technical specs. Generates OpenAPI schemas, DB migrations, component interfaces, state machines, and machine-parseable acceptance criteria. Understands existing codebase conventions.</div>
             <div class="agent-tools">
-              <span class="tool-tag">Claude Opus</span>
+              <span class="tool-tag">Claude API</span>
               <span class="tool-tag">OpenAPI Generator</span>
               <span class="tool-tag">JSON Schema</span>
               <span class="tool-tag">GitHub MCP</span>
@@ -2841,7 +2843,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <div class="agent-tools">
               <span class="tool-tag">Schema Validator</span>
               <span class="tool-tag">Traceability Matrix</span>
-              <span class="tool-tag">Claude Sonnet</span>
+              <span class="tool-tag">Claude API</span>
             </div>
           </div>
           <div class="agent-card">
@@ -2867,7 +2869,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <div class="agent-name">Scenario Author <code>scenario-scribe</code></div>
             <div class="agent-desc">Generates executable examples alongside schemas: canonical business scenarios, exception paths, migration cases, and explicit "never-do-this" guardrails. Produces constraints that coding agents consume as hard boundaries during implementation.</div>
             <div class="agent-tools">
-              <span class="tool-tag">Claude Opus</span>
+              <span class="tool-tag">Claude API</span>
               <span class="tool-tag">Test Framework</span>
               <span class="tool-tag">Constraint Engine</span>
             </div>
@@ -2936,7 +2938,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <div class="agent-name">Architecture Planner <code>arch-blueprint</code></div>
             <div class="agent-desc">Designs system architecture from spec. Produces service topology, data flow diagrams, infrastructure requirements, and ADRs. Considers existing system constraints and proposes integration strategy.</div>
             <div class="agent-tools">
-              <span class="tool-tag">Claude Opus</span>
+              <span class="tool-tag">Claude API</span>
               <span class="tool-tag">Mermaid Charts</span>
               <span class="tool-tag">Terraform Templates</span>
               <span class="tool-tag">AWS/GCP APIs</span>
@@ -3022,7 +3024,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <div class="agent-name">Delivery Planner <code>delivery-planner</code></div>
               <div class="agent-desc">Converts approved spec + architecture into a directed task graph. Identifies PR boundaries, dependency order, parallelisable streams, and rollback points. Slices large specs into bounded, verifiable units that coding agents execute independently.</div>
               <div class="agent-tools">
-                <span class="tool-tag">Claude Opus</span>
+                <span class="tool-tag">Claude API</span>
                 <span class="tool-tag">Linear MCP</span>
                 <span class="tool-tag">GitHub MCP</span>
                 <span class="tool-tag">Mermaid Charts</span>
@@ -3212,7 +3214,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <div class="agent-name">Review Sentinel <code>review-sentinel</code></div>
             <div class="agent-desc">Performs deep code review: architecture patterns, naming conventions, error handling completeness, performance anti-patterns, and accessibility violations. Generates line-by-line review comments with severity ratings.</div>
             <div class="agent-tools">
-              <span class="tool-tag">Claude Opus</span>
+              <span class="tool-tag">Claude API</span>
               <span class="tool-tag">GitHub MCP</span>
               <span class="tool-tag">SonarQube</span>
               <span class="tool-tag">ESLint</span>
@@ -3310,7 +3312,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <div class="agent-tools">
               <span class="tool-tag">Fuzzing Engine</span>
               <span class="tool-tag">Load Generator</span>
-              <span class="tool-tag">Claude Sonnet</span>
+              <span class="tool-tag">Claude API</span>
             </div>
           </div>
           <div class="agent-card">
@@ -3329,7 +3331,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <span class="tool-tag">Eval Framework</span>
               <span class="tool-tag">Trace Logger</span>
               <span class="tool-tag">Dataset Manager</span>
-              <span class="tool-tag">Claude Sonnet</span>
+              <span class="tool-tag">Claude API</span>
             </div>
           </div>
                   </div>
@@ -3404,7 +3406,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <span class="tool-tag">Semgrep</span>
               <span class="tool-tag">Snyk API</span>
               <span class="tool-tag">OWASP ZAP</span>
-              <span class="tool-tag">Claude Opus</span>
+              <span class="tool-tag">Claude API</span>
             </div>
           </div>
           <div class="agent-card">
@@ -3570,7 +3572,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <div class="agent-name">Doc Weaver <code>doc-weaver</code></div>
             <div class="agent-desc">Generates comprehensive documentation from code, specs, and tests. User guides, developer docs, architecture overviews, onboarding materials. Auto-updates on code changes. Writes for the right audience.</div>
             <div class="agent-tools">
-              <span class="tool-tag">Claude Sonnet</span>
+              <span class="tool-tag">Claude API</span>
               <span class="tool-tag">GitHub MCP</span>
               <span class="tool-tag">Notion MCP</span>
               <span class="tool-tag">MDX Generator</span>
@@ -3660,7 +3662,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <div class="agent-name">Changelog Generator <code>changelog-pro</code></div>
             <div class="agent-desc">Generates multi-audience release notes from spec deltas, commit history, and demo assets. Technical changelog, user-facing "What's New", executive summary, and customer comms draft. Full traceability.</div>
             <div class="agent-tools">
-              <span class="tool-tag">Claude Sonnet</span>
+              <span class="tool-tag">Claude API</span>
               <span class="tool-tag">Git Log Parser</span>
               <span class="tool-tag">Notion MCP</span>
               <span class="tool-tag">Slack MCP</span>
@@ -3734,7 +3736,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <span class="tool-tag">Datadog/Grafana</span>
               <span class="tool-tag">PagerDuty</span>
               <span class="tool-tag">Sentry</span>
-              <span class="tool-tag">Claude Sonnet</span>
+              <span class="tool-tag">Claude API</span>
             </div>
           </div>
           <div class="agent-card">
