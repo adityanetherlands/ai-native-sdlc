@@ -3603,6 +3603,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       </div>
       <div class="phase-agents-preview">
         <span class="agent-chip">doc-weaver</span>
+        <span class="agent-chip">doc-atlas</span>
         <span class="agent-chip">api-doc-gen</span>
       </div>
     </div>
@@ -3613,7 +3614,10 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
           <p>For living products, docs are <strong>automatically updated</strong> when code changes. Every merged PR triggers a doc refresh: new endpoints appear in API docs, changed behaviour updates user guides, and deprecated features get sunset notices.</p>
           <p>The system produces multiple doc types: end-user help (in-product and external), developer API docs, internal architecture docs, and onboarding guides for new team members.</p>
         </div>
-                <div class="phase-why">Documentation written after the fact is always wrong. When a documentation agent generates docs from the spec and code simultaneously, docs become a living artefact, not a post-launch chore that nobody wants to do.</div>
+        <div class="phase-why">
+          <h4>Why This Phase Matters</h4>
+          <p>Documentation written after the fact is always wrong. When a documentation agent generates docs from the spec and code simultaneously, docs become a living artefact, not a post-launch chore that nobody wants to do.</p>
+        </div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -3632,6 +3636,9 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <li>Architecture guides</li>
               <li>Onboarding materials</li>
               <li>Doc diff (what changed)</li>
+              <li>Existing documentation map</li>
+              <li>Canonical terminology register</li>
+              <li>Orphan doc index (link-broken or abandoned)</li>
             </ul>
           </div>
           <div class="io-box gate">
@@ -3639,6 +3646,8 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <ul>
               <li>All public APIs documented</li>
               <li>No stale doc references</li>
+              <li>No broken internal doc links</li>
+              <li>Canonical sources inherited, not overwritten</li>
               <li>Readability score ≥ target</li>
             </ul>
           </div>
@@ -3648,12 +3657,23 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
           <div class="agents-grid">
           <div class="agent-card">
             <div class="agent-name">Doc Weaver <code>doc-weaver</code></div>
-            <div class="agent-desc">Generates comprehensive documentation from code, specs, and tests. User guides, developer docs, architecture overviews, onboarding materials. Auto-updates on code changes. Writes for the right audience.</div>
+            <div class="agent-desc">Generates comprehensive documentation from code, specs, and tests. User guides, developer docs, architecture overviews, onboarding materials. Auto-updates on code changes. Consumes the Doc Cartographer's existing-docs map so new documentation extends canonical structure and terminology where they matter. Writes for the right audience.</div>
             <div class="agent-tools">
               <span class="tool-tag">Claude API</span>
               <span class="tool-tag">GitHub MCP</span>
               <span class="tool-tag">Notion MCP</span>
               <span class="tool-tag">MDX Generator</span>
+            </div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-name">Doc Cartographer <code>doc-atlas</code></div>
+            <div class="agent-desc">Discovers and indexes documentation across internal sources: Confluence, internal wikis, code repos, Notion, Google Docs, shared drives, and SharePoint. Builds a reference graph that identifies what's canonical, what's stale, what's duplicated, and what's scattered. Feeds the Doc Weaver with existing canonical terminology and structure so new docs extend rather than replace. Preserves link integrity where it matters, surfaces orphaned references, and flags documentation that's been abandoned but still linked to.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">Claude API</span>
+              <span class="tool-tag">Confluence MCP</span>
+              <span class="tool-tag">GitHub MCP</span>
+              <span class="tool-tag">Notion MCP</span>
+              <span class="tool-tag">Vector Index</span>
             </div>
           </div>
           <div class="agent-card">
