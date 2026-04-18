@@ -2666,7 +2666,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <div class="agent-tools">
               <span class="tool-tag">Claude API</span>
               <span class="tool-tag">Mermaid Charts</span>
-              <span class="tool-tag">FigJam API</span>
+              <span class="tool-tag">Figma API</span>
             </div>
           </div>
                   </div>
@@ -2686,8 +2686,9 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
         <div class="phase-tagline">Structured, buildable product definition</div>
       </div>
       <div class="phase-agents-preview">
-        <span class="agent-chip">prd-architect</span>
-        <span class="agent-chip">ux-researcher</span>
+        <span class="agent-chip">prd-architect-pro</span>
+        <span class="agent-chip">ux-insight</span>
+        <span class="agent-chip">dep-graph</span>
       </div>
     </div>
     <div class="phase-content">
@@ -2697,7 +2698,10 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
           <p>The PRD covers: user personas, jobs-to-be-done, functional requirements, non-functional requirements (performance, security, accessibility), success metrics, and rollout strategy.</p>
           <p>For a <strong>living product</strong>, the PRD Agent understands the existing product context. It reads the current codebase, existing specs, and feature graph to ensure new requirements are additive and compatible. It flags conflicts with existing features and suggests migration paths.</p>
         </div>
-                <div class="phase-why">A vague PRD creates a game of telephone between product and engineering. The PRD closes <em>what</em> and <em>why</em> ambiguity: who the user is, what they need, why it matters. The Spec closes <em>how</em> ambiguity: data models, API contracts, error taxonomy. Clean separation keeps each phase focused and prevents requirements from leaking into implementation.</div>
+        <div class="phase-why">
+          <h4>Why This Phase Matters</h4>
+          <p>A vague PRD creates a game of telephone between product and engineering. The PRD closes <em>what</em> and <em>why</em> ambiguity: who the user is, what they need, why it matters. The Spec closes <em>how</em> ambiguity: data models, API contracts, error taxonomy. Clean separation keeps each phase focused and prevents requirements from leaking into implementation.</p>
+        </div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -2713,16 +2717,19 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <ul>
               <li>Full PRD document</li>
               <li>User journey maps</li>
-              <li>Dependency impact assessment</li>
               <li>High-fidelity prototypes with dummy data</li>
+              <li>Roles and permissions matrix</li>
+              <li>Compliance and regulatory posture</li>
+              <li>Dependency impact assessment</li>
+              <li>Open questions register</li>
             </ul>
           </div>
           <div class="io-box gate">
             <h5>Human Gate</h5>
             <ul>
-              <li>Product + Engineering sign-off</li>
+              <li>Product and Engineering sign-off</li>
               <li>No unresolved dependency conflicts</li>
-              <li>Success metrics defined & measurable</li>
+              <li>Success metrics defined and measurable</li>
             </ul>
           </div>
         </div>
@@ -2731,7 +2738,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
           <div class="agents-grid">
           <div class="agent-card">
             <div class="agent-name">PRD Architect <code>prd-architect-pro</code></div>
-            <div class="agent-desc">Generates full PRDs from problem briefs. Covers user stories, acceptance criteria, success metrics, scope boundaries, and phased rollout plan. References existing product specs for consistency.</div>
+            <div class="agent-desc">Generates full PRDs from problem briefs. Covers executive summary, problem statement, vision, personas, roles and permissions, functional and non-functional requirements, success metrics, commercial model, compliance posture, scope boundaries, phased rollout plan, and an explicit register of open questions. References existing product specs for consistency.</div>
             <div class="agent-tools">
               <span class="tool-tag">Claude API</span>
               <span class="tool-tag">GitHub MCP</span>
