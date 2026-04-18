@@ -3519,8 +3519,8 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
         <div class="phase-tagline">Auto-generated demos and stakeholder previews</div>
       </div>
       <div class="phase-agents-preview">
-        <span class="agent-chip">demo-builder</span>
-        <span class="agent-chip">staging-deploy</span>
+        <span class="agent-chip">demo-craft</span>
+        <span class="agent-chip">staging-spin</span>
       </div>
     </div>
     <div class="phase-content">
@@ -3530,13 +3530,16 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
           <p>The <strong>Staging Deployer</strong> provisions ephemeral environments per feature branch. Each PR gets its own staging URL with synthetic data, accessible to stakeholders for UAT without touching production.</p>
           <p>For living products, demos include <strong>migration previews</strong>, showing existing users what will change, what's new, and what's been improved. This feeds directly into changelog and release communications.</p>
         </div>
-                <div class="phase-why">The gap between 'it works on my machine' and 'stakeholders can see it' is where momentum dies. Automated staging with synthetic data and shareable preview links turns every merge into a demoable milestone.</div>
+        <div class="phase-why">
+          <h4>Why This Phase Matters</h4>
+          <p>The gap between 'it works on my machine' and 'stakeholders can see it' is where momentum dies. Automated staging with synthetic data and shareable preview links turns every merge into a demoable milestone.</p>
+        </div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
             <ul>
               <li>Merged code (staging branch)</li>
-              <li>Feature spec & PRD</li>
+              <li>Feature spec and PRD</li>
               <li>Sample data profiles</li>
             </ul>
           </div>
@@ -3554,6 +3557,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <ul>
               <li>Stakeholder UAT sign-off</li>
               <li>No blocking UX issues</li>
+              <li>Staging mirrors production topology (legacy dependencies present)</li>
               <li>Demo traces to spec requirements</li>
             </ul>
           </div>
@@ -3573,7 +3577,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
           </div>
           <div class="agent-card">
             <div class="agent-name">Staging Deployer <code>staging-spin</code></div>
-            <div class="agent-desc">Provisions ephemeral staging environments per feature branch. Configures synthetic data, sets up monitoring, generates shareable URLs with access controls for UAT.</div>
+            <div class="agent-desc">Provisions ephemeral staging environments per feature branch. Configures synthetic data that reflects production data shape, stands up dependent services (including legacy ones) so the feature can be exercised end-to-end rather than in isolation, and emits observability to the same stack as production. Generates shareable URLs with access controls for UAT.</div>
             <div class="agent-tools">
               <span class="tool-tag">Vercel MCP</span>
               <span class="tool-tag">Docker</span>
