@@ -3310,7 +3310,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       </div>
       <div class="phase-agents-preview">
         <span class="agent-chip">test-forge</span>
-        <span class="agent-chip">chaos-monkey</span>
+        <span class="agent-chip">chaos-monkey-ai</span>
         <span class="agent-chip">perf-bench</span>
         <span class="agent-chip">eval-replay</span>
       </div>
@@ -3320,10 +3320,13 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
         <div class="phase-description">
           <p>Tests are not written after implementation. They're <strong>generated from the spec before code exists</strong>. The acceptance criteria in the spec are machine-parseable assertions that the Test Forge converts into unit tests, integration tests, and end-to-end scenarios.</p>
           <p>The <strong>Chaos Agent</strong> goes further: it generates adversarial test cases designed to break the system. Invalid inputs, race conditions, malformed payloads, extreme load patterns. It thinks like an attacker, not a user.</p>
-          <p>For living products, regression suites grow automatically. Every new feature adds tests; every bug fix adds a regression test. The test suite becomes a living safety net that AI agents maintain alongside the code.</p>
-          <p>Critically, this phase now tests <strong>both the software artefact and the agent workflow that produced it</strong>. The Evaluation and Replay Harness turns past bugs, support tickets, and production incidents into reusable evaluation datasets. It replays agent workflows against known-good outcomes to detect regressions in agent behaviour, not just code behaviour. This is one of the most important maturity signals in an AI-native operating model.</p>
+          <p>For living products, regression suites grow automatically. Every new feature adds tests; every bug fix adds a regression test. Existing test infrastructure (runners, harnesses, CI configs) is respected rather than replaced. Flaky tests are triaged rather than merely re-run. Test data reflects production shape, including the accumulated edge cases of legacy systems. The test suite becomes a living safety net that AI agents maintain alongside the code.</p>
+          <p>Critically, this phase now tests <strong>both the software artefact and the agent workflow that produced it</strong>. The Evaluation and Replay Harness turns past bugs, support tickets, and production incidents into reusable evaluation datasets. It replays agent workflows against known-good outcomes to detect regressions in agent behaviour, not just code behaviour.</p>
         </div>
-                <div class="phase-why">Testing is the phase where spec-driven development pays its biggest dividend. When tests are generated directly from machine-readable acceptance criteria, coverage isn't a metric to chase; it's a natural byproduct.</div>
+        <div class="phase-why">
+          <h4>Why This Phase Matters</h4>
+          <p>Testing is the phase where spec-driven development pays one of its biggest dividends. Tests are generated directly from machine-readable acceptance criteria, ensuring increased test coverage as a natural byproduct.</p>
+        </div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -3339,7 +3342,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <h5>Outputs</h5>
             <ul>
               <li>Test suites (unit/integration/E2E)</li>
-              <li>Test coverage report</li>
+              <li>Coverage baseline and trend</li>
               <li>Adversarial test results</li>
               <li>Performance benchmark report</li>
               <li>Agent workflow eval results</li>
@@ -3350,6 +3353,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <h5>Human Gate</h5>
             <ul>
               <li>≥90% spec coverage</li>
+              <li>No regression in coverage baseline</li>
               <li>Zero critical failures</li>
               <li>Performance within budget</li>
               <li>All chaos tests documented</li>
