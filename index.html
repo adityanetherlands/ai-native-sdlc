@@ -2786,8 +2786,9 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
         <div class="phase-tagline">The binding contract that agents code against</div>
       </div>
       <div class="phase-agents-preview">
-        <span class="agent-chip">spec-writer</span>
-        <span class="agent-chip">contract-validator</span>
+        <span class="agent-chip">spec-forge</span>
+        <span class="agent-chip">contract-check</span>
+        <span class="agent-chip">spec-delta</span>
         <span class="agent-chip">system-cartographer</span>
         <span class="agent-chip">scenario-scribe</span>
       </div>
@@ -2802,7 +2803,10 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
           <p>In a <strong>living product</strong>, specs are versioned and diff-aware. When a feature evolves, the Spec Agent generates a spec delta showing exactly what changed, what is backwards-compatible, and what requires migration. The spec becomes the <strong>living contract</strong> between product intent and code reality.</p>
           <p><strong>Spec-driven development means:</strong> no code gets written until the spec passes validation. No test gets generated without referencing the spec. No demo gets built that does not trace back to spec assertions. Drift between code and spec triggers automated alerts.</p>
         </div>
-                <div class="phase-why">This is the keystone of the entire model. Every downstream agent (coder, tester, reviewer, documenter) traces back to the spec. If the spec is precise, the entire pipeline accelerates. If it's vague, every phase pays the tax.</div>
+        <div class="phase-why">
+          <h4>Why This Phase Matters</h4>
+          <p>This is the keystone of the entire model. Every downstream agent (coder, tester, reviewer, documenter) traces back to the spec. If the spec is precise, the entire pipeline accelerates. If it's vague, every downstream phase inherits the cost.</p>
+        </div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -2821,7 +2825,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <li>OpenAPI / GraphQL schemas</li>
               <li>DB migration scripts</li>
               <li>Acceptance criteria (machine-readable)</li>
-              <li>Executable examples + guardrails</li>
+              <li>Executable examples and guardrails</li>
               <li>Domain model map (living)</li>
               <li>Spec delta (for iterations)</li>
             </ul>
@@ -2831,7 +2835,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <ul>
               <li>100% PRD → Spec traceability</li>
               <li>All schemas validate</li>
-              <li>Breaking changes flagged + migration planned</li>
+              <li>Breaking changes flagged and migration planned</li>
               <li>Tech lead approval</li>
             </ul>
           </div>
