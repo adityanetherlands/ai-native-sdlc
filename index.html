@@ -1450,6 +1450,11 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 10px;
 }
+@media (min-width: 1200px) {
+  .phase.sub-phase .agents-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 .phase.sub-phase .agent-card {
   padding: 14px 16px;
 }
