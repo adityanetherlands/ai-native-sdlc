@@ -3034,7 +3034,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <ul>
               <li>Validated technical spec</li>
               <li>Architecture decision records</li>
-              <li>Existing codebase + test suites</li>
+              <li>Existing codebase and test suites</li>
               <li>Configuration dependency map</li>
             </ul>
           </div>
@@ -3044,6 +3044,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <li>Task graph (dependency-ordered)</li>
               <li>PR slicing plan</li>
               <li>Impact matrix</li>
+              <li>Parallel-work conflict register</li>
               <li>Rollback strategy per work unit</li>
               <li>Environment provisioning checklist</li>
             </ul>
@@ -3054,6 +3055,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <li>All tasks traceable to spec elements</li>
               <li>No circular dependencies in graph</li>
               <li>Rollback point defined per PR</li>
+              <li>Sequencing checked against release calendar and active PRs</li>
               <li>Tech lead approval on sequencing</li>
             </ul>
           </div>
@@ -3073,7 +3075,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             </div>
             <div class="agent-card">
               <div class="agent-name">Impact Analyser <code>impact-scan</code></div>
-              <div class="agent-desc">Maps every spec element to impacted components, existing test suites, configuration files, and environment dependencies. Flags legacy seams and integration points that constrain delivery order. Produces an impact matrix the planner uses to sequence work safely.</div>
+              <div class="agent-desc">Maps every spec element to impacted components, existing test suites, configuration files, and environment dependencies. Flags legacy seams and integration points that constrain delivery order. Also flags in-flight parallel work on the same components, open PRs that create conflict risk, and upcoming release windows or code freezes that constrain sequencing. Produces an impact matrix the planner uses to sequence work safely.</div>
               <div class="agent-tools">
                 <span class="tool-tag">AST Analysis</span>
                 <span class="tool-tag">GitHub MCP</span>
