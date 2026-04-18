@@ -3419,7 +3419,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       </div>
       <div class="phase-agents-preview">
         <span class="agent-chip">sec-guardian</span>
-        <span class="agent-chip">compliance-check</span>
+        <span class="agent-chip">compliance-auto</span>
         <span class="agent-chip">action-gatekeeper</span>
       </div>
     </div>
@@ -3430,13 +3430,17 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
           <p>The <strong>Security Guardian</strong> performs STRIDE threat modelling against the architecture, SAST/DAST scanning against the codebase, dependency vulnerability analysis, and secrets detection. For AI-powered features, it also checks for prompt injection vulnerabilities and model output safety.</p>
           <p>The <strong>Compliance Agent</strong> validates against relevant frameworks (SOC2, GDPR, HIPAA, ISO 27001) based on the product's compliance profile. It generates audit-ready evidence and control documentation.</p>
           <p>Beyond the phase-level gate, security governance now operates at the <strong>tool and action level</strong>. Shell commands, environment changes, and destructive actions are subject to explicit approval policies. Guardrails validate in real-time, and <strong>human review pauses the run before risky actions proceed</strong>. This is a fundamentally stronger control model than a single late-stage sign-off: every agent in every phase that touches sensitive resources operates within declared permission boundaries.</p>
+          <p>In <strong>brownfield contexts</strong>, security governance inherits more than it authors. Existing attestations, threat models, pen test findings, risk-accepted exceptions, enterprise IAM baselines, and approved key management setups are the starting point. The agents extend this posture; they do not replace it. Any new code that would regress an existing attestation or compliance control is flagged as blocking before the phase-level gate.</p>
         </div>
-                <div class="phase-why">Security can't be a phase-gate bolt-on. When a security agent scans every commit, validates every dependency, and checks every API against OWASP in real-time, security shifts from audit to continuous assurance.</div>
+        <div class="phase-why">
+          <h4>Why This Phase Matters</h4>
+          <p>Security can't be a phase-gate bolt-on. When a security agent scans every commit, validates every dependency, and checks every API against OWASP in real-time, security shifts from audit to continuous assurance.</p>
+        </div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
             <ul>
-              <li>Codebase + dependencies</li>
+              <li>Codebase and dependencies</li>
               <li>Architecture diagrams</li>
               <li>Compliance requirements</li>
               <li>Threat model history</li>
@@ -3451,6 +3455,8 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <li>Compliance evidence pack</li>
               <li>Remediation playbook</li>
               <li>Action approval audit log</li>
+              <li>Posture regression report</li>
+              <li>Existing-exception register (respected)</li>
             </ul>
           </div>
           <div class="io-box gate">
@@ -3458,6 +3464,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <ul>
               <li>Zero critical/high vulnerabilities</li>
               <li>All compliance controls met</li>
+              <li>No regression against existing attestations</li>
               <li>Action policies enforced across agents</li>
               <li>Security lead sign-off</li>
             </ul>
