@@ -3112,17 +3112,21 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       <div class="phase-agents-preview">
         <span class="agent-chip">code-engine</span>
         <span class="agent-chip">ui-ux-pro-max</span>
-        <span class="agent-chip">api-builder</span>
+        <span class="agent-chip">api-forge</span>
+        <span class="agent-chip">data-smith</span>
       </div>
     </div>
     <div class="phase-content">
       <div class="phase-inner">
         <div class="phase-description">
           <p>This is where spec-driven development pays off. Coding agents receive the spec as their <strong>instruction set</strong>: not vague requirements, but precise schemas, interfaces, and acceptance criteria. The agents generate production code that conforms to the spec, follows existing codebase conventions, and includes inline documentation.</p>
-          <p><strong>Specialised agents</strong> handle different domains: the Frontend Agent builds UI components with design system compliance, the API Agent implements endpoints matching OpenAPI schemas exactly, and the Data Agent writes migrations and query layers. Each agent operates within its bounded context.</p>
+          <p><strong>Specialised agents</strong> handle different domains: the Frontend Specialist builds UI components with design system compliance, the API Builder implements endpoints matching OpenAPI schemas exactly, and the Data Layer Agent writes migrations and query layers. Each agent operates within its bounded context.</p>
           <p>For <strong>living products</strong>, agents understand the existing code graph. They don't generate isolated code; they integrate into the existing module structure, respect import conventions, extend existing test patterns, and follow established naming conventions.</p>
         </div>
-                <div class="phase-why">Code generation isn't the hard part. Generating code that respects existing patterns, passes existing tests, and integrates with existing services is. This phase treats implementation as spec-execution, not creative writing.</div>
+        <div class="phase-why">
+          <h4>Why This Phase Matters</h4>
+          <p>Code generation isn't the hard part. Generating code that respects existing patterns, passes existing tests, and integrates with existing services is. This phase treats implementation as spec-execution, not creative writing.</p>
+        </div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
@@ -3146,7 +3150,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
           <div class="io-box gate">
             <h5>Human Gate</h5>
             <ul>
-              <li>All code compiles & lints clean</li>
+              <li>All code compiles and lints clean</li>
               <li>Spec conformance check passes</li>
               <li>No existing tests broken</li>
             </ul>
