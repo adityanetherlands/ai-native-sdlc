@@ -1086,6 +1086,49 @@ body {
 }
 
 /* WHY THIS PHASE MATTERS */
+/* Brownfield considerations block: per-phase table of enterprise
+   realities not fully absorbed by agents. Minimal styling that echoes
+   the I/O strip aesthetic. */
+.phase-brownfield {
+  margin: 0 0 20px;
+  padding: 16px 18px;
+  background: var(--bg-phase);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.phase-brownfield h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  margin: 0 0 12px;
+}
+.phase-brownfield table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.phase-brownfield td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.phase-brownfield tr:last-child td { border-bottom: none; }
+.phase-brownfield td:first-child {
+  font-weight: 600;
+  width: 30%;
+  color: var(--text);
+}
+.phase-brownfield td:last-child {
+  color: var(--text-muted);
+}
+@media (max-width: 720px) {
+  .phase-brownfield td { display: block; width: 100%; padding: 6px 0; }
+  .phase-brownfield td:first-child { padding-top: 10px; border-bottom: none; }
+  .phase-brownfield td:last-child { padding-bottom: 10px; }
+}
+
 .phase-why {
   margin: 16px 0 20px;
   padding: 14px 18px;
@@ -3717,6 +3760,35 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
         <div class="phase-why">
           <h4>Why This Phase Matters</h4>
           <p>Release engineering is toil. When an AI agent handles changelog generation, version bumping, deployment orchestration, and rollback triggers, releases become a non-event, which is exactly what they should be.</p>
+        </div>
+        <div class="phase-brownfield">
+          <h4>Brownfield considerations</h4>
+          <table>
+            <tr>
+              <td>In-flight transactions</td>
+              <td>Connection draining and session continuity during deploy so active users are not disrupted.</td>
+            </tr>
+            <tr>
+              <td>Feature-flag segments</td>
+              <td>Rollout cohorts respect existing customer segments (tier, geography, beta); full flag lifecycle from create to cleanup.</td>
+            </tr>
+            <tr>
+              <td>Downstream service coordination</td>
+              <td>Breaking-change handshakes, deprecation timelines, and version compatibility with consumer services.</td>
+            </tr>
+            <tr>
+              <td>Change management and freezes</td>
+              <td>CAB approvals, change windows, and regional or product blackouts (Q4 retail, financial close, regulatory filings).</td>
+            </tr>
+            <tr>
+              <td>Customer communications</td>
+              <td>Proactive notices for breaking changes, scheduled maintenance windows, and status page updates.</td>
+            </tr>
+            <tr>
+              <td>Rollback complexity</td>
+              <td>Data-preserving versus data-destructive paths; partial rollback (region or cohort); rollback after live traffic.</td>
+            </tr>
+          </table>
         </div>
         <div class="io-strip">
           <div class="io-box inputs">
