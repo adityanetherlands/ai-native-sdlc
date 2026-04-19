@@ -4080,18 +4080,18 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       <div class="card-body">
         <div class="card-label">Cross-cutting layer</div>
         <h3>Source-of-Truth Hierarchy</h3>
-        <p>A common failure mode of AI-native delivery is <strong>blurred boundaries between artifacts</strong>. When the PRD drifts into APIs and Architecture drifts into business rules, both humans and agents lose the thread on which document to trust. This layer assigns each artifact a single, owned concern, and names <strong>code as the ground truth</strong> against which every other layer's drift is measured.</p>
+        <p>A common failure mode of AI-native delivery is <strong>blurred boundaries between artefacts</strong>. When the PRD drifts into APIs and Architecture drifts into business rules, both humans and agents lose the thread on which document to trust. This layer assigns each artefact a single, owned concern, and names <strong>code as the ground truth</strong> against which every other layer's drift is measured.</p>
         <p style="margin-top:12px;">The hierarchy is a navigation aid as much as a contract. When intent changes, it changes in the PRD and the Spec follows. When technical constraints change, they change in Architecture. When code deviates from spec, reconciliation agents catch the drift. Clean ownership is what keeps the pipeline composable.</p>
         <table class="authority-table">
           <thead>
-            <tr><th>Artifact</th><th>Owns</th><th>Lives in</th></tr>
+            <tr><th>Artefact</th><th>Owns</th><th>Lives in</th></tr>
           </thead>
           <tbody>
-            <tr><td>PRD</td><td>Business intent &amp; outcomes</td><td><a href="#phase-2">Phase 2</a></td></tr>
+            <tr><td>PRD</td><td>Business intent and outcomes</td><td><a href="#phase-2">Phase 2</a></td></tr>
             <tr><td>Spec</td><td>Executable contract</td><td><a href="#phase-3">Phase 3</a></td></tr>
-            <tr><td>Architecture</td><td>Technical constraints &amp; ADRs</td><td><a href="#phase-4">Phase 4</a></td></tr>
-            <tr><td>Delivery Plan</td><td>Task graph &amp; rollback boundaries</td><td><a href="#phase-4a">Phase 4a</a></td></tr>
-            <tr><td>Project Context</td><td>Local conventions &amp; repo knowledge</td><td><a href="#foundations">Knowledge &amp; Context Fabric</a></td></tr>
+            <tr><td>Architecture</td><td>Technical constraints and ADRs</td><td><a href="#phase-4">Phase 4</a></td></tr>
+            <tr><td>Delivery Plan</td><td>Task graph and rollback boundaries</td><td><a href="#phase-4a">Phase 4a</a></td></tr>
+            <tr><td>Project Context</td><td>Local conventions and repo knowledge</td><td><a href="#foundations">Knowledge &amp; Context Fabric</a></td></tr>
             <tr><td>Code</td><td>Actual runtime behaviour; drift measured against it</td><td><a href="#phase-5">Implementation</a></td></tr>
           </tbody>
         </table>
