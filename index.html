@@ -3704,6 +3704,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       <div class="phase-agents-preview">
         <span class="agent-chip">release-captain</span>
         <span class="agent-chip">changelog-pro</span>
+        <span class="agent-chip">migration-conductor</span>
       </div>
     </div>
     <div class="phase-content">
@@ -3735,6 +3736,9 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <li>Deployed to production</li>
               <li>Feature flag config</li>
               <li>Rollout monitoring dashboard</li>
+              <li>Migration plan and sequencing</li>
+              <li>Backfill strategy</li>
+              <li>Zero-downtime migration path</li>
             </ul>
           </div>
           <div class="io-box gate">
@@ -3742,6 +3746,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
             <ul>
               <li>All tests pass in CI</li>
               <li>Canary health check green</li>
+              <li>Migration plan approved (data owner sign-off)</li>
               <li>Release manager approval</li>
             </ul>
           </div>
@@ -3767,6 +3772,16 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
               <span class="tool-tag">Git Log Parser</span>
               <span class="tool-tag">Notion MCP</span>
               <span class="tool-tag">Slack MCP</span>
+            </div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-name">Migration Coordinator <code>migration-conductor</code></div>
+            <div class="agent-desc">Orchestrates schema and data migrations coordinated with code deploys. Plans online versus offline migrations, sequences backfill jobs, manages data-destructive versus data-preserving rollbacks, and coordinates multi-step migrations where application code and database changes must deploy in a specific order. For brownfield, understands legacy schema constraints and generates zero-downtime migration paths.</div>
+            <div class="agent-tools">
+              <span class="tool-tag">Claude API</span>
+              <span class="tool-tag">Database MCPs</span>
+              <span class="tool-tag">Migration Framework</span>
+              <span class="tool-tag">Backfill Runner</span>
             </div>
           </div>
                   </div>
