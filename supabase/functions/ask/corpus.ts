@@ -42,6 +42,6 @@ export const corpus: CorpusChunk[] = [
   {
     "section_id": "suggestions",
     "title": "Submit a Suggestion",
-    "text": "Contribute Submit a Suggestion Spotted a gap, have a sharper framing, or want to collaborate? Share it below. Every submission is read. Name * Email (optional) Your function * Select a function… Engineering Product Design Marketing Sales / GTM Operations Finance People / HR Executive Other Suggestion type * Select a type… New idea Correction Question Collaboration request Other Related SDLC phase * Select a phase… General / Not phase-specific 01 · Ideation 02 · PRD 03 · Spec 04 · Architecture 4a · Delivery Planning 05 · Implementation 06 · Review 07 · Testing 08 · Security 09 · Staging 10 · Docs 11 · Release 12 · Monitoring Topic * Description * 0 / 5000 Reference link (optional) Send suggestion"
+    "text": "Contribute Submit a Suggestion Spotted a gap, have a sharper framing, or want to collaborate? Share it below. Every submission is read. Name * Email (optional) Your function * Select a function… Engineering Product Design Marketing Sales / GTM Operations Finance People / HR Executive Other Suggestion type * Select a type… New idea Correction Question Collaboration request Other Related SDLC phase * Select a phase… General / Not phase-specific 01 · Ideation 02 · PRD 03 · Spec 04 · Architecture 04a · Delivery Planning 05 · Implementation 06 · Review 07 · Testing 08 · Security 09 · Demo & Staging 10 · Docs 11 · Release 12 · Monitoring Topic * Description * 0 / 5000 Reference link (optional) Send suggestion"
   }
 ];
