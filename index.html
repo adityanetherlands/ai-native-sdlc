@@ -3870,7 +3870,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       <div class="phase-number"><div class="phase-expand-icon">▾</div><div class="phase-number-inner"><span>12</span>PHASE</div></div>
       <div class="phase-title-group">
         <h2><span class="phase-icon">📡</span>Monitoring, Feedback & Evolution</h2>
-        <div class="phase-tagline">Closes the loop: production signals feed Phase 01</div>
+        <div class="phase-tagline">Production signals feed earlier phases where appropriate</div>
       </div>
       <div class="phase-agents-preview">
         <span class="agent-chip">prod-watcher</span>
@@ -3880,17 +3880,49 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
     <div class="phase-content">
       <div class="phase-inner">
         <div class="phase-description">
-          <p>The lifecycle is a <strong>loop, not a line</strong>. Post-release, the Production Watcher monitors error rates, performance metrics, usage patterns, and user feedback. It detects anomalies, classifies issues, and routes them back to the appropriate phase.</p>
-          <p>A performance regression routes to Phase 7 (Testing). A spec deviation in production routes to Phase 3 (Spec). A new customer need routes to Phase 1 (Ideation). The system is <strong>self-healing and self-evolving</strong>.</p>
-          <p>The <strong>Feedback Loop Agent</strong> synthesises qualitative and quantitative signals into improvement proposals, closing the circle by generating new problem briefs that feed Phase 01. The product never stops evolving.</p>
+          <p>The lifecycle is <strong>not a strict sequence executed once</strong>. Post-release, the Production Watcher monitors error rates, performance metrics, usage patterns, and user feedback. It detects anomalies, classifies issues, and feeds them into the appropriate phase where improvement can land.</p>
+          <p>A performance regression feeds into Phase 7 (Testing). A spec deviation in production feeds into Phase 3 (Spec). A new customer need feeds into Phase 1 (Ideation). The system is <strong>self-healing and self-evolving</strong>.</p>
+          <p>The <strong>Feedback Loop Agent</strong> synthesises qualitative and quantitative signals into improvement proposals, generating new problem briefs that feed Phase 01 so the product never stops evolving.</p>
         </div>
-                <div class="phase-why">The SDLC isn't a line; it's a loop. This phase closes the circle: production signals feed back into Phase 1, anomalies trigger spec reviews, and the system continuously improves based on real-world behaviour.</div>
+        <div class="phase-why">
+          <h4>Why This Phase Matters</h4>
+          <p>The SDLC is not executed once in sequence. Phases feed into each other where appropriate: production signals inform ideation, anomalies trigger spec reviews, and the system continuously improves based on real-world behaviour.</p>
+        </div>
+        <div class="phase-brownfield">
+          <h4>Brownfield considerations</h4>
+          <table>
+            <tr>
+              <td>Observability stack continuity</td>
+              <td>New services emit to existing logging, metrics, and tracing stacks (SIEM, APM, distributed tracing) rather than introducing parallel ones.</td>
+            </tr>
+            <tr>
+              <td>Baseline comparison</td>
+              <td>Performance and error metrics are evaluated against existing production envelopes, not greenfield targets.</td>
+            </tr>
+            <tr>
+              <td>SLA and error-budget preservation</td>
+              <td>New code must not degrade established SLAs; error-budget consumption is tracked against existing service targets.</td>
+            </tr>
+            <tr>
+              <td>Alert threshold tuning</td>
+              <td>New alerts are calibrated against historical noise levels and reviewed for oncall load impact before activation.</td>
+            </tr>
+            <tr>
+              <td>Known-issue respect</td>
+              <td>Existing accepted anomalies do not trigger false-positive routing; historical incident patterns inform classification.</td>
+            </tr>
+            <tr>
+              <td>Historical feedback inheritance</td>
+              <td>Years of bug reports, feature requests, and CSAT trends feed new problem briefs as context, not noise.</td>
+            </tr>
+          </table>
+        </div>
         <div class="io-strip">
           <div class="io-box inputs">
             <h5>Inputs</h5>
             <ul>
-              <li>Production metrics & logs</li>
-              <li>User feedback & NPS</li>
+              <li>Production metrics and logs</li>
+              <li>User feedback and NPS</li>
               <li>Usage analytics</li>
               <li>Original success metrics</li>
             </ul>
@@ -3929,7 +3961,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
           </div>
           <div class="agent-card">
             <div class="agent-name">Feedback Loop Agent <code>feedback-loop</code></div>
-            <div class="agent-desc">Synthesises production metrics, user feedback, and usage analytics into improvement proposals. Generates new problem briefs that feed Phase 01, closing the lifecycle loop. Measures feature impact against original success metrics.</div>
+            <div class="agent-desc">Synthesises production metrics, user feedback, and usage analytics into improvement proposals. Generates new problem briefs that feed Phase 01 so learning from production informs the next wave of work. Measures feature impact against original success metrics.</div>
             <div class="agent-tools">
               <span class="tool-tag">Analytics Pipeline</span>
               <span class="tool-tag">NPS/CSAT Tools</span>
