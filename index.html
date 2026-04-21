@@ -1754,6 +1754,92 @@ body {
   }
 }
 
+/* STARTING POINTS: practical on-ramps for cutting AI code slop
+   without building the full blueprint. Two external-link cards. */
+.starting-points {
+  max-width: 1400px;
+  margin: 60px auto;
+  padding: 0 40px;
+}
+.starting-points .section-header {
+  margin-bottom: 24px;
+}
+.starting-points .section-header p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 760px;
+}
+.starting-points-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.starting-point-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  position: relative;
+}
+.starting-point-card:hover {
+  border-color: var(--border-active);
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow);
+}
+.starting-point-card:hover .sp-arrow {
+  transform: translate(3px, -3px);
+}
+.starting-point-card .sp-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.starting-point-card .sp-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.starting-point-card .sp-arrow {
+  display: inline-block;
+  color: var(--text-muted);
+  font-size: 14px;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+.starting-point-card:hover .sp-arrow {
+  color: var(--accent);
+}
+.starting-point-card .sp-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 0;
+}
+.starting-points-close {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.7;
+  max-width: 760px;
+}
+@media (max-width: 720px) {
+  .starting-points-grid { grid-template-columns: 1fr; }
+  .starting-points { padding: 0 20px; }
+}
+
 /* LOOPBACK BANNER */
 .loopback-banner {
   max-width: 1200px;
@@ -2450,6 +2536,7 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
   <a href="#living-product" class="nav-top" data-section="living-product">The Living Product</a>
   <a href="#blueprint" class="nav-top" data-section="blueprint">Is &amp; Is Not</a>
   <a href="#foundations" class="nav-top" data-section="foundations">Foundations</a>
+  <a href="#starting-points" class="nav-top" data-section="starting-points">Start Today</a>
   <div class="nav-section-label">Contribute</div>
   <a href="#suggestions" class="nav-top" data-section="suggestions">Submit a Suggestion</a>
   <div class="drawer-theme-toggle">
@@ -4098,6 +4185,27 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
       </div>
     </div>
   </div>
+</section>
+
+<!-- STARTING POINTS: practical on-ramps -->
+<section class="starting-points" id="starting-points">
+  <div class="section-header">
+    <h2>The <em>least</em> you can do</h2>
+    <p>The full blueprint is aspirational. You don't need all of it to cut AI code slop heavily. Two practical on-ramps worth trying this week:</p>
+  </div>
+  <div class="starting-points-grid">
+    <a class="starting-point-card" href="https://docs.bmad-method.org/reference/core-tools/" target="_blank" rel="noopener">
+      <div class="sp-eyebrow">BMAD Method</div>
+      <div class="sp-title">A methodology with pre-built agent roles<span class="sp-arrow">↗</span></div>
+      <p class="sp-desc">Analyst, architect, PM, developer, and QA agents, with phase-bounded workflows. A practical way to introduce role-bounded AI collaboration without designing a bespoke agent system.</p>
+    </a>
+    <a class="starting-point-card" href="https://github.com/obra/superpowers/blob/main/README.md" target="_blank" rel="noopener">
+      <div class="sp-eyebrow">Superpowers</div>
+      <div class="sp-title">Reusable skills for Claude Code<span class="sp-arrow">↗</span></div>
+      <p class="sp-desc">Ready-made skills for test-driven development, systematic debugging, code review, and plan-driven development. Near-zero-friction way to bring discipline to everyday AI-assisted coding.</p>
+    </a>
+  </div>
+  <p class="starting-points-close">Either one, adopted honestly, dramatically reduces AI code slop compared to free-form prompting. Both are legitimate starting points for teams not ready to build the full operating model yet.</p>
 </section>
 
 <section id="suggestions" class="suggestions-section">
