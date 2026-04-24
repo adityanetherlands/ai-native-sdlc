@@ -1278,6 +1278,24 @@ body {
   border-color: var(--accent);
 }
 
+/* Sidebar reading progress bar */
+.sidebar-progress {
+  position: fixed;
+  left: calc(var(--nav-width) - 3px);
+  top: 0;
+  width: 3px;
+  height: 0%;
+  background: linear-gradient(to bottom, var(--accent), var(--accent2));
+  opacity: 0.5;
+  z-index: 101;
+  border-radius: 0 0 2px 0;
+  pointer-events: none;
+  transition: height 0.08s linear;
+}
+@media (max-width: 1100px) {
+  .sidebar-progress { display: none; }
+}
+
 /* Cross-blog switcher in sidebar */
 .sidebar-nav .nav-blog-switcher {
   display: block;
@@ -2378,11 +2396,24 @@ body {
   padding-top: 8px;
   border-top: 1px solid var(--border);
 }
+.ask-footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
 .ask-hint {
   color: var(--text-dim);
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
 }
+.ask-quota {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  transition: color 0.2s ease;
+}
+.ask-quota.warn { color: #ffeaa7; }
+.ask-quota.full { color: var(--text-muted); }
 .ask-clear {
   background: transparent;
   border: 1px solid var(--border);
@@ -2636,7 +2667,10 @@ body.pp-visible-bubble .ask-launcher { bottom: 92px; }
     <div class="ask-panel" hidden>
       <div class="ask-thread" role="log" aria-live="polite" aria-label="Conversation"></div>
       <div class="ask-footer">
-        <span class="ask-hint">Grounded only on this page. Nothing from the web.</span>
+        <div class="ask-footer-left">
+          <span class="ask-hint">Grounded only on this page. Nothing from the web.</span>
+          <span class="ask-quota" hidden></span>
+        </div>
         <button type="button" class="ask-clear">Clear conversation</button>
       </div>
     </div>
@@ -4807,6 +4841,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('scroll', updateSidebar, { passive: true });
   updateSidebar();
+
+  // Sidebar reading progress bar
+  const progressBar = document.getElementById('sidebar-progress');
+  if (progressBar) {
+    function updateScrollProgress() {
+      const max = document.body.scrollHeight - window.innerHeight;
+      if (max <= 0) return;
+      progressBar.style.height = `${Math.min(100, (window.scrollY / max) * 100).toFixed(1)}%`;
+    }
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
+  }
 });
 
 // === Suggestion form submission ===
@@ -5064,9 +5110,35 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function updateQuotaCounters() {
+    const count = userQuestionCount();
+    for (const r of roots) {
+      const quota = r.querySelector('.ask-quota');
+      if (!quota) continue;
+      if (count === 0) {
+        quota.hidden = true;
+        quota.className = 'ask-quota';
+        continue;
+      }
+      quota.hidden = false;
+      const remaining = MAX_USER_QUESTIONS - count;
+      if (remaining <= 0) {
+        quota.textContent = 'Session full — reload to start fresh';
+        quota.className = 'ask-quota full';
+      } else if (remaining === 1) {
+        quota.textContent = '1 question remaining';
+        quota.className = 'ask-quota warn';
+      } else {
+        quota.textContent = `${remaining} of ${MAX_USER_QUESTIONS} questions remaining`;
+        quota.className = 'ask-quota';
+      }
+    }
+  }
+
   function refreshAll() {
     showPanels(history.length > 0 || inFlight || !!lastError);
     for (const r of roots) renderThread(r);
+    updateQuotaCounters();
   }
 
   async function submitQuestion(question) {
@@ -5223,6 +5295,8 @@ document.addEventListener('DOMContentLoaded', function () {
   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="20" y1="20" x2="16.65" y2="16.65"></line></svg>
 </button>
 
+<div id="sidebar-progress" class="sidebar-progress" aria-hidden="true"></div>
+
 <div class="ask-modal-backdrop" id="ask-modal-backdrop" hidden>
   <div class="ask-modal" role="dialog" aria-modal="true" aria-labelledby="ask-modal-title">
     <div class="ask-modal-head">
@@ -5241,7 +5315,10 @@ document.addEventListener('DOMContentLoaded', function () {
       <div class="ask-panel" hidden>
         <div class="ask-thread" role="log" aria-live="polite" aria-label="Conversation"></div>
         <div class="ask-footer">
-          <span class="ask-hint">Grounded only on this page. Nothing from the web.</span>
+          <div class="ask-footer-left">
+            <span class="ask-hint">Grounded only on this page. Nothing from the web.</span>
+            <span class="ask-quota" hidden></span>
+          </div>
           <button type="button" class="ask-clear">Clear conversation</button>
         </div>
       </div>
